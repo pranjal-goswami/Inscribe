@@ -2,12 +2,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Untitled Document</title>
+<title>Inscribe - The Micro Publishing Website</title>
 </head>
 
 <body>
-<h1>Good Job!!</h1>
-<p>Hi Naman
-</p>
+	<center>
+<h1>Inscribe</h1>
+<br />
+<p>The Micro Publishing Website</p>
+<center>
+
 </body>
 </html>
