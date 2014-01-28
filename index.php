@@ -6,11 +6,12 @@
 </head>
 
 <body>
-	<center>
+<center>
 <h1>Inscribe</h1>
 <br />
 <p>The Micro Publishing Website</p>
-<center>
+</center>
+<h1>Die Hard!!!</h1>
 
 </body>
 </html>
