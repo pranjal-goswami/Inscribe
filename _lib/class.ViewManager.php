@@ -77,8 +77,8 @@
     public function __construct($config_array=null) {
 
         Loader::definePathConstants();
-		$src_root_path = INSCRIBE_ROOT_PATH.'/';
-        $site_root_path = INSCRIBE_ROOT_PATH.'/';
+		$src_root_path = INSCRIBE_WEBAPP_ROOT.'/';
+        $site_root_path = INSCRIBE_WEBAPP_ROOT.'/';
         $app_title = 'Inscribe';
         $cache_pages = false;
         $cache_lifetime = 0;

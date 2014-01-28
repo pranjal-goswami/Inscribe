@@ -30,7 +30,7 @@ else{
 	define('SERVER','web');
 	$app_path = '';
 }
-define('INSCRIBE_WEBAPP_ROOT',$app_path.'/');
+define('INSCRIBE_WEBAPP_ROOT',$app_path);
 
 require_once('app.config.php');
 require_once('class.Loader.php');

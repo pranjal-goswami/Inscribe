@@ -26,6 +26,8 @@ class PostStreamController extends InscribeController{
 	public function control()
 	{
 		$this->setViewTemplate('post-stream.tpl');
+		$this->disableCaching();
+		$this->view_mgr->force_compile = true;
 		return $this->generateView();
 	}
 }
