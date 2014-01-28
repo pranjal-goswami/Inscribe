@@ -30,14 +30,11 @@ else{
 	define('SERVER','web');
 	$app_path = '';
 }
-define('INSCRIBE_WEBAPP_ROOT',$app_path);
+define('INSCRIBE_WEBAPP_ROOT',$app_path.'/');
 
 require_once('app.config.php');
-require_once('./class.loader.php');
+require_once('class.Loader.php');
 
 Loader::register();
 
-$post = new Post();
-$post->title = 'First post this way';
-echo $post->getTitle();
 ?>

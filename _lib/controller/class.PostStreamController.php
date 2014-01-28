@@ -10,16 +10,23 @@
  * consent of the author. 
  *
  * Project : Inscribe
- * File : /index.php
- * Description : Inscribe landing page
+ * File : _lib/controller/class.PostStreamController.php
+ * Description : Controller For Post stream
  *
- * @author Pranjal Goswami <pranjal[at]weblength[dot]co[dot]in> 
+ * @author Pranjal Goswami <pranjal[at]weblength[dot]co[dot]in>
  * @author Naman Agrawal <naman[at]weblength[dot]co[dot]in> 
  * 
  * BADesigns | GreekTurtle | Weblength Infonet Pvt. Ltd. 
  *
  * Created : Tue Jan 28 2014 22:09:06 GMT+0530 (India Standard Time)
  */
-require_once('_lib/init.php');
-$controller = new PostStreamController();
-echo $controller->go();
+
+class PostStreamController extends InscribeController{
+	
+	public function control()
+	{
+		$this->setViewTemplate('post-stream.tpl');
+		return $this->generateView();
+	}
+}
+?>

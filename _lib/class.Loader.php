@@ -77,7 +77,7 @@ class Loader
         );
 
         // set default lookup path for special classes
-        self::$special_classes ["Smarty"] = INSCRIBE_WEBAPP_ROOT . "_lib/extlib/Smarty-2.6.26/libs/Smarty.class.php";
+        self::$special_classes ["Smarty"] = INSCRIBE_ROOT_PATH . "_lib/extlib/Smarty-2.6.26/libs/Smarty.class.php";
 
         if (isset($paths)) {
             foreach($paths as $path) {
