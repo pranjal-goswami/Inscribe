@@ -7,7 +7,7 @@
 
 <body>
 	<center>
-<h1>Inscribe</h1>
+<h1>Changed!!!</h1>
 <br />
 <p>The Micro Publishing Website</p>
 <center>
