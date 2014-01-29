@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2014-01-29 18:37:21
+<?php /* Smarty version 2.6.26, created on 2014-01-29 18:54:37
          compiled from _header.tpl */ ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -12,6 +12,8 @@
 plugins/bootstrap/css/bootstrap.css" />
 	<link type="text/css" rel="stylesheet" href="<?php echo $this->_tpl_vars['site_root_path']; ?>
 plugins/bootstrap/css/bootstrap-theme.css" /> 
+	<link rel="stylesheet" type="text/css" 
+			href="http://fonts.googleapis.com/css?family=Oxygen:400,300,700|Open+Sans:400,300,600" />
 	<link type="text/css" rel="stylesheet" href="<?php echo $this->_tpl_vars['site_root_path']; ?>
 assets/css/style.css" /> 
 	<?php $_from = $this->_tpl_vars['header_css']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):

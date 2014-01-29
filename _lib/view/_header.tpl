@@ -6,6 +6,8 @@
 	
 	<link type="text/css" rel="stylesheet" href="{$site_root_path}plugins/bootstrap/css/bootstrap.css" />
 	<link type="text/css" rel="stylesheet" href="{$site_root_path}plugins/bootstrap/css/bootstrap-theme.css" /> 
+	<link rel="stylesheet" type="text/css" 
+			href="http://fonts.googleapis.com/css?family=Oxygen:400,300,700|Open+Sans:400,300,600" />
 	<link type="text/css" rel="stylesheet" href="{$site_root_path}assets/css/style.css" /> 
 	{foreach from=$header_css item=css}
 	<link type="text/css" rel="stylesheet" href="{$site_root_path}{$css}" />
