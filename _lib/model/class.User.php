@@ -23,54 +23,64 @@
 
 class User(){
 	/**
-	 * @var int id 	Unique Profile ID 
+	 * @var int   Unique ID of the user 
 	 */
 	var $id;
 	/**
-	 * @var varchar full_name 	User Full Name 
+	 * @var varchar   User full name 
 	 */
 	var $full_name;
 	/**
-	 * @var varchar pwd 	Hash of the owner password
+	 * @var varchar   Hash of the owner password 
 	 */
 	var $pwd;
 	/**
-	 * @var varchar pwd_salt 	Salt for securely hashing the owner password	
+	 * @var varchar   Salt for securely hashing the owner password 
 	 */
 	var $pwd_salt;
 	/**
-	 * @var varchar email 	User email
+	 * @var varchar   User email 
 	 */
 	var $email;
 	/**
-	 * @var timestamp joined 	Date-time user registered for an account
+	 * @var timestamp   Date-time user registered for an account 
 	 */
 	var $joined;
 	/**
-	 * @var datetime last_login 	Last time user logged in
+	 * @var datetime   Last time user logged in 
 	 */
 	var $last_login;
 	/**
-	 * @var varchar pwd_token 	Password reset token
+	 * @var varchar   Password reset token 
 	 */
 	var $pwd_token;
 	/**
-	 * @var int admirers_count 	Number of unique users who upvoted this user’s work
+	 * @var int   Number of unique users who upvoted this user’s work 
 	 */
 	var $admirers_count;
 	/**
-	 * @var int total_upvotes_count	 Number of total upvotes from all posts by this user
+	 * @var int   Number of total upvotes from all posts by this user 
 	 */
 	var $total_upvotes_count;
 	/**
-	 * @var int posts_count 	Number of total posts made by this user
+	 * @var int   Number of total posts made by this user 
 	 */
-	var $posts_count
+	var $posts_count;
 
 	/* Class Constructor */
     public function __construct($row = false) {
         if ($row) {
-        	
+        	$this->id = $row['id'];
+			$this->full_name = $row['full_name'];
+			$this->pwd = $row['pwd'];
+			$this->pwd_salt = $row['pwd_salt'];
+			$this->email = $row['email'];
+			$this->joined = $row['joined'];
+			$this->last_login = $row['last_login'];
+			$this->pwd_token = $row['pwd_token'];
+			$this->admirers_count = $row['admirers_count'];
+			$this->total_upvotes_count = $row['total_upvotes_count'];
+			$this->posts_count = $row['posts_count'];
         }
     }
 }

@@ -2,7 +2,7 @@
 $con= mysql_connect("localhost","root") or die("Cannot connect to database<br/>".mysql_error());
 $db = mysql_select_db("inscribe") or die("Cannot Select database<br/>".mysql_error());
 
-$tablename="users";
+$tablename="in_upvotes";
 
 $sql = "SELECT * from ".$tablename."";
 $result = mysql_query($sql);
