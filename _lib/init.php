@@ -20,6 +20,9 @@
  * Created : Tue Jan 28 2014 18:01:05 GMT+0530 (India Standard Time)
  */
  
+date_default_timezone_set('Asia/Calcutta');
+session_start();
+ 
 $local_path = str_replace('\\','/',dirname(dirname(__FILE__)));
 $needle = 'htdocs';
 if(strpos($local_path,$needle)>=0){ 
