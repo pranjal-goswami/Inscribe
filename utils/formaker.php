@@ -1,7 +1,10 @@
 <?
-include "../db.php";
+$con= mysql_connect("localhost","root") or die("Cannot connect to database<br/>".mysql_error());
+$db = mysql_select_db("inscribe") or die("Cannot Select database<br/>".mysql_error());
 
-$sql = "SELECT * from profiles";
+$tablename="in_upvotes";
+
+$sql = "SELECT * from ".$tablename."";
 $result = mysql_query($sql);
 /*
 while ($property = mysql_fetch_field($result))
@@ -94,7 +97,7 @@ echo ('
 }
 mysql_select_db('information_schema');
 
-$q = "SELECT COLUMN_NAME, COLUMN_COMMENT, DATA_TYPE from information_schema.COLUMNS WHERE TABLE_NAME='bond_details'";
+$q = "SELECT COLUMN_NAME, COLUMN_COMMENT, DATA_TYPE from information_schema.COLUMNS WHERE TABLE_NAME='".$tablename."'";
 $sql = mysql_query($q) or die(mysql_error());
 
 while($field = mysql_fetch_object($sql))
