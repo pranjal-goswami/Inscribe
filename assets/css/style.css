@@ -2,6 +2,8 @@
 
 body {
 	font-family: "Oxygen", Arial , sans-serif;
+	padding-top:70px;
+	web-font-smoothening:antialiased;
 }
 .post-stream {
 	border:1px solid #ccc; 
@@ -15,12 +17,12 @@ img{background:#000;}
 /****************siderbar****************/
 .sidebar-nav-fixed {
     top: 0px;
-	opacity:0.5;
-    padding:0px;
-	width:100%;
-    color: #fff;
+    padding:10px;
+	padding-top:70px;
+	width:20%;
+    //color: #fff;
     height: 100%;
-    background: rgb(24, 33, 61);
+    //background: rgb(24, 33, 61);
 
 }
 .sidebar-nav-fixed .card{
@@ -53,7 +55,8 @@ img{background:#000;}
 /********post***********/
 .post .card{
     border: 0px;
-    border-radius: 0px;
+    border-radius: 5px;
+	border:1px dashed #ccc;
 }
 .post .card .card-heading.image .card-heading-header span{
     font-size: 15px;
@@ -181,69 +184,6 @@ img{background:#000;}
     }
 }
 
-/* Desktop
-------------------------- */
-@media (max-width: 980px) {
-  /* Unfloat brand */
-
-
-  /* When affixed, space properly */
-  /* Adjust sidenav width */
-    .sidebar-nav-fixed {
-        //width:25%;
-    }
-    .sidebar-nav-fixed.affix {
-        top: 0;
-    }
-     .cbp_tmtimeline > li .cbp_tmicon{
-        margin: 0 0 -67px -64px;
-    }
-}
-/* Tablet to desktop
-------------------------- */
-@media (min-width: 768px) and (max-width: 979px) {
-    /* Remove any padding from the body */
-    body {
-        padding-top: 0;
-    }
-    /* Adjust sidenav width */
-    .sidebar-nav-fixed {
-        //width:25%;
-    }
-    .sidebar-nav-fixed.affix {
-        top: 0;
-    }
-     .cbp_tmtimeline > li .cbp_tmicon{
-        margin: 0 0 -67px -64px;
-    }
-}
-
-/* Tablet
-------------------------- */
-@media (max-width: 767px) {
-    /* Remove any padding from the body */
-    body {
-        padding-top: 0;
-    }
-
-    /* Sidenav */
-    .sidebar-nav-fixed {
-      //  width:25%;
-         margin-left:0px;
-    }
-    .sidebar-nav-fixed.affix {
-        position: static;
-        width: auto;
-        top: 0;
-    }
-    .cbp_tmtimeline > li .cbp_tmicon{
-      margin: -95px 0px 0px 10px;
-float: left;
-    }
-    .cbp_tmtimeline > li .cbp_tmtime{
-        padding: 4px 3px 24px 100px;
-    }
-}
 
 /*--------------------CARDS----------------------*/
 
@@ -494,8 +434,71 @@ float: left;
 }
 
 
+/* Desktop
+------------------------- */
+@media (max-width: 980px) {
+  /* Unfloat brand */
 
 
+  /* When affixed, space properly */
+  /* Adjust sidenav width */
+    .sidebar-nav-fixed {
+        //width:25%;
+    }
+    .sidebar-nav-fixed.affix {
+        top: 0;
+    }
+     .cbp_tmtimeline > li .cbp_tmicon{
+        margin: 0 0 -67px -64px;
+    }
+}
+/* Tablet to desktop
+------------------------- */
+@media (min-width: 768px) and (max-width: 979px) {
+    /* Remove any padding from the body */
+    body {
+        padding-top: 0;
+    }
+    /* Adjust sidenav width */
+    .sidebar-nav-fixed {
+        width:100%;
+		height:auto;
+		position:relative;
+    }
+    .sidebar-nav-fixed.affix {
+        top: 0;
+    }
+     .cbp_tmtimeline > li .cbp_tmicon{
+        margin: 0 0 -67px -64px;
+    }
+}
+
+/* Tablet
+------------------------- */
+@media (max-width: 767px) {
+    /* Remove any padding from the body */
+    body {
+        padding-top: 0;
+    }
+
+    /* Sidenav */
+    .sidebar-nav-fixed {
+         //width:20%;
+         margin-left:0px;
+    }
+    .sidebar-nav-fixed.affix {
+        position: static;
+        width: auto;
+        top: 0;
+    }
+    .cbp_tmtimeline > li .cbp_tmicon{
+      margin: -95px 0px 0px 10px;
+float: left;
+    }
+    .cbp_tmtimeline > li .cbp_tmtime{
+        padding: 4px 3px 24px 100px;
+    }
+}
 
 /* Landscape phones
 ------------------------- */
@@ -506,7 +509,6 @@ float: left;
     }
  .sidebar-nav-fixed {
          margin-left:0px;
-		s
     }
     /* Tighten up footer */
     .footer {
