@@ -1,7 +1,7 @@
 {include file="_header.tpl"}
 
 <!-- MAIN CONTAINER -->
-        <div class="container" style="width:100%;">
+        <div class="container">
             <div class="row">
                 <!-- LEFT FIXED SIDE BAR -->
                 <div class="col-md-3">
