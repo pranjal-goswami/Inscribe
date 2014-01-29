@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2014-01-29 19:07:21
+<?php /* Smarty version 2.6.26, created on 2014-01-29 19:59:23
          compiled from post-stream.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "_header.tpl", 'smarty_include_vars' => array()));
@@ -7,31 +7,16 @@ unset($_smarty_tpl_vars);
  ?>
 
 <!-- MAIN CONTAINER -->
-        <div class="container" style="width:100%;">
+        <div class="container" >
             <div class="row">
                 <!-- LEFT FIXED SIDE BAR -->
-                <div class="col-md-3">
-                    <div class="sidebar-nav-fixed affix">
-
-                        <div class="card hovercard">
-
-                            <img src="assets/img/b-cover.jpg" alt="image avatar" />
-                            <div class="avatar">
-                                <img src="assets/img/logo.png" alt="image avatar"/>
-                            </div>
-                            <div class="info">
-                                <div class="title">
-                                    <h2>Keep It Simple</h2>
-
-                                </div>
-                                <div class="desc">The perfect theme for your blog.A semantic personal publishing platform with a focus on aesthetics, web standards, and usability</div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-md-3" style="padding:0px;">
+                   <div class="col-md-3 sidebar-nav-fixed affix">gfdgnlknbkljbg ldjnkjdbgkdjg pbdnkjbpdjbgdjrh gipebdkjfb edgbdknfjbiu vuvhblig</div>
+				   
                 </div>
                 <!-- LEFT FIXED SIDE BAR ENDS -->
                 <!-- RIGHT BLOG CONTENT CONTAINER -->
-                <div class="col-md-9">
+                <div class="col-md-9 col-md-offset-3" style="border:1px dashed #999;">
                     <!-- BLOG POST CONTENT -->
                     <div class="row post">
                         <div class="col-md-12"> 
@@ -54,7 +39,7 @@ unset($_smarty_tpl_vars);
                                 </div>
 
                                 <div class="card-actions card-comments">
-                                    <button class="btn">+1</button>
+                                    <button class="btn btn-primary">+1</button>
                                     <button class="btn">Share</button>
                                     <a href="#"> <i class="icon-facebook  muted pull-right"></i> </a>
                                     <a href="#"> <i class="icon-twitter  muted pull-right"></i> </a>

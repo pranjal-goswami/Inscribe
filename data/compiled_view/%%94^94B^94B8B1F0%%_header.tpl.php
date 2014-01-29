@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2014-01-29 19:07:21
+<?php /* Smarty version 2.6.26, created on 2014-01-29 19:59:23
          compiled from _header.tpl */ ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -36,4 +36,4 @@ assets/js/jquery-2.1.0.min.js"></script>
 "></script>
     <?php endforeach; endif; unset($_from); ?> 	
 </head>
-<body>
+<body>
