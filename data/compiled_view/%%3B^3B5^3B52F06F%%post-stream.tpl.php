@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-<?php /* Smarty version 2.6.26, created on 2014-01-29 20:02:18
-=======
-<?php /* Smarty version 2.6.26, created on 2014-01-29 19:59:23
->>>>>>> 8f10083922a93dbd7b891c1ec9203bdc9323fd90
+<?php /* Smarty version 2.6.26, created on 2014-01-29 20:41:55
          compiled from post-stream.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "_header.tpl", 'smarty_include_vars' => array()));
@@ -11,11 +7,9 @@ unset($_smarty_tpl_vars);
  ?>
 
 <!-- MAIN CONTAINER -->
-<<<<<<< HEAD
-        <div class="container">
-=======
+
         <div class="container" >
->>>>>>> 8f10083922a93dbd7b891c1ec9203bdc9323fd90
+
             <div class="row">
                 <!-- LEFT FIXED SIDE BAR -->
                 <div class="col-md-3" style="padding:0px;">

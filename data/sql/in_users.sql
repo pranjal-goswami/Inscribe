@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 29, 2014 at 03:07 PM
+-- Generation Time: Jan 29, 2014 at 03:18 PM
 -- Server version: 5.1.44
 -- PHP Version: 5.3.1
 
@@ -22,10 +22,10 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Table structure for table `in_users`
 --
 
-CREATE TABLE IF NOT EXISTS `users` (
+CREATE TABLE IF NOT EXISTS `in_users` (
   `id` int(20) NOT NULL AUTO_INCREMENT COMMENT 'Unique ID of the user',
   `full_name` varchar(200) DEFAULT NULL COMMENT 'User full name',
   `pwd` varchar(255) DEFAULT NULL COMMENT 'Hash of the owner password',
@@ -41,6 +41,6 @@ CREATE TABLE IF NOT EXISTS `users` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
--- Dumping data for table `users`
+-- Dumping data for table `in_users`
 --
 
