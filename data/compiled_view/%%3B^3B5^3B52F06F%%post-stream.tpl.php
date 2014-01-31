@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2014-01-30 23:07:22
+<?php /* Smarty version 2.6.26, created on 2014-01-31 23:07:34
          compiled from post-stream.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "_header.tpl", 'smarty_include_vars' => array()));
@@ -35,9 +35,9 @@ unset($_smarty_tpl_vars);
 		<!-- LEFT FIXED SIDE BAR -->
 		<div class="col-md-2">
 		   <div class="sidebar-nav-fixed affix">
-		   <br /><br />
-		   <hr />
-		   	<h1>Inscribe</h1>
+		    <br />
+		   	<img src="<?php echo $this->_tpl_vars['site_root_path']; ?>
+/assets/img/logo.png" class="logo-image" />
 			<hr />
 			</div>
 		   

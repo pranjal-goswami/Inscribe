@@ -37,7 +37,7 @@ body {
 	height:200px;
 }
 /* debug */
-img{background:#000;}
+
 /* /debug */
 
 ::selection{
@@ -97,6 +97,10 @@ img{background:#000;}
 }
 .post .card .card-heading.image .card-heading-header span{
     font-size: 15px;
+}
+.card-heading.image img
+{
+	box-shadow: 0px 0px 0px 2px #eee;
 }
 .post .card .card-heading.image img{
 
@@ -279,6 +283,7 @@ ul.thumbnails li{
 .card-heading-header a h1{
 	font-family:  'Glegoo',Helvetica, sans-serif;
 	font-weight:normal;
+	text-shadow: rgba(0, 0, 0, .01) 0 0 1px;
 	margin-top:10px;
 	margin-bottom:15px;
 	font-size:32px;
@@ -554,6 +559,7 @@ ul.thumbnails li{
     .sidebar-nav-fixed {
          //width:20%;
          margin-left:0px;
+		 padding:10px;
     }
     .sidebar-nav-fixed.affix {
         position: static;
@@ -590,7 +596,7 @@ float: left;
 	position:absolute;
 	height:118px;
 	width:72px;
-	margin-top:-20px;
+	margin-top:-35px;
 	background:url('./../img/logo_back.png') no-repeat;
 }
 .navbar-brand .logo-text {
@@ -598,6 +604,9 @@ float: left;
 	font-size:30px;
 	font-family:"Courier New", Courier, monospace;
 	font-weight:600;
+}
+.logo-image{
+	width:200px;
 }
 /* Utils */
 .pull-up20{

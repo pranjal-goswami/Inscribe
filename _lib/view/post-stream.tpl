@@ -29,9 +29,8 @@
 		<!-- LEFT FIXED SIDE BAR -->
 		<div class="col-md-2">
 		   <div class="sidebar-nav-fixed affix">
-		   <br /><br />
-		   <hr />
-		   	<h1>Inscribe</h1>
+		    <br />
+		   	<img src="{$site_root_path}/assets/img/logo.png" class="logo-image" />
 			<hr />
 			</div>
 		   
