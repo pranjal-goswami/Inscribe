@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <?php /* Smarty version 2.6.26, created on 2014-02-02 18:58:34
+=======
+<?php /* Smarty version 2.6.26, created on 2014-02-02 17:05:59
+>>>>>>> 216a223cb85886b14829eefe7cd2780cc1331efb
          compiled from post-stream.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "_header.tpl", 'smarty_include_vars' => array()));

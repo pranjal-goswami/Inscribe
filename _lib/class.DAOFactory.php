@@ -24,7 +24,7 @@ class DAOFactory {
 	/*
 	 * Create a DAO Instance and return it
 	 */
-	public static function getDAO($dao_key,$attr = null)
+	public static function getDAO($dao_key, $attr = null)
 	{
 		$classname = $dao_key.'MySQLDAO';
 		if(!class_exists($classname)){

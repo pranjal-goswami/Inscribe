@@ -31,6 +31,10 @@ class User(){
 	 */
 	var $full_name;
 	/**
+	 * @var varchar   Unique ID of user profile picture 
+	 */
+	var $profile_pic_id;
+	/**
 	 * @var varchar   Hash of the owner password 
 	 */
 	var $pwd;
@@ -72,6 +76,7 @@ class User(){
         if ($row) {
         	$this->id = $row['id'];
 			$this->full_name = $row['full_name'];
+			$this->profile_pic_id = $row['profile_pic_id'];
 			$this->pwd = $row['pwd'];
 			$this->pwd_salt = $row['pwd_salt'];
 			$this->email = $row['email'];

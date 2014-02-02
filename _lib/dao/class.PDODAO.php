@@ -7,18 +7,20 @@
  * This file is part of Inscribe (http://inscribe.io).
  *
  * The contents of this file cannot be copied, distributed or modified without prior
- * consent of the author. 
+ * consent from the author. 
  *
  * Project : Inscribe
- * File : /_lib/dao/class.PDODAO.php
- * Description : Implements PHP PDO
+ * File : class.PDODAO.php
+ * Description : PHP PDO implementation
  *
+ * @author Naman Agrawal <naman[at]weblength[dot]co[dot]in> 
  * @author Pranjal Goswami <pranjal[at]weblength[dot]co[dot]in> 
  * 
  * BADesigns | GreekTurtle | Weblength Infonet Pvt. Ltd. 
  *
- * Created : Tue Jan 28 2014 21:53:23 GMT+0530 (India Standard Time)
+ * Created : Fri Jan 31 2014 19:14:02 GMT+0530 (IST)
  */
+
 class PDODAO {
 	
     /* Logger */
