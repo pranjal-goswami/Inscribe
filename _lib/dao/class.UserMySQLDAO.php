@@ -75,14 +75,14 @@
 		$q .= "(full_name, pwd, pwd_salt, email, last_login, admirers_count, total_upvotes_count, posts_count) ";
 		$q .= "VALUES (:full_name, :pwd, :pwd_salt, :email, :last_login, :admirers_count, :total_upvotes_count, :posts_count)";
 		$vars = array(
-			':full_name'=>$profile->full_name,
-			':pwd'=>$profile->pwd,
-			':pwd_salt'=>$profile->pwd_salt,
-			':email'=>$profile->email,
-			':last_login'=>$profile->last_login,
-			':admirers_count'=>$profile->admirers_count,
-			':total_upvotes_count'=>$profile->total_upvotes_count,
-			':posts_count'=>$profile->posts_count
+			':full_name'=>$user->full_name,
+			':pwd'=>$user->pwd,
+			':pwd_salt'=>$user->pwd_salt,
+			':email'=>$user->email,
+			':last_login'=>$user->last_login,
+			':admirers_count'=>$user->admirers_count,
+			':total_upvotes_count'=>$user->total_upvotes_count,
+			':posts_count'=>$user->posts_count
 		);
 		//$this->logger->logInfo($q);
 		$ps = $this->execute($q, $vars);

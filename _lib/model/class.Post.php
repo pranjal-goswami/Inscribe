@@ -43,6 +43,10 @@ class Post{
 	 */
 	var $content_id;
 	/**
+	 * @var longtext   Short description of the post
+	 */
+	var $excerpt;
+	/**
 	 * @var int   Length of the read (in minutes) 
 	 */
 	var $read_length;
@@ -67,6 +71,7 @@ class Post{
 			$this->author_id = $row['author_id'];
 			$this->category = $row['category'];
 			$this->content_id = $row['content_id'];
+			$this->excerpt = $row['excerpt'];
 			$this->read_length = $row['read_length'];
 			$this->publish_time = $row['publish_time'];
 			$this->upvote_count = $row['upvote_count'];
