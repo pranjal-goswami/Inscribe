@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2014-01-30 18:53:30
+<?php /* Smarty version 2.6.26, created on 2014-02-02 15:37:46
          compiled from post-stream.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "_header.tpl", 'smarty_include_vars' => array()));
@@ -6,7 +6,28 @@ $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-  ...
+ <div class="container">
+ <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <span class="navbar-brand">
+		<div class="navbar-logo"></div>
+		<span class="logo-text"></span>
+	</span>
+  </div>
+
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+   <ul class="nav navbar-nav navbar-right">
+      <li><a href="#">Log in</a></li>
+    </ul>
+  </div><!-- /.navbar-collapse -->
+  </div><!--/ container -->
 </nav>
 <!-- MAIN CONTAINER -->
 <div class="container" >
@@ -14,7 +35,10 @@ unset($_smarty_tpl_vars);
 		<!-- LEFT FIXED SIDE BAR -->
 		<div class="col-md-2">
 		   <div class="sidebar-nav-fixed affix">
-		   	gfdgnlknbkljbg ldjnkjdbgkdjg pbdnkjbpdjbgdjrh gipebdkjfb edgbdknfjbiu vuvhblig
+		    <br />
+		   	<img src="<?php echo $this->_tpl_vars['site_root_path']; ?>
+/assets/img/logo.png" class="logo-image" />
+			<hr />
 			</div>
 		   
 		</div>
@@ -26,10 +50,21 @@ unset($_smarty_tpl_vars);
 				<div class="col-md-12"> 
 					<div class="card">
 						<div class="card-heading image">
-							<a href="profile.html" > <img class="pull-right" src="assets/img/shaan.png" alt="author avatar"/></a>
+							<a href="profile.html" > 
+								<img class="pull-right pull-up10" src="assets/img/shaan.png" alt="author avatar"/>
+							</a>
 							<div class="card-heading-header">
 								<a href="post.html"><h1>Design to inspire</h1></a>
-								<h3>  <span> Published today - <i class="glyphicon glyphicon-time muted"> </i> 08.34 AM</span>  <i class="glyphicon glyphicon-eye-open muted"> </i> 4 min read  <span>  By <a href="profile.html"> Shaawn kan </a>  in  <i class="glyphicon glyphicon-bookmark muted"> </i>  <a href="topic.html"> Topic/Category </a></span> </h3>
+								<h3>  
+									<span> Published today - <i class="glyphicon glyphicon-time muted"> </i> 08.34 AM</span>
+								 	<span> 
+										<i class="glyphicon glyphicon-eye-open muted"> </i> 4 min read  
+									</span>
+									<span>  By <a href="profile.html"> Shaawn kan </a>  in  
+										<i class="fa fa-tags muted"> </i>  
+										<a href="topic.html"> Topic/Category </a>
+									</span> 
+								</h3>
 							</div>
 						</div>
 						<hr>
@@ -43,12 +78,13 @@ unset($_smarty_tpl_vars);
 						</div>
 
 						<div class="card-actions card-comments">
-							<button class="btn btn-primary">+1</button>
-							<button class="btn">Share</button>
-							<a href="#"> <i class="glyphicon glyphicon-facebook  muted pull-right"></i> </a>
-							<a href="#"> <i class="glyphicon glyphicon-twitter  muted pull-right"></i> </a>
-							<a href="#"> <i class="glyphicon glyphicon-google-plus  muted pull-right"></i> </a>
-
+							<a href="#"><i class="fa fa-facebook  muted pull-left pad-right8"></i></a>
+							<a href="#"><i class="fa fa-twitter  muted pull-left pad-right8"></i></a>
+							<a href="#"><i class="fa fa-google-plus  muted pull-left pad-right8"></i></a>
+							
+							<a href="#" class="btn btn-primary pull-right button-upvote img-circle" title="Upvote this article">
+							<i class="fa fa-arrow-up" style=""></i> 
+							</a>
 						</div>
 
 					</div>
@@ -58,79 +94,45 @@ unset($_smarty_tpl_vars);
 				<div class="col-md-12"> 
 					<div class="card">
 						<div class="card-heading image">
-							<a href="profile.html" > <img class="pull-right" src="assets/img/shaan.png" alt="author avatar"/></a>
+							<a href="profile.html" > 
+								<img class="pull-right pull-up10" src="assets/img/shaan.png" alt="author avatar"/>
+							</a>
 							<div class="card-heading-header">
-								<a href="post.html"><h1>Design to inspire</h1></a>
-								<h3>  <span> Published today - <i class="glyphicon glyphicon-time muted"> </i> 08.34 AM</span>  <i class="glyphicon glyphicon-eye-open muted"> </i> 4 min read  <span>  By <a href="profile.html"> Shaawn kan </a>  in  <i class="glyphicon glyphicon-bookmark muted"> </i>  <a href="topic.html"> Topic/Category </a></span> </h3>
+								<a href="post.html"><h1>Music is what emotions sound like </h1></a>
+								<h3>  
+									<span> Published today - <i class="glyphicon glyphicon-time muted"> </i> 08.34 AM</span>
+								 	<span> 
+										<i class="glyphicon glyphicon-eye-open muted"> </i> 4 min read  
+									</span>
+									<span>  By <a href="profile.html"> Shaawn kan </a>  in  
+										<i class="fa fa-tags muted"> </i>  
+										<a href="topic.html"> Topic/Category </a>
+									</span> 
+								</h3>
 							</div>
 						</div>
 						<hr>
-
-						<div class="card-media">
-							<h2>Media Galleries</h2>
-							<p>Explore all your options with the various grid classes available to you. You can also mix and match different sizes.</p>
-							<ul class="thumbnails">
-								<li class="col-md-4">
-									<a href="#" class="thumbnail">
-									  
-										 <img src="assets/img/breezi_placeit7.jpg" alt="">
-
-									</a>
-								</li>
-
-								<li class="col-md-4">
-									<a href="#" class="thumbnail">
-										<img src="assets/img/breezi_placeit2.jpg" alt="">
-									</a>
-								</li>
-
-								<li class="col-md-4">
-									<a href="#" class="thumbnail">
-										<img src="assets/img/breezi_placeit6.jpg" alt="">
-									</a>
-								</li>
-
-							</ul>
-							<ul class="thumbnails">
-							  <li class="col-md-4">
-									<a href="#" class="thumbnail">
-										<img src="assets/img/breezi_placeit.jpg" alt="">
-									</a>
-								</li>
-
-								<li class="col-md-4">
-									<a href="#" class="thumbnail">
-										<img src="assets/img/breezi_placeit3.jpg" alt="">
-									</a>
-								</li>
-
-							  
-								
-								  <li class="col-md-4">
-									<a href="#" class="thumbnail">
-									 <img src="assets/img/breezi_placeit10.jpg" alt="">
-									</a>
-								</li>
-							</ul>
-						</div>
+						
 						<div class="card-body">
 							<p>Sometimes the best inspiration we can find comes from the minds of creative people, known for their ingenuity and innovation. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 								tempor incididunt ut labore et dolore magna aliqua. 
 								Sometimes the best inspiration we can find comes from the minds of creative people, known for their ingenuity and innovation. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-								Sometimes the best inspiration we can find comes from the minds of creative people, known for their ingenuity and innovation. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-								tempor incididunt ut labore et dolore magna aliqua. 
+								
 							</p>
 						</div>
-						<div class="card-actions card-comments">
-							<button class="btn">+1</button>
-							<button class="btn">Share</button>
-							<a href="#"> <i class="glyphicon glyphicon-facebook  muted pull-right"></i> </a>
-							<a href="#"> <i class="glyphicon glyphicon-twitter  muted pull-right"></i> </a>
-							<a href="#"> <i class="glyphicon glyphicon-google-plus  muted pull-right"></i> </a>
 
+						<div class="card-actions card-comments">
+							<a href="#"><i class="fa fa-facebook  muted pull-left pad-right8"></i></a>
+							<a href="#"><i class="fa fa-twitter  muted pull-left pad-right8"></i></a>
+							<a href="#"><i class="fa fa-google-plus  muted pull-left pad-right8"></i></a>
+							
+							<a href="#" class="btn btn-primary pull-right button-upvote img-circle" title="Upvote this article">
+							<i class="fa fa-arrow-up" style=""></i> 
+							</a>
 						</div>
 
 					</div>
+					
 				</div>
 			</div>
 			<!-- BLOG POST CONTENT ENDS -->

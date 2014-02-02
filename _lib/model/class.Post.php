@@ -51,6 +51,10 @@ class Post{
 	 */
 	var $publish_time;
 	/**
+	 * @var int   Number of upvotes on the post 
+	 */
+	var $upvote_count;
+	/**
 	 * @var timestamp   Time of this row entry 
 	 */
 	var $time;
@@ -65,6 +69,7 @@ class Post{
 			$this->content_id = $row['content_id'];
 			$this->read_length = $row['read_length'];
 			$this->publish_time = $row['publish_time'];
+			$this->upvote_count = $row['upvote_count'];
 			$this->time = $row['time'];
         }
     }

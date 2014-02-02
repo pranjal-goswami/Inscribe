@@ -1,5 +1,32 @@
-/* Theme Stylesheet */
-
+/* 
+* © 2013-2015 GreekTurtle
+ *
+ * LICENSE:
+ *
+ * This file is part of Inscribe (http://inscribe.io).
+ *
+ * The contents of this file cannot be copied, distributed or modified without prior
+ * consent of the author. 
+ *
+ * Project : Inscribe
+ * File : ./assets/css/style.css
+ * Description : Theme style
+ *
+ * @author Pranjal Goswami <pranjal[at]weblength[dot]co[dot]in> 
+ * 
+ * BADesigns | GreekTurtle | Weblength Infonet Pvt. Ltd. 
+ *
+ * Created : Thu Jan 30 2014 19:08:38 GMT+0530 (India Standard Time)
+ * Theme Stylesheet     
+ *                      
+ * Theme Color Sheet    
+ * #f9f6f2 - white smoke
+ * #0e6583 - dark blue  
+ * #088ba9 - light blue 
+ * #45bacb - sky blue   
+ * #85050b - maroon     
+ *                      
+ */ 
 body {
 	font-family: "Oxygen", Arial , sans-serif;
 	padding-top:70px;
@@ -10,15 +37,25 @@ body {
 	height:200px;
 }
 /* debug */
-img{background:#000;}
+
 /* /debug */
 
+::selection{
+	background-color:#eee;
+	color:black;
+	-o-text-shadow:none;
+	-moz-text-shadow:none;
+	-ms-text-shadow:none;
+	-webkit-text-shadow:none;
+	text-shadow:none
+}
 
 /****************siderbar****************/
 .sidebar-nav-fixed {
     top: 0px;
     padding:10px;
 	padding-top:70px;
+	text-align:center;
 	width:20%;
     //color: #fff;
     height: 100%;
@@ -60,6 +97,10 @@ img{background:#000;}
 }
 .post .card .card-heading.image .card-heading-header span{
     font-size: 15px;
+}
+.card-heading.image img
+{
+	box-shadow: 0px 0px 0px 2px #eee;
 }
 .post .card .card-heading.image img{
 
@@ -166,6 +207,9 @@ img{background:#000;}
     color: #fff;
 }
 
+ul.thumbnails li{
+	list-style:none;
+}
 /* Responsive
 -------------------------------------------------- */
 
@@ -233,11 +277,33 @@ img{background:#000;}
     vertical-align: top
 }
 
+.card-heading-header a{
+	color:#088ba9;
+}
+.card-heading-header a h1{
+	font-family:  'Glegoo',Helvetica, sans-serif;
+	font-weight:normal;
+	text-shadow: rgba(0, 0, 0, .01) 0 0 1px;
+	margin-top:10px;
+	margin-bottom:15px;
+	font-size:32px;
+}
+.card-heading-header a:hover{
+	text-decoration:none;
+}
+
+.card-heading-header h3 span{
+	font-family:"Junge", Helvetica, sans-serif;
+	
+}
+.card-heading-header span i{
+	color:#7cc9d4;
+}
 .card .card-heading.image .card-heading-header h3 {
     margin: 0;
     font-size: 14px;
     line-height: 16px;
-    color: #262626
+    color: #262626;
 }
 
 .card .card-heading.image .card-heading-header span {
@@ -248,6 +314,9 @@ img{background:#000;}
 .card .card-body {
     padding: 0 20px;
     margin-top: 20px
+}
+.card .card-body p{
+    color:#777;
 }
 
 .card .card-media {
@@ -261,9 +330,14 @@ img{background:#000;}
 }
 
 .card .card-actions {
-    min-height: 30px;
+    min-height: 50px;
     padding: 0 20px 20px 20px;
     margin: 20px 0 0 0
+}
+.card .card-actions a.button-upvote {
+    font-size:24px;
+	border-radius:100px;
+	font-wegiht:100;
 }
 
 .card .card-comments {
@@ -485,6 +559,7 @@ img{background:#000;}
     .sidebar-nav-fixed {
          //width:20%;
          margin-left:0px;
+		 padding:10px;
     }
     .sidebar-nav-fixed.affix {
         position: static;
@@ -515,4 +590,31 @@ float: left;
         padding-top: 20px;
         padding-bottom: 20px;
     }
+}
+
+.navbar-brand .navbar-logo{
+	position:absolute;
+	height:118px;
+	width:72px;
+	margin-top:-35px;
+	background:url('./../img/logo_back.png') no-repeat;
+}
+.navbar-brand .logo-text {
+	padding-left:80px;
+	font-size:30px;
+	font-family:"Courier New", Courier, monospace;
+	font-weight:600;
+}
+.logo-image{
+	width:200px;
+}
+/* Utils */
+.pull-up20{
+	margin-top:-20px;
+}
+.pull-up10{
+	margin-top:-10px;
+}
+.pad-right8{
+	padding-right:8px;
 }
