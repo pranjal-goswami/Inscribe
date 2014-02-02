@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2014-01-31 23:07:34
+<?php /* Smarty version 2.6.26, created on 2014-02-02 18:58:34
          compiled from post-stream.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "_header.tpl", 'smarty_include_vars' => array()));
@@ -23,8 +23,12 @@ unset($_smarty_tpl_vars);
 
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-   <ul class="nav navbar-nav navbar-right">
-      <li><a href="#">Log in</a></li>
+   <ul class="navbar-right navbar-form unstyled">
+      <li>
+	    <a href="#" class="btn btn-xs btn-info navbar-login-btn">
+	  	<i class="fa fa-sign-in"></i> &nbsp; Log in
+		</a>
+	  </li>
     </ul>
   </div><!-- /.navbar-collapse -->
   </div><!--/ container -->
@@ -39,6 +43,26 @@ unset($_smarty_tpl_vars);
 		   	<img src="<?php echo $this->_tpl_vars['site_root_path']; ?>
 /assets/img/logo.png" class="logo-image" />
 			<hr />
+			<form class="form-inline" role="form">
+			  <div class="form-group col-md-12">
+				<input type="email" class="form-control" style="border-radius:100px;"	placeholder="">
+			  </div>
+			</form>
+			<br /><br />
+			<hr />
+			<ul class="sidebar-nav">
+				<li><span>Comedy</span></li>
+				<li class="separator"></li>
+				<li><span>Tragedy</span></li>
+				<li class="separator"></li>
+				<li><span>Romance</span></li>
+				<li class="separator"></li>
+				<li><span>Drama</span></li>
+				<li class="separator"></li>
+				<li><span>Spiritual</span></li>
+				<li class="separator"></li>
+				<li>Politics</li>
+			</ul>
 			</div>
 		   
 		</div>
@@ -95,7 +119,7 @@ unset($_smarty_tpl_vars);
 					<div class="card">
 						<div class="card-heading image">
 							<a href="profile.html" > 
-								<img class="pull-right pull-up10" src="assets/img/shaan.png" alt="author avatar"/>
+								<img class="pull-right pull-up10" src="assets/img/naman.png" alt="author avatar"/>
 							</a>
 							<div class="card-heading-header">
 								<a href="post.html"><h1>Music is what emotions sound like </h1></a>
@@ -135,78 +159,53 @@ unset($_smarty_tpl_vars);
 					
 				</div>
 			</div>
-			<!-- BLOG POST CONTENT ENDS -->
 			<div class="row post">
 				<div class="col-md-12"> 
 					<div class="card">
 						<div class="card-heading image">
-							<a href="profile.html" > <img class="pull-right" src="assets/img/shaan.png" alt="author avatar"/></a>
+							<a href="profile.html" > 
+								<img class="pull-right pull-up10" src="assets/img/scarlet.jpg" alt="author avatar"/>
+							</a>
 							<div class="card-heading-header">
-								<a href="post.html"><h1>Design is not just what it looks like, It's how it feels</h1></a>
-								<h3>  <span> Published today - <i class="glyphicon glyphicon-time muted"> </i> 08.34 AM</span> <span > <i class="glyphicon glyphicon-eye-open muted"> </i> 4 min read </span>  <span>  By <a href="profile.html"> Shaawn kan </a>  in  <i class="glyphicon glyphicon-bookmark muted"> </i>  <a href="topic.html"> Topic/Category </a></span> </h3>
+								<a href="post.html"><h1>Design is not what it looks like! Its how it feels!</h1></a>
+								<h3>  
+									<span> Published today - <i class="glyphicon glyphicon-time muted"> </i> 08.34 AM</span>
+								 	<span> 
+										<i class="glyphicon glyphicon-eye-open muted"> </i> 4 min read  
+									</span>
+									<span>  By <a href="profile.html"> Shaawn kan </a>  in  
+										<i class="fa fa-tags muted"> </i>  
+										<a href="topic.html"> Topic/Category </a>
+									</span> 
+								</h3>
 							</div>
 						</div>
 						<hr>
+						
 						<div class="card-body">
-
 							<p>Sometimes the best inspiration we can find comes from the minds of creative people, known for their ingenuity and innovation. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 								tempor incididunt ut labore et dolore magna aliqua. 
 								Sometimes the best inspiration we can find comes from the minds of creative people, known for their ingenuity and innovation. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-								Sometimes the best inspiration we can find comes from the minds of creative people, known for their ingenuity and innovation. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-								tempor incididunt ut labore et dolore magna aliqua. 
+								
 							</p>
 						</div>
 
 						<div class="card-actions card-comments">
-							<button class="btn">+1</button>
-							<button class="btn">Share</button>
-							<a href="#"> <i class="glyphicon glyphicon-facebook  muted pull-right"></i> </a>
-							<a href="#"> <i class="glyphicon glyphicon-twitter  muted pull-right"></i> </a>
-							<a href="#"> <i class="glyphicon glyphicon-google-plus  muted pull-right"></i> </a>
-
-						</div>
-
-					</div>
-				</div>
-			</div>
-			<div class="row post">
-				<div class="col-md-12"> 
-					<div class="card">
-						<div class="card-heading image">
-							<a href="profile.html" > <img class="pull-right" src="assets/img/shaan.png" alt="author avatar"/></a>
-							<div class="card-heading-header">
-								<a href="post.html"><h1>Design to inspire</h1></a>
-								<h3>  <span> Published today - <i class="glyphicon glyphicon-time muted"> </i> 08.34 AM</span>  <i class="glyphicon glyphicon-eye-open muted"> </i> 4 min read  <span>  By <a href="profile.html"> Shaawn kan </a>  in  <i class="glyphicon glyphicon-bookmark muted"> </i>  <a href="topic.html"> Topic/Category </a></span> </h3>
-							</div>
-						</div>
-						<hr>
-						<div class="card-media">
-							<a class="card-media-container" href="#">
-								<img data-src="holder.js/980x300/social" alt="media"/>
+							<a href="#"><i class="fa fa-facebook  muted pull-left pad-right8"></i></a>
+							<a href="#"><i class="fa fa-twitter  muted pull-left pad-right8"></i></a>
+							<a href="#"><i class="fa fa-google-plus  muted pull-left pad-right8"></i></a>
+							
+							<a href="#" class="btn btn-primary pull-right button-upvote img-circle" title="Upvote this article">
+							<i class="fa fa-arrow-up" style=""></i> 
 							</a>
 						</div>
-						<div class="card-body">
-							<p>Sometimes the best inspiration we can find comes from the minds of creative people, known for their ingenuity and innovation. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-								tempor incididunt ut labore et dolore magna aliqua. 
-								Sometimes the best inspiration we can find comes from the minds of creative people, known for their ingenuity and innovation. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-								Sometimes the best inspiration we can find comes from the minds of creative people, known for their ingenuity and innovation. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-								tempor incididunt ut labore et dolore magna aliqua. 
-							</p>
-						</div>
-
-						<div class="card-actions card-comments">
-							<button class="btn">+1</button>
-							<button class="btn">Share</button>
-							<a href="#"> <i class="glyphicon glyphicon-facebook  muted pull-right"></i> </a>
-							<a href="#"> <i class="glyphicon glyphicon-twitter  muted pull-right"></i> </a>
-							<a href="#"> <i class="glyphicon glyphicon-google-plus  muted pull-right"></i> </a>
-
-						</div>
 
 					</div>
+					
 				</div>
 			</div>
-
+			<!-- BLOG POST CONTENT ENDS -->
+			
 			<!-- BOTTOM TABS -->
 			<div class="card"> 
 				<ul class="nav nav-tabs" id="myTab">
@@ -281,14 +280,14 @@ unset($_smarty_tpl_vars);
 						</div>
 
 					</div>
-
+<br /><br />
 					<div class="tab-pane active " id="people">
 						<div class="row">
 							<div class="col-md-4">
 								<div class="card hovercard">
 									<img src="assets/img/cover.png" alt="image avatar">
 									<div class="avatar">
-										<img src="assets/img/author.png" alt="image avatar">
+										<img src="assets/img/scarlet.jpg" alt="image avatar">
 									</div>
 									<div class="info">
 										<div class="title">
@@ -339,7 +338,7 @@ unset($_smarty_tpl_vars);
 								<div class="card hovercard">
 									<img src="assets/img/cover2.jpg" alt="image avatar">
 									<div class="avatar">
-										<img src="assets/img/shaan2.png" alt="image avatar">
+										<img src="assets/img/naman.png" alt="image avatar">
 									</div>
 									<div class="info">
 										<div class="title">
@@ -433,8 +432,9 @@ unset($_smarty_tpl_vars);
 <!-- MAIN CONTAINER END -->
 <!--FOOTER-->
 <div id="footer">
-	<div class="container ">
-		<p class="muted credit pull-right "> Simple footer looks good <a href="index.html">Home</a> | <a href="gallery.html">Photo Gallery</a> | <a href="topic.html">Topics/Categories</a> | <a href="blank.html"> Sample Page</a>.</p>
+	<div class="container">
+		<p class=" col-md-12 center-block text-center pad-top10"><a href="index.html">Home</a> | <a href="gallery.html">Photo Gallery</a> | <a href="topic.html">Topics/Categories</a> | <a href="blank.html"> Sample Page</a>.</p>
+		<p class=" col-md-12 center-block text-center pad-top10">&copy; 2013-15 Inscribe.io | All Rights Reserved </p>
 	</div>
 </div>
 

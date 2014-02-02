@@ -88,6 +88,34 @@ body {
 .avatar.img-circle{
     max-height: 80px
 }
+ul.sidebar-nav{
+	padding:0px;
+	margin:0px;
+}
+ul.sidebar-nav  li{
+	list-style:none;
+	line-height:1.4;
+	margin-left:0px;
+	margin-right:0px;
+	padding:8px 10px 10px 30px;
+	text-align:left;
+	color:#666;
+	text-transform:uppercase;
+	font-family:"Oxygen";
+	//border:1px solid;
+	cursor:pointer;
+	
+
+}
+ul.sidebar-nav  li span{
+	//border-bottom:1px dashed #ddd;
+	//padding:10px 30px 10px 0px;
+}
+ul.sidebar-nav  li.separator{
+	height:1px;
+	border-bottom:1px dashed #ddd;
+	padding:0px;	
+}
 
 /********post***********/
 .post .card{
@@ -100,7 +128,7 @@ body {
 }
 .card-heading.image img
 {
-	box-shadow: 0px 0px 0px 2px #eee;
+	box-shadow: 0px 0px 0px 2px #ddd;
 }
 .post .card .card-heading.image img{
 
@@ -113,7 +141,7 @@ body {
 /******footer*****/
 #push,
 #footer {
-    height: 60px;
+    //height: 60px;
 }
 #footer {
     background-color: #f5f5f5;
@@ -233,7 +261,7 @@ ul.thumbnails li{
 
 .card {
     padding-top: 20px;
-    margin: 10px 20px 20px 0;
+    margin: 12px 0px 40px 15px;
     background-color: #fff;
     border: 1px solid #d8d8d8;
     border-top-width: 0;
@@ -605,6 +633,12 @@ float: left;
 	font-family:"Courier New", Courier, monospace;
 	font-weight:600;
 }
+.navbar-login-btn{
+	padding:5px !important;
+	padding-left:15px !important;
+	padding-right:15px !important;
+	color:#fff !important;
+}
 .logo-image{
 	width:200px;
 }
@@ -617,4 +651,16 @@ float: left;
 }
 .pad-right8{
 	padding-right:8px;
+}
+.pad-top10
+{
+	padding-top:10px;
+}
+
+ul.unstyled li{
+	list-style:none;
+}
+.text-center
+{
+	text-align:center;
 }
