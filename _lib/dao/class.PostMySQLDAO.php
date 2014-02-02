@@ -88,24 +88,34 @@ class PostMySQLDAO extends PDODAO {
 	/*
 	 * Insert a Post 
 	 */
-	public function insertPost(Post $post)
+	public function insert(Post $post)
 	{
 		$q = "INSERT INTO in_posts";
-		$q .= "(title, author_id, category, content_id, excerpt, read_length, publish_time, upvote_count) ";
-		$q .= "VALUES (:title, :author_id, :category, :content_id, :excerpt, :read_length, :publish_time, :upvote_count, :time)";
+		$q .= "(title, author_id, content_id, excerpt) ";
+		$q .= "VALUES (:title, :author_id, :content_id, :excerpt)";
 		$vars = array(
 			':title'=>$post->title,
 			':author_id'=>$post->author_id,
-			':category'=>$post->category,
 			':content_id'=>$post->content_id,
 			':excerpt'=>$post->excerpt,
-			':read_length'=>$post->read_length,
-			':publish_time'=>$post->publish_time,
-			':upvote_count'=>$post->upvote_count
 		);
 		//$this->logger->logInfo($q);
 		$ps = $this->execute($q, $vars);
         return $this->getInsertId($ps);
+	}
+	/*
+	 * Update a Post 
+	 */
+	public function update(Post $post)
+	{
+		$q = "UPDATE in_posts ";
+		$q .= "SET title=:title, excerpt=:excerpt)";
+		$vars = array(
+			':title'=>$post->title,
+			':excerpt'=>$post->excerpt,
+		);
+		//$this->logger->logInfo($q);
+		$ps = $this->execute($q, $vars);
 	}
 
    

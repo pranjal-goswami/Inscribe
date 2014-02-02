@@ -69,7 +69,7 @@
 	/*
 	 * Insert a User
 	 */
-	public function insertUser(User $user)
+	public function insert(User $user)
 	{
 		$q = "INSERT INTO in_users";
 		$q .= "(full_name, pwd, pwd_salt, email, last_login, admirers_count, total_upvotes_count, posts_count) ";
