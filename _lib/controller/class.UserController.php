@@ -33,7 +33,7 @@ class UserController extends InscribeController {
 		$UserDAO = DAOFactory::getDAO('User','User_DAO.log');
 		
 		if(isset($_GET['a'])) {
-			if($_GET['a']=='save') return $this->createNewUser();
+			if($_GET['a']=='add') return $this->createNewUser();
 			if($_GET['a']=='signup') {
 					$this->setViewTemplate('_user.signup.tpl');
 					//$this->addToView('profile',$profile);

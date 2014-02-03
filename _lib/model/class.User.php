@@ -21,7 +21,7 @@
  * Created : Wed Jan 29 2014 20:04:33 GMT+0530 (IST)
  */
 
-class User(){
+class User {
 	/**
 	 * @var int   Unique ID of the user 
 	 */
