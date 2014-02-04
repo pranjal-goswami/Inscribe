@@ -91,11 +91,11 @@ class PostMySQLDAO extends PDODAO {
 	public function insert(Post $post)
 	{
 		$q = "INSERT INTO in_posts";
-		$q .= "(title, author_id, content_id, excerpt) ";
-		$q .= "VALUES (:title, :author_id, :content_id, :excerpt)";
+		$q .= "(title, author_id, excerpt) ";
+		$q .= "VALUES (:title, :author_id, :excerpt)";
 		$vars = array(
 			':title'=>$post->title,
-			':author_id'=>$post->author_id,
+			':author_id'=>SessionCache::get($user_id),
 			':content_id'=>$post->content_id,
 			':excerpt'=>$post->excerpt,
 		);
@@ -109,10 +109,38 @@ class PostMySQLDAO extends PDODAO {
 	public function update(Post $post)
 	{
 		$q = "UPDATE in_posts ";
-		$q .= "SET title=:title, excerpt=:excerpt)";
+		$q .= "SET title=:title, excerpt=:excerpt WHERE id=:post_id";
 		$vars = array(
 			':title'=>$post->title,
 			':excerpt'=>$post->excerpt,
+			':post_id'=>$post->decryptId($post->encrypted_id)
+		);
+		//$this->logger->logInfo($q);
+		$ps = $this->execute($q, $vars);
+	}
+	/*
+	 * Update Unique Content ID of the Post
+	 */
+	public function updateContentId($content_id, $post_id)
+	{
+		$q = "UPDATE in_posts ";
+		$q .= "SET content_id=:content_id WHERE id=:post_id";
+		$vars = array(
+			':content_id'=>$content_id,
+			':post_id'=>$post_id
+		);
+		//$this->logger->logInfo($q);
+		$ps = $this->execute($q, $vars);
+	}
+	/*
+	 * Publish a Post 
+	 */
+	public function publish(Post $post)
+	{
+		$q = "UPDATE in_posts ";
+		$q .= "SET publish_flag=1 WHERE id=:post_id";
+		$vars = array(
+			':post_id'=>$post->decryptId($post->encrypted_id)
 		);
 		//$this->logger->logInfo($q);
 		$ps = $this->execute($q, $vars);

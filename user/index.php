@@ -20,6 +20,10 @@
  *
  * Created : Sun Feb 02 2014 17:45:35 GMT+0530 (IST)
  */
+<<<<<<< HEAD
 include('../_lib/init.php');
+=======
+require_once('../_lib/init.php');
+>>>>>>> 564da2725adbc24a96d42bdafcef4d7ba0927260
 $controller = new UserController(__FILE__);
 echo $controller->go();

@@ -21,7 +21,7 @@
  * Created : Wed Jan 29 2014 20:04:33 GMT+0530 (IST)
  */
 
- class Upvote(){
+ class Upvote {
  	/**
 	 * @var int   Internal Unique ID of upvote 
 	 */

@@ -21,11 +21,15 @@
  * Created : Wed Jan 29 2014 20:04:33 GMT+0530 (IST)
  */
  
-class Post{
+class Post {
 	/**
 	 * @var int   Unique ID of the post  
 	 */
 	var $id;
+	/**
+	 * @var   Encryption of Unique ID of the post.  (== Content ID) 
+	 */
+	var $encrypted_id;
 	/**
 	 * @var varchar   Title of the post 
 	 */
@@ -35,9 +39,13 @@ class Post{
 	 */
 	var $author_id;
 	/**
-	 * @var int   ID of the content txt file 
+	 * @var varchar   ID of the content txt file.  (== Encrypted ID)
 	 */
 	var $content_id;
+	/**
+	 * @var blob Content (from editor) -- Transient Field
+	 */
+	var $content;
 	/**
 	 * @var longtext   Short description of the post
 	 */
@@ -47,7 +55,7 @@ class Post{
 	 */
 	var $read_length;
 	/**
-	 * @var int   Publish status of the post (1=published, 0=not) 
+	 * @var int   Publish status of the post (1=published, 0=not published yet) 
 	 */
 	var $publish_flag;
 	/**
@@ -78,27 +86,74 @@ class Post{
 			$this->time = $row['time'];
         }
     }
-    /* Get Content Text from Content ID */
-    public function getContentfromContentId($id = null) {
-    	if(is_null($id)){
-			$this->logger->logError('No Content ID provided.','Input Error');
-			return false;
-		}
-    		$content_path='posts_content/content_:id';
-    		$vars = array(
-			":id"=>(string)$id
-			);
-    		$content=file_get_contents($content_path);
-    		return $content;	
+
+    /* 
+    * Get Content Text from Content ID 
+    */
+    public function getContentfromContentId($content_id = null) {
+
+		$content_path='posts_content/content_:id'.'txt';
+		$vars = array(
+		":id"=>(string)$content_id
+		);
+		$content=file_get_contents($content_path);
+		return $content;	
     }
-    /* Calculate Read Length Based on the number of words */
-    public function calculateReadLength() {
+
+    /* 
+    * Calculate Read Length Based on the number of words 
+    */
+    public function calculateReadLength($content_id=null) {
+
     	$READ_TIME_PER_WORD = 0.1; //in seconds;
-    	$content = $this->getContentfromContentId($this->content_id);
+    	$content = $this->getContentfromContentId($content_id);
     	$no_of_words=str_word_count($content);
     	$read_length=$no_of_words*$READ_TIME_PER_WORD;
     	$total_read_length=(int)($read_length/60);
-    	$this->read_length = $total_read_length;
+    	return $total_read_length;
     }
+
+    /* 
+    * Generate and assign Unique Content ID 
+    */
+    public function assignContentId($post_id=null) {
+
+		return $this->encryptId($post_id);
+    }
+
+    /* 
+    * Save Content of Post in a Text File  
+    */
+    public function saveContentInTextFile($content_id=null, $content=null) {
+
+		$filepath='posts_content/content_'.$content_id.'.txt';
+		file_put_contents($filepath, $content);
+    }
+
+    /* 
+    * Encrypt an ID 
+    */
+    private function encryptId($id=null) {
+
+		$key = "stairway_to_heaven";
+		$encrypted = base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, md5($key), $id, MCRYPT_MODE_CBC, md5(md5($key))));
+		return $encrypted;
+    }
+
+    /* 
+    * Decrypt an ID 
+    */
+    private function decryptId($encryption=null) {
+
+		$key = "stairway_to_heaven";
+		$decrypted = rtrim(mcrypt_decrypt(MCRYPT_RIJNDAEL_256, md5($key), base64_decode($encryption), MCRYPT_MODE_CBC, md5(md5($key))), "\0");
+		return $decrypted;
+    } 
 }
-?>
+
+
+
+
+
+
+

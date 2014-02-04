@@ -10,7 +10,7 @@ define('S_OWNER','owner');
 /* Database Connection Credentials */
 if(SERVER=='localhost'){
 	define('DB_USER','root');
-	define('DB_PWD','regiate');
+	define('DB_PWD','');
 	define('DB_NAME','inscribe');
 }
 

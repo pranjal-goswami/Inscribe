@@ -41,9 +41,6 @@
 			}
 			if($_GET['a']=='edit') {
 				if(isset($_GET['p'])){
-					if(!is_numeric($_GET['p'])){
-						return $this->showError('Invalid Params.'.$_GET['p']);
-					}
 					$this->setViewTemplate('_post.edit.tpl');
 					$post = $PostDAO->getPostByPostId(intval($_GET['p']));
 					$this->addToView('post',$post);
@@ -51,6 +48,15 @@
 				}
 			}
 			if($_GET['a']=='publish') return $this->publishPost();
+			if($_GET['a']=='read') {
+				if(isset($_GET['p'])){
+					$this->setViewTemplate('_post.read.tpl');
+					$post_id = Post::decryptId($_GET['p']);
+					$post = $PostDAO->getPostByPostId($post_id);
+					$this->addToView('post',$post);
+					return $this->generateView();
+				}
+			}
 		}
 		
 		$this->setViewTemplate('_Profiles.tpl');
@@ -68,7 +74,10 @@
 	 {
 		$post = new Post($_POST);
 		$PostDAO = DAOFactory::getDAO('Post','Post_DAO.log');
-		return $PostDAO->insert($post);
+		$insert_id = $PostDAO->insert($post);
+		$content_id = $post->assignContentId($insert_id);
+		$PostDAO->updateContentId($content_id, $insert_id);
+		$post->saveContentInTextFile($content_id, $post->content);
 	}
 	 /*
 	 *  Save (update) an existing post
@@ -77,7 +86,8 @@
 	 {
 		$post = new Post($_POST);
 		$PostDAO = DAOFactory::getDAO('Post','Post_DAO.log');
-		return $PostDAO->update($post);
+		$PostDAO->update($post);
+		$post->saveContentInTextFile($post->encrypted_id, $post->content);
 	}
 	/*
 	 *  Publish a post
@@ -85,11 +95,11 @@
 	 public function publishPost()
 	 {	
 		$post = new Post($_POST);
-		$post->calculateReadLength();
+		$post->read_length = $post->calculateReadLength($post->encrypted_id);
 		$PostDAO = DAOFactory::getDAO('Post','Post_DAO.log');
-		return $PostDAO->publish($post);
+		$PostDAO->publish($post);
 	}
-	
+
 	 
 
  }

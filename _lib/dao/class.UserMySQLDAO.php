@@ -20,25 +20,25 @@
  *
  * Created : Sat Feb 01 2014 17:17:25 GMT+0530 (IST)
  */
- class UserMySQLDAO extends PDODAO{
 
+class UserMySQLDAO extends PDODAO {
  	/*
 	 * Get User by User ID
 	 */
-	public function getUserByUserId($id=null)
-	{
-		if(is_null($id)){
-			$this->logger->logError('No User ID provided.','Input Error');
-			return false;
-		}
-		$q = "SELECT * FROM in_users WHERE id=:id";
-		$vars = array(
-			":id"=>(int)$id
-		);
-		$ps = $this->execute($q,$vars);
-		$result = $this->getDataRowAsObject($ps,'User');
-		return $result;
-	}
+ 	public function getUserByUserId($id=null)
+ 	{
+ 		if(is_null($id)){
+ 			$this->logger->logError('No User ID provided.','Input Error');
+ 			return false;
+ 		}
+ 		$q = "SELECT * FROM in_users WHERE id=:id";
+ 		$vars = array(
+ 			":id"=>(int)$id
+ 			);
+ 		$ps = $this->execute($q,$vars);
+ 		$result = $this->getDataRowAsObject($ps,'User');
+ 		return $result;
+ 	}
 	/*
 	 * Get User by Post ID
 	 */
@@ -53,7 +53,7 @@
 		$q.="WHERE in_posts.id=:id";
 		$vars = array(
 			":id"=>(int)$id
-		);
+			);
 		$ps = $this->execute($q,$vars);
 		$result = $this->getDataRowAsObject($ps,'User');
 		return $result;
@@ -71,24 +71,17 @@
 	 */
 	public function insert(User $user)
 	{
-		$q = "INSERT INTO in_users";
-		$q .= "(full_name, pwd, pwd_salt, email, last_login, admirers_count, total_upvotes_count, posts_count) ";
-		$q .= "VALUES (:full_name, :pwd, :pwd_salt, :email, :last_login, :admirers_count, :total_upvotes_count, :posts_count)";
+		$q = "INSERT INTO in_users ";
+		$q .= "(full_name, pwd, pwd_salt, email) ";
+		$q .= "VALUES (:full_name, :pwd, :pwd_salt, :email)";
 		$vars = array(
 			':full_name'=>$user->full_name,
 			':pwd'=>$user->pwd,
 			':pwd_salt'=>$user->pwd_salt,
-			':email'=>$user->email,
-			':last_login'=>$user->last_login,
-			':admirers_count'=>$user->admirers_count,
-			':total_upvotes_count'=>$user->total_upvotes_count,
-			':posts_count'=>$user->posts_count
-		);
+			':email'=>$user->email
+			);
 		//$this->logger->logInfo($q);
 		$ps = $this->execute($q, $vars);
-        return $this->getInsertId($ps);
+		return $this->getInsertId($ps);
 	}
-
-
-
- }
+}
