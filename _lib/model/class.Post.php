@@ -118,7 +118,7 @@ class Post {
     */
     public function assignContentId($post_id=null) {
 
-		return $this->encryptId($post_id);
+		return self::encryptId($post_id);
     }
 
     /* 
@@ -133,7 +133,7 @@ class Post {
     /* 
     * Encrypt an ID 
     */
-    private function encryptId($id=null) {
+    public static function encryptId($id=null) {
 
 		$key = "stairway_to_heaven";
 		$encrypted = base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, md5($key), $id, MCRYPT_MODE_CBC, md5(md5($key))));
@@ -143,7 +143,7 @@ class Post {
     /* 
     * Decrypt an ID 
     */
-    private function decryptId($encryption=null) {
+    public static function decryptId($encryption=null) {
 
 		$key = "stairway_to_heaven";
 		$decrypted = rtrim(mcrypt_decrypt(MCRYPT_RIJNDAEL_256, md5($key), base64_decode($encryption), MCRYPT_MODE_CBC, md5(md5($key))), "\0");

@@ -80,13 +80,6 @@
 		$this->setViewTemplate('_post.create.tpl');
 		return $this->generateView();
 		
-		$this->setViewTemplate('_Profiles.tpl');
-		$this->addBreadcrumbTrail();	
-			
-		$profile_data = $ProfileDAO->getAllProfiles();
-		$this->addToView('profile_data',$profile_data);
-		
-        return $this->generateView();
 	 }
 	 /*
 	 *  Add a new post

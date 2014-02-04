@@ -88,4 +88,15 @@ class User {
 			$this->posts_count = $row['posts_count'];
         }
     }
+
+    /*
+    * Generate a new password salt
+    */
+    public static function generatePwdSalt(){
+    	$seed=rand(10000,99999);
+    	$adulterate='inscribe';
+    	$salt=md5($seed.$adulterate);
+    	return $salt;
+    }
+
 }

@@ -70,7 +70,7 @@ class PDODAO {
         //echo 'Trying to connect';
 		
 		if(!defined('DB_USER')) define('DB_USER','root');
-		if(!defined('DB_PWD')) define('DB_PWD','');
+		if(!defined('DB_PWD')) define('DB_PWD','spades');
         if (is_null(self::$PDO)) {
             self::$PDO = new PDO(
             self::getConnectString(),

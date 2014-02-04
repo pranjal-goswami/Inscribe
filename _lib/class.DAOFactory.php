@@ -27,17 +27,15 @@ class DAOFactory {
 	public static function getDAO($dao_key, $attr = null)
 	{
 		$classname = $dao_key.'MySQLDAO';
-		echo 'Trying to do something';
+
 		if(!class_exists($classname)){
 			try{
-				echo 'Trying to acquire class info';
 				require_once('dao/class.'.$classname.'.php');
 			}
 			catch(Exception $e){
 				throw new Exception("No Class for ".$dao_key." was found."); 
 			}
 		} else {
-			echo 'dss';
 			$dao = new $classname($attr);
 			return $dao;
 			
