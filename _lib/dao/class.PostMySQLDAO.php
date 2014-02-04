@@ -19,14 +19,13 @@
  * BADesigns | GreekTurtle | Weblength Infonet Pvt. Ltd. 
  *
  * Created : Fri Jan 31 2014 19:14:02 GMT+0530 (IST)
- */
- 
+ */ 
 class PostMySQLDAO extends PDODAO {
-
     /*
 	 * Get all Posts
 	 */
-	public function getAllPosts() {
+	public function getAllPosts() 
+	{
         $q = "SELECT * FROM in_posts";
         $ps = $this->execute($q);
         $result = $this->getDataRowsAsObjects($ps, 'Post');
