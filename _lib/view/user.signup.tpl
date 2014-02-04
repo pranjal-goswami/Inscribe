@@ -24,12 +24,12 @@
 	<form class="form-horizontal" role="form">
 	   <div class="form-group">
 		<div class="col-md-12">
-		  <input type="text" class="form-control" id="" placeholder="Email" autofocus>
+		  <input type="email" class="form-control" id="" placeholder="Name" autofocus>
 		</div>
 	  </div>
-	  <div class="form-group">
+	 <div class="form-group">
 		<div class="col-md-12">
-		  <input type="email" class="form-control" id="inputEmail3" placeholder="Email" autofocus>
+		  <input type="text" class="form-control" id="" placeholder="Name" autofocus>
 		</div>
 	  </div>
 	  <div class="form-group">
