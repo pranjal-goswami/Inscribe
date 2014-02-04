@@ -37,7 +37,7 @@
 				if($_GET['a']=='read') {
 						if(isset($_GET['p'])){
 							$this->setViewTemplate('_post.read.tpl');
-							$post_id = Post::decryptId($_GET['p']);
+							$post_id = Utils::decryptId($_GET['p']);
 							$post = $PostDAO->getPostByPostId($post_id);
 							$this->addToView('post',$post);
 							return $this->generateView();
@@ -80,13 +80,6 @@
 		$this->setViewTemplate('_post.create.tpl');
 		return $this->generateView();
 		
-		$this->setViewTemplate('_Profiles.tpl');
-		$this->addBreadcrumbTrail();	
-			
-		$profile_data = $ProfileDAO->getAllProfiles();
-		$this->addToView('profile_data',$profile_data);
-		
-        return $this->generateView();
 	 }
 	 /*
 	 *  Add a new post

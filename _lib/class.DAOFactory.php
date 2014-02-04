@@ -27,6 +27,7 @@ class DAOFactory {
 	public static function getDAO($dao_key, $attr = null)
 	{
 		$classname = $dao_key.'MySQLDAO';
+
 		if(!class_exists($classname)){
 			try{
 				require_once('dao/class.'.$classname.'.php');

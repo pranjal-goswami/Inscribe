@@ -43,7 +43,9 @@
 		</div>
 	  </div>
 	  
+
 	  <p class="text-center"><small><a href=#>Forgot Password?</a> | Haven't Registered yet? <a href="../signup/">Register</a></small></p>
+
 	</form>
 </div>
 <br /><br /><br />
@@ -54,4 +56,5 @@
 		<p class=" col-md-12 center-block text-center pad-top10">&copy; 2013-15 Inscribe.io | All Rights Reserved </p>
 	</div>
 </div>
+
 {include file="_footer.tpl"}

@@ -67,8 +67,10 @@ abstract class PDODAO {
      * Connection initiator
      */
     public final function connect(){
+
        	if(!defined('DB_USER')) define('DB_USER','root');
 		if(!defined('DB_PWD')) define('DB_PWD','');
+
         if (is_null(self::$PDO)) {
             self::$PDO = new PDO(
             self::getConnectString(),

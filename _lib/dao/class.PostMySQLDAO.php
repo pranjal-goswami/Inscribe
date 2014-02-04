@@ -113,7 +113,7 @@ class PostMySQLDAO extends PDODAO {
 		$vars = array(
 			':title'=>$post->title,
 			':excerpt'=>$post->excerpt,
-			':post_id'=>$post->decryptId($post->encrypted_id)
+			':post_id'=>Utils::decryptId($post->encrypted_id)
 		);
 		//$this->logger->logInfo($q);
 		$ps = $this->execute($q, $vars);
@@ -140,7 +140,7 @@ class PostMySQLDAO extends PDODAO {
 		$q = "UPDATE in_posts ";
 		$q .= "SET publish_flag=1 WHERE id=:post_id";
 		$vars = array(
-			':post_id'=>$post->decryptId($post->encrypted_id)
+			':post_id'=>Utils::decryptId($post->encrypted_id)
 		);
 		//$this->logger->logInfo($q);
 		$ps = $this->execute($q, $vars);
