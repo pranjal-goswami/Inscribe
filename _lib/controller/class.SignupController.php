@@ -42,8 +42,7 @@ class SignupController extends InscribeController {
 		
 		$this->setViewTemplate('_user.signup.tpl');
 
-		return 'ds';
-		//return $this->generateView();
+		return $this->generateView();
 
 	}
 	/*
