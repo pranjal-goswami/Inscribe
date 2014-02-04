@@ -69,7 +69,7 @@ class PDODAO {
     public final function connect(){
 		
 		if(!defined('DB_USER')) define('DB_USER','root');
-		if(!defined('DB_PWD')) define('DB_PWD','regiate');
+		if(!defined('DB_PWD')) define('DB_PWD','');
         if (is_null(self::$PDO)) {
             self::$PDO = new PDO(
             self::getConnectString(),

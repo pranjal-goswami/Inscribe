@@ -7,19 +7,23 @@
  * This file is part of Inscribe (http://inscribe.io).
  *
  * The contents of this file cannot be copied, distributed or modified without prior
- * consent from the author. 
+ * consent of the author. 
  *
  * Project : Inscribe
- * File : user/index.php
- * Description : Users Page
+ * File : _lib/controller/class.LoginController.php
+ * Description : Implement Uer Login Controller
  *
- * @author Naman Agrawal <naman[at]weblength[dot]co[dot]in> 
  * @author Pranjal Goswami <pranjal[at]weblength[dot]co[dot]in> 
  * 
  * BADesigns | GreekTurtle | Weblength Infonet Pvt. Ltd. 
  *
- * Created : Sun Feb 02 2014 17:45:35 GMT+0530 (IST)
+ * Created : Sun Feb 02 2014 20:35:13 GMT+0530 (India Standard Time)
  */
-require_once('../_lib/init.php');
-$controller = new UserController(__FILE__);
-echo $controller->go();
+ 
+class LoginController extends InscribeController {
+	public function control()
+	{
+		$this->setViewTemplate('login.tpl');
+		return $this->generateView();
+	}
+}
