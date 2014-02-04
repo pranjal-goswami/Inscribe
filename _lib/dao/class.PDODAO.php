@@ -21,7 +21,7 @@
  * Created : Fri Jan 31 2014 19:14:02 GMT+0530 (IST)
  */
 
-class PDODAO {
+abstract class PDODAO {
 	
     /* Logger */
 	var $logger;
@@ -67,10 +67,10 @@ class PDODAO {
      * Connection initiator
      */
     public final function connect(){
-        //echo 'Trying to connect';
-		
-		if(!defined('DB_USER')) define('DB_USER','root');
-		if(!defined('DB_PWD')) define('DB_PWD','spades');
+
+       	if(!defined('DB_USER')) define('DB_USER','root');
+		if(!defined('DB_PWD')) define('DB_PWD','');
+
         if (is_null(self::$PDO)) {
             self::$PDO = new PDO(
             self::getConnectString(),
@@ -79,6 +79,7 @@ class PDODAO {
             );
             self::$PDO->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             self::$PDO->setAttribute(PDO::ATTR_EMULATE_PREPARES, true);
+			;
           
         }
     }
