@@ -31,10 +31,33 @@
 		
 		// get DAO
 		$PostDAO = DAOFactory::getDAO('Post','Post_DAO.log');
-		
+
+		// Options that do not require Loggin in
 		if(isset($_GET['a'])) {
-			if($_GET['a']=='add') return $this->addNewPost();
-			if($_GET['a']=='save') return $this->updatePost();
+				if($_GET['a']=='read') {
+						if(isset($_GET['p'])){
+							$this->setViewTemplate('_post.read.tpl');
+							$post_id = Post::decryptId($_GET['p']);
+							$post = $PostDAO->getPostByPostId($post_id);
+							$this->addToView('post',$post);
+							return $this->generateView();
+						}
+					}
+				}
+
+		// Options that require Logging in		
+		if(isset($_GET['a'])) {
+
+			if($this->isLoggedIn()) return $this->redirect('../');
+
+			if($_GET['a']=='add') {
+				if(empty($_POST)) return false;
+				return $this->addNewPost();
+			}
+			if($_GET['a']=='save') {
+				if(empty($_POST)) return false;	
+				return $this->updatePost();
+			}
 			if($_GET['a']=='create') {
 					$this->setViewTemplate('_post.create.tpl');
 					return $this->generateView();
@@ -47,17 +70,15 @@
 					return $this->generateView();
 				}
 			}
-			if($_GET['a']=='publish') return $this->publishPost();
-			if($_GET['a']=='read') {
-				if(isset($_GET['p'])){
-					$this->setViewTemplate('_post.read.tpl');
-					$post_id = Post::decryptId($_GET['p']);
-					$post = $PostDAO->getPostByPostId($post_id);
-					$this->addToView('post',$post);
-					return $this->generateView();
-				}
+			if($_GET['a']=='publish') {
+				if(empty($_POST)) return false;
+				return $this->publishPost();
 			}
+			
 		}
+
+		$this->setViewTemplate('_post.create.tpl');
+		return $this->generateView();
 		
 		$this->setViewTemplate('_Profiles.tpl');
 		$this->addBreadcrumbTrail();	

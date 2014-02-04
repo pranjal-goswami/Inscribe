@@ -10,8 +10,8 @@
  * consent from the author. 
  *
  * Project : Inscribe
- * File : user/index.php
- * Description : Users Page
+ * File : user/signup/index.php
+ * Description : Signup Page
  *
  * @author Naman Agrawal <naman[at]weblength[dot]co[dot]in> 
  * @author Pranjal Goswami <pranjal[at]weblength[dot]co[dot]in> 
@@ -20,6 +20,6 @@
  *
  * Created : Sun Feb 02 2014 17:45:35 GMT+0530 (IST)
  */
-require_once('../_lib/init.php');
-$controller = new UserController(__FILE__);
+require_once('../../_lib/init.php');
+$controller = new SignupController(__FILE__);
 echo $controller->go();
