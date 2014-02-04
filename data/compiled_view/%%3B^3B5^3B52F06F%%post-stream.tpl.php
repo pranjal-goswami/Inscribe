@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-<?php /* Smarty version 2.6.26, created on 2014-02-02 18:58:34
-=======
-<?php /* Smarty version 2.6.26, created on 2014-02-02 17:05:59
->>>>>>> 216a223cb85886b14829eefe7cd2780cc1331efb
+<?php /* Smarty version 2.6.26, created on 2014-02-04 15:43:28
          compiled from post-stream.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "_header.tpl", 'smarty_include_vars' => array()));
@@ -29,7 +25,7 @@ unset($_smarty_tpl_vars);
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
    <ul class="navbar-right navbar-form unstyled">
       <li>
-	    <a href="#" class="btn btn-xs btn-info navbar-login-btn">
+	    <a href="./user/" class="btn btn-xs btn-info navbar-login-btn">
 	  	<i class="fa fa-sign-in"></i> &nbsp; Log in
 		</a>
 	  </li>

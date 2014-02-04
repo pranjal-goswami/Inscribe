@@ -19,7 +19,7 @@
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
    <ul class="navbar-right navbar-form unstyled">
       <li>
-	    <a href="#" class="btn btn-xs btn-info navbar-login-btn">
+	    <a href="./user/" class="btn btn-xs btn-info navbar-login-btn">
 	  	<i class="fa fa-sign-in"></i> &nbsp; Log in
 		</a>
 	  </li>

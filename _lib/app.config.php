@@ -2,7 +2,6 @@
 
 /*Session variable handles*/
 
-define('S_ADMIN',"session_admin");
 define('S_STATUS','session_status');
 define('S_STATUS_ACTIVE','active');
 define('S_ADMIN_NAME','admin_name');

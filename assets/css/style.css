@@ -150,24 +150,25 @@ ul.sidebar-nav  li.separator{
 
 /******Login Page*****/
 .form-signin {
-    border: 1px solid #D8D8D8;
-    border-bottom-width: 2px;
-    border-top-width: 0;
+    border: 1px dashed #bbb;
     background-color: #FFF;
-    max-width: 350px;
-    padding: 19px 29px 29px;
+    max-width: 400px;
+    padding: 20px 30px 30px;
     margin: 50px auto 20px;
     background-color: #fff;
-    border: 1px solid #F5F5F5;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
+	
 }
 .form-signin .form-signin-heading {
     font-size: 24px;
     font-weight: 300;
+	text-align:center;
 }
-
+.form-signin .form-signin-heading img{
+	height:100px;
+}
 .form-signin .form-signin-heading,
 .form-signin .checkbox {
     margin-bottom: 10px;

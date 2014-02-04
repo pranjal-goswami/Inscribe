@@ -23,7 +23,10 @@
 class LoginController extends InscribeController {
 	public function control()
 	{
-		$this->setViewTemplate('login.tpl');
+		$this->setViewTemplate('user.login.tpl');
+		$this->disableCaching();
+		$this->view_mgr->force_compile = true;
+		
 		return $this->generateView();
 	}
 }

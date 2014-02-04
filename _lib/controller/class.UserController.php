@@ -26,6 +26,9 @@ class UserController extends InscribeController {
 	 */
 	public function control()
 	 {
+		 //Redirect to login.php if not logged in
+		 if(!$this->isLoggedIn()) return $this->redirect('./login/');
+		 
 		$this->disableCaching();
 		$this->view_mgr->force_compile = true;
 		
@@ -36,17 +39,11 @@ class UserController extends InscribeController {
 			if($_GET['a']=='save') return $this->createNewUser();
 			if($_GET['a']=='signup') {
 					$this->setViewTemplate('_user.signup.tpl');
-					//$this->addToView('profile',$profile);
 					return $this->generateView();
 			}
 		}
 		
-		$this->setViewTemplate('_Profiles.tpl');
-		$this->addBreadcrumbTrail();	
-			
-		$profile_data = $ProfileDAO->getAllProfiles();
-		$this->addToView('profile_data',$profile_data);
-		
+		$this->setViewTemplate('User.tpl');
         return $this->generateView();
 	 }
 	 /*

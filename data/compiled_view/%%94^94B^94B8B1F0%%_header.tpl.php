@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-<?php /* Smarty version 2.6.26, created on 2014-02-02 18:58:34
-=======
-<?php /* Smarty version 2.6.26, created on 2014-02-02 17:05:59
->>>>>>> 216a223cb85886b14829eefe7cd2780cc1331efb
+<?php /* Smarty version 2.6.26, created on 2014-02-04 15:43:28
          compiled from _header.tpl */ ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -50,4 +46,4 @@ plugins/bootstrap/js/bootstrap.js"></script>
 "></script>
     <?php endforeach; endif; unset($_from); ?> 	
 </head>
-<body>
+<body>
