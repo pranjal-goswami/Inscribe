@@ -118,7 +118,7 @@ class Post {
     */
     public function assignContentId($post_id=null) {
 
-		return self::encryptId($post_id);
+		return Utils::encryptId($post_id);
     }
 
     /* 
@@ -130,25 +130,6 @@ class Post {
 		file_put_contents($filepath, $content);
     }
 
-    /* 
-    * Encrypt an ID 
-    */
-    public static function encryptId($id=null) {
-
-		$key = "stairway_to_heaven";
-		$encrypted = base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, md5($key), $id, MCRYPT_MODE_CBC, md5(md5($key))));
-		return $encrypted;
-    }
-
-    /* 
-    * Decrypt an ID 
-    */
-    public static function decryptId($encryption=null) {
-
-		$key = "stairway_to_heaven";
-		$decrypted = rtrim(mcrypt_decrypt(MCRYPT_RIJNDAEL_256, md5($key), base64_decode($encryption), MCRYPT_MODE_CBC, md5(md5($key))), "\0");
-		return $decrypted;
-    } 
 }
 
 
