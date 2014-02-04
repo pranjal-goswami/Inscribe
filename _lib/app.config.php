@@ -1,12 +1,12 @@
 <?
 
 /*Session variable handles*/
-
-define('S_STATUS','session_status');
-define('S_STATUS_ACTIVE','active');
-define('S_ADMIN_NAME','admin_name');
-define('S_ADMIN_FAIL','admin_login_failed');
-define('S_OWNER','owner');
+//added #in_# prefix to resolve parallel project conflicts
+define('S_STATUS','in_session_status');
+define('S_STATUS_ACTIVE','in_active');
+define('S_ADMIN_NAME','in_admin_name');
+define('S_ADMIN_FAIL','in_admin_login_failed');
+define('S_OWNER','in_owner');
 /* Database Connection Credentials */
 if(SERVER=='localhost'){
 $path = dirname(__FILE__).'/';
