@@ -38,7 +38,7 @@
 		</div>
 	  </div>
 	  
-	  <p class="text-center"><small><a href=#>Forgot Password?</a> | Haven't Registered yet? <a href="">Register</a></small></p>
+	  <p class="text-center"><small><a href=#>Forgot Password?</a> | Haven't Registered yet? <a href="../signup/">Register</a></small></p>
 	</form>
 </div>
 <br /><br /><br />

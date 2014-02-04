@@ -38,7 +38,8 @@ class SignupController extends InscribeController {
 				return $this->createNewUser();
 			}
 		}
-		$UserDAO = DAOFactory::getDAO('User','User_DAO.log');
+
+
 		$this->setViewTemplate('user.signup.tpl');
 
 		return $this->generateView();
