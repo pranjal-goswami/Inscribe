@@ -22,6 +22,11 @@
 	</div>
 	<hr />
 	<form class="form-horizontal" role="form">
+	   <div class="form-group">
+		<div class="col-md-12">
+		  <input type="email" class="form-control" id="inputEmail3" placeholder="Email" autofocus>
+		</div>
+	  </div>
 	  <div class="form-group">
 		<div class="col-md-12">
 		  <input type="email" class="form-control" id="inputEmail3" placeholder="Email" autofocus>
@@ -49,6 +54,4 @@
 		<p class=" col-md-12 center-block text-center pad-top10">&copy; 2013-15 Inscribe.io | All Rights Reserved </p>
 	</div>
 </div>
-
-<!--End FOOTER-->
 {include file="_footer.tpl"}
