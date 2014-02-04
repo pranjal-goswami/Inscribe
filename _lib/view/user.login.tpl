@@ -9,6 +9,10 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
+	 <span class="navbar-brand">
+		<div class="navbar-logo"></div>
+		<span class="logo-text"></span>
+	</span>
    
   </div>
 
@@ -24,12 +28,12 @@
 	<form class="form-horizontal" role="form">
 	  <div class="form-group">
 		<div class="col-md-12">
-		  <input type="email" class="form-control" id="inputEmail3" placeholder="Email" autofocus>
+		  <input type="email" class="form-control" id="inputEmail3" placeholder="Email" required autofocus>
 		</div>
 	  </div>
 	  <div class="form-group">
 		<div class="col-md-12">
-		  <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+		  <input type="password" class="form-control" id="inputPassword3" placeholder="Password" required>
 		</div>
 	  </div>
 	  <div class="form-group">

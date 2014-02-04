@@ -9,6 +9,10 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
+	 <span class="navbar-brand">
+		<div class="navbar-logo"></div>
+		<span class="logo-text"></span>
+	</span>
    
   </div>
 
@@ -24,27 +28,36 @@
 	<form class="form-horizontal" role="form">
 	   <div class="form-group">
 		<div class="col-md-12">
-		  <input type="email" class="form-control" id="" placeholder="Name" autofocus>
+		  <input type="text" class="form-control" id="" placeholder="Name" required autofocus>
 		</div>
 	  </div>
 	 <div class="form-group">
 		<div class="col-md-12">
-		  <input type="text" class="form-control" id="" placeholder="Name" autofocus>
+		  <input type="text" class="form-control" id="" placeholder="Email" required>
 		</div>
 	  </div>
 	  <div class="form-group">
 		<div class="col-md-12">
-		  <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+		  <input type="password" class="form-control" id="" placeholder="Password">
+		</div>
+	  </div>
+	  <div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+		  <div class="checkbox">
+			<label>
+			  <input type="checkbox"> I accept the <a href="#">Terms & conditions.</a>
+			</label>
+		  </div>
 		</div>
 	  </div>
 	  <div class="form-group">
 		<div class="col-md-12">
-		  <button type="submit" class="btn btn-success btn-block">Sign in</button>
+		  <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-edit"></i> Sign Up</button>
 		</div>
 	  </div>
 	  
 
-	  <p class="text-center"><small><a href=#>Forgot Password?</a> | Haven't Registered yet? <a href="../signup/">Register</a></small></p>
+	  <p class="text-center"><small> Have an account already? <a href="../login/">Sign In</a></small></p>
 
 	</form>
 </div>
