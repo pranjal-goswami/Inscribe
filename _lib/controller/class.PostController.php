@@ -37,8 +37,10 @@
 				if($_GET['a']=='read') {
 						if(isset($_GET['p'])){
 							$this->setViewTemplate('_post.read.tpl');
-							$post_id = Utils::decryptId($_GET['p']);
+							$content_id = $_GET['p'];
+							$post_id = Utils::decryptId($content_id);
 							$post = $PostDAO->getPostByPostId($post_id);
+							$post->content = Post::getContentfromContentId($content_id);
 							$this->addToView('post',$post);
 							return $this->generateView();
 						}
@@ -48,18 +50,16 @@
 		// Options that require Logging in		
 		if(isset($_GET['a'])) {
 
-			if($this->isLoggedIn()) return $this->redirect('../');
+			//if(!$this->isLoggedIn()) return $this->redirect('../');
 
-			if($_GET['a']=='add') {
-				if(empty($_POST)) return false;
-				return $this->addNewPost();
-			}
 			if($_GET['a']=='save') {
 				if(empty($_POST)) return false;	
 				return $this->updatePost();
 			}
 			if($_GET['a']=='create') {
-					$this->setViewTemplate('_post.create.tpl');
+					$this->setViewTemplate('post.create.tpl');
+					$content_id = $this->createNewPost();
+					$this->addToView('content_id',$content_id);
 					return $this->generateView();
 			}
 			if($_GET['a']=='edit') {
@@ -77,21 +77,21 @@
 			
 		}
 
-		$this->setViewTemplate('_post.create.tpl');
-		return $this->generateView();
+		return false;
 		
 	 }
 	 /*
 	 *  Add a new post
 	 */
-	 public function addNewPost()
+	 public function createNewPost()
 	 {
-		$post = new Post($_POST);
+		$post = new Post();
 		$PostDAO = DAOFactory::getDAO('Post','Post_DAO.log');
 		$insert_id = $PostDAO->insert($post);
 		$content_id = $post->assignContentId($insert_id);
 		$PostDAO->updateContentId($content_id, $insert_id);
 		$post->saveContentInTextFile($content_id, $post->content);
+		return $content_id;
 	}
 	 /*
 	 *  Save (update) an existing post
@@ -101,7 +101,7 @@
 		$post = new Post($_POST);
 		$PostDAO = DAOFactory::getDAO('Post','Post_DAO.log');
 		$PostDAO->update($post);
-		$post->saveContentInTextFile($post->encrypted_id, $post->content);
+		$post->saveContentInTextFile($post->content_id, $post->content);
 	}
 	/*
 	 *  Publish a post
@@ -109,7 +109,7 @@
 	 public function publishPost()
 	 {	
 		$post = new Post($_POST);
-		$post->read_length = $post->calculateReadLength($post->encrypted_id);
+		$post->read_length = $post->calculateReadLength($post->content_id);
 		$PostDAO = DAOFactory::getDAO('Post','Post_DAO.log');
 		$PostDAO->publish($post);
 	}

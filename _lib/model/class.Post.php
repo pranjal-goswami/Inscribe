@@ -27,10 +27,6 @@ class Post {
 	 */
 	var $id;
 	/**
-	 * @var   Encryption of Unique ID of the post.  (== Content ID) 
-	 */
-	var $encrypted_id;
-	/**
 	 * @var varchar   Title of the post 
 	 */
 	var $title;
@@ -39,7 +35,7 @@ class Post {
 	 */
 	var $author_id;
 	/**
-	 * @var varchar   ID of the content txt file.  (== Encrypted ID)
+	 * @var varchar   ID of the content txt file.  (== Encryption of Unique Post ID)
 	 */
 	var $content_id;
 	/**
@@ -78,6 +74,7 @@ class Post {
 			$this->title = $row['title'];
 			$this->author_id = $row['author_id'];
 			$this->content_id = $row['content_id'];
+			$this->content = $row['content'];
 			$this->excerpt = $row['excerpt'];
 			$this->read_length = $row['read_length'];
 			$this->publish_flag = $row['publish_flag'];
@@ -90,9 +87,9 @@ class Post {
     /* 
     * Get Content Text from Content ID 
     */
-    public function getContentfromContentId($content_id = null) {
+    public static function getContentfromContentId($content_id = null) {
 
-		$content_path='posts_content/content_:id'.'txt';
+		$content_path='posts_content/content_:id'.'.txt';
 		$vars = array(
 		":id"=>(string)$content_id
 		);
