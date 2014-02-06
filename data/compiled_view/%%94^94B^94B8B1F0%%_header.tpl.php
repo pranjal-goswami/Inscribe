@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2014-02-05 14:24:18
+<?php /* Smarty version 2.6.26, created on 2014-02-06 19:35:21
          compiled from _header.tpl */ ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -38,6 +38,10 @@ assets/css/style.css" />
 assets/js/jquery-2.1.0.min.js"></script>
 	<script type="text/javascript" src="<?php echo $this->_tpl_vars['site_root_path']; ?>
 plugins/bootstrap/js/bootstrap.js"></script>
+	<script type="text/javascript" src="<?php echo $this->_tpl_vars['site_root_path']; ?>
+assets/js/validation.js"></script>
+	<script type="text/javascript" src="<?php echo $this->_tpl_vars['site_root_path']; ?>
+assets/js/ajaxload.js"></script>
 	<?php $_from = $this->_tpl_vars['header_scripts']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
     foreach ($_from as $this->_tpl_vars['script']):
 ?>

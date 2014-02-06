@@ -23,7 +23,7 @@
 <div class="post-writer col-md-8 col-md-offset-2">
 	<h2>Post</h2>
 	<hr />
-	<form class="form-horizontal" role="form" action="?a=save" method="POST">
+	<form class="form-horizontal" id="post-form-save" role="form">
 		<input type="hidden" name="content_id" value={$content_id} />
 		<div class="form-group">
 			<div class="col-md-12">
@@ -40,18 +40,56 @@
 				<textarea class="form-control" rows="12" data-provide="markdown" name="content" id="content"></textarea>
 			</div>
 		</div>
-		<div class="form-group">
-			<div class="col-md-4">
-				<button type="submit" class="btn btn-success btn-block">Save</button>
-			</div>
-			<div class="col-md-2 col-md-offset-6">
-				<button type="submit" class="btn btn-info btn-block">Publish</button>
-			</div>
+		<div class="col-md-4">
+			<button type="submit" class="btn btn-success btn-block save-post-button">Save</button>
 		</div>
+	</form>
 
-		</form>
-	</div>
-	<br /><br /><br />
+	<form class="form-horizontal" id="post-form-publish" role="form">
+		<input type="hidden" name="content_id" value={$content_id} />
+		<div class="col-md-2 col-md-offset-6">
+			<button type="submit" class="btn btn-info btn-block publish-post-button disabled" disabled>Publish</button>
+		</div>
+	</form>
+	
+</div>
+<br /><br /><br />
 
 
-	{include file="_footer.tpl"}
+{include file="_footer.tpl"}
+
+{literal}
+<script type="text/javascript">
+
+var f1 = $("form#post-form-save");
+f1.submit(function(e)
+{
+	e.preventDefault();
+	var values = f1.serialize(); 
+	$.ajax({
+		type : 'POST',
+		url : './?a=save',
+		data : values,
+		success: function(result){
+			$(".publish-post-button").removeAttr('disabled');
+			$(".publish-post-button").removeClass('disabled');
+		}
+	});
+}); 
+
+var f2 = $("form#post-form-publish");
+f2.submit(function(e)
+{
+	e.preventDefault();
+	var values = f2.serialize(); 
+	$.ajax({
+		type : 'POST',
+		url : './?a=publish',
+		data : values,
+		success: function(result){
+		}
+	});
+}); 
+
+</script>
+{/literal}
