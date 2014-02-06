@@ -19,51 +19,46 @@
  *
  * Created : Wed Feb 05 2014 14:51:56 GMT+0530 (IST)
  */
+function showFormError(e){
+	e.parent().parent().removeClass("has-success");
+	e.parent().parent().addClass("has-error");
+	item = e.parent().find(".form-error");
+	item.animate({height:'22px'}, {duration :800 , easing : 'easeOutBack'}, function(){});
+	return !1;
+}
 
-function submitForm(submit_location, formid, target)
-{
-	if (!window.jQuery){
-		console.log('jQuery not loaded'); 
-		var jq = document.createElement('script'); jq.type = 'text/javascript';
-		jq.src = 'http://code.jquery.com/jquery-latest.pack.js';
-		document.getElementsByTagName('head')[0].appendChild(jq);
-	}
-	
-	//$('#load_error').hide(800);
-	//$('#loading_gif').show(1000);
-	var values = $("#"+formid).serialize(); 
-    
-	$.ajax({
-		type : 'POST',
-		url : submit_location,
-		data : values,
-		success: function(result){
-			if(target){
-				$('#'+target).html(result);
-			}
-			console.log(submit_location+' loaded to '+target);
-			//$('#loading_gif').hide(800);
+function hideFormError(e){
+	e.parent().parent().removeClass("has-error");
+	e.parent().parent().addClass("has-success");
+	item = e.parent().find(".form-error");
+	item.animate({height:'0px'}, {duration :800 , easing : 'easeOutBack'}, function(){});
+	return !0;
+}
+function isEmpty(e){
+	return e.val().length<=0 ? !0 : !1
+}
 
-		},
-		statusCode:{
-			404 : function(){
-					console.log('Could not load file. File does not exist.');
-					if(target){
-						$('#'+target).html('<div class="container-fluid"><div class="row-fluid"> \
-					        <h4> &nbsp; Requested page could not be loaded</h4></div></div>');
-					}
-					//$('#loading_gif').hide(800);
-					//$('#load_error').show(800);
-				}
-		},
-		fail: function(error){
-			console.log('ajax load failed '+error);
-			if(target){
-				$('#'+target).html('<h4>Requested page could not be loaded</h4>');
-			}
-			//$('#loading_gif').hide(800);
-			//$('#load_error').show(800);
+/* Form Validation */
+function validateSignUpForm(f){
+	var ret = !0;
+	f.find('input').each(function()	{
+		if(!$(this).hasClass('pass')){
+			var v = $(this).attr('data-validate');
+			ret = ret && window[v]($(this));
 		}
-		});
-			
+	});
+	return ret;
+}
+
+function validateName(e){
+	return isEmpty(e) ? showFormError(e) : hideFormError(e)	
+}
+
+function validateEmail(e) {
+	var pattern = new RegExp(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/);
+	return isEmpty(e) || !pattern.test(e.val()) ? showFormError(e) : hideFormError(e);
+}
+
+function validatePwd(e){
+	return e.val().length<=5 ?  showFormError(e) : hideFormError(e); 	
 }
