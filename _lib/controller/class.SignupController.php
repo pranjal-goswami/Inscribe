@@ -41,6 +41,7 @@ class SignupController extends InscribeController {
 
 
 		$this->setViewTemplate('user.signup.tpl');
+		$this->addHeaderJavaScript('assets/js/validation.js');
 		return $this->generateView();
 
 	}

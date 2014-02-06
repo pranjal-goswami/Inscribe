@@ -25,27 +25,30 @@
 		<img src="{$site_root_path}assets/img/logo.png" />
 	</div>
 	<hr />
-	<form class="form-horizontal" role="form">
+	<form id="signup_form" class="form-horizontal" role="form">
 	   <div class="form-group">
 		<div class="col-md-12">
-		  <input type="text" class="form-control" id="" placeholder="Name" required autofocus>
+		  <input type="text" class="form-control" id="full_name" name="full_name" placeholder="Name" autofocus data-validate="validateName">
+		  <div class="form-error">* Name is required</div>
 		</div>
 	  </div>
 	 <div class="form-group">
 		<div class="col-md-12">
-		  <input type="text" class="form-control" id="" placeholder="Email" required>
+		  <input type="text" class="form-control" id="email" name="email" placeholder="Email" data-validate="validateEmail">
+		  <div class="form-error">* Email should be like <em>myname@email.com</em></div>
 		</div>
 	  </div>
 	  <div class="form-group">
 		<div class="col-md-12">
-		  <input type="password" class="form-control" id="" placeholder="Password">
+		  <input type="password" class="form-control" id="pwd" name="pwd" placeholder="Password" data-validate="validatePwd">
+		  <div class="form-error">* Password should be atleast <strong>5</strong> characters long</div>
 		</div>
 	  </div>
 	  <div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
 		  <div class="checkbox">
 			<label>
-			  <input type="checkbox"> I accept the <a href="#">Terms & conditions.</a>
+			  <input type="checkbox" class="pass"> I accept the <a href="#">Terms & conditions.</a>
 			</label>
 		  </div>
 		</div>
@@ -69,5 +72,37 @@
 		<p class=" col-md-12 center-block text-center pad-top10">&copy; 2013-15 Inscribe.io | All Rights Reserved </p>
 	</div>
 </div>
+
+{literal}
+<script type="text/javascript">
+var f = $("form#signup_form");
+
+$("form#signup_form").find('input').focusout(function(){
+	if(!$(this).hasClass('pass')){
+		var v = $(this).attr('data-validate');
+		window[v]($(this));
+		}
+});
+
+f.submit(function(e){
+	e.preventDefault();
+	console.log(validateSignUpForm(f));
+	if(validateSignUpForm(f))
+	{
+		$.ajax({
+			url:'./?a=signup',
+			data:f.serialize(),
+			success: function(){
+				alert('success');
+			},
+			fail: function(){
+				alert('failed');
+			}
+		})
+		return false;
+	}
+});
+</script>
+{/literal}
 
 {include file="_footer.tpl"}

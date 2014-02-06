@@ -180,6 +180,17 @@ ul.sidebar-nav  li.separator{
     //margin-bottom: 15px;
     padding: 7px 9px;
 }
+.form-error
+{
+	height:0px;
+	width:100%;
+	margin:auto;
+	text-align:center;
+	color:#b94a48;
+	overflow:hidden;
+	font-size:12px;
+	padding-top:5px;
+}
 /***********gallery********/
 .ie-warning{
     padding:10px;
