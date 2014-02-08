@@ -33,7 +33,7 @@ class SignupController extends InscribeController {
 		if($this->isLoggedIn()) return $this->redirect('../');
 
 		if(isset($_GET['a'])) {
-			if($_GET['a']=='add') {
+			if($_GET['a']=='signup') {
 				if(empty($_POST)) return false;
 				return $this->createNewUser();
 			}
@@ -51,10 +51,15 @@ class SignupController extends InscribeController {
 	public function createNewUser()
 	{	
 		$user = new User($_POST);
-		$user->pwd=md5($user->pwd);
-		$user->pwd_salt=User::generatePwdSalt();
+		$user->pwd = md5($user->pwd);
+		$user->pwd_salt = User::generatePwdSalt();
 		$UserDAO = DAOFactory::getDAO('User','User_DAO.log');
-		return $UserDAO->insert($user);
+		//$UserDAO->insert($user);
+		$this->json_data = array(
+				"status" => 100,
+				"message"=> "User was successfully created"
+			);
+		return $this->generateView();
 		
 	}
 

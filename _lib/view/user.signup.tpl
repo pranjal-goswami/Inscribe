@@ -88,12 +88,13 @@ f.submit(function(e){
 			type:"POST",
 			url:'./?a=signup',
 			data:f.serialize(),
-			success: function(){
-				$('#signup_form').hide();
-				$('#signup_form_success').show();
+			dataType: "json",
+			success: function(r){
+				alert(r.status);
+				alert(r.message);
 			},
 			fail: function(){
-				
+				alert('failed');
 			}
 		})
 		return false;
