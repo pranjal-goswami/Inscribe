@@ -29,5 +29,10 @@
 	{foreach from=$header_scripts item=script}
     <script type="text/javascript" src="{$site_root_path}{$script}"></script>
     {/foreach} 	
+
+    <!-- Growl -->
+	<link type="text/css" rel="stylesheet" href="{$site_root_path}plugins/growl/css/jquery.growl.css"/> 
+	<script type="text/javascript" src="{$site_root_path}plugins/growl/js/jquery.growl.js"></script>
+	
 </head>
 <body>

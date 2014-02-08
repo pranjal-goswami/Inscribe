@@ -89,10 +89,7 @@ class Post {
     */
     public static function getContentfromContentId($content_id = null) {
 
-		$content_path='posts_content/content_:id'.'.txt';
-		$vars = array(
-		":id"=>(string)$content_id
-		);
+		$content_path='posts_content/content_'.$content_id.'.txt';
 		$content=file_get_contents($content_path);
 		return $content;	
     }
@@ -102,11 +99,12 @@ class Post {
     */
     public function calculateReadLength($content_id=null) {
 
-    	$READ_TIME_PER_WORD = 0.1; //in seconds;
-    	$content = $this->getContentfromContentId($content_id);
+    	$READ_TIME_PER_WORD = 0.3; //in seconds; (at 200 Words Per Minute)
+    	$content = Post::getContentfromContentId($content_id);
     	$no_of_words=str_word_count($content);
     	$read_length=$no_of_words*$READ_TIME_PER_WORD;
     	$total_read_length=(int)($read_length/60);
+    	if($total_read_length==0) $total_read_length = 1;
     	return $total_read_length;
     }
 

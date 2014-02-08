@@ -33,7 +33,7 @@ class SignupController extends InscribeController {
 		if($this->isLoggedIn()) return $this->redirect('../');
 
 		if(isset($_GET['a'])) {
-			if($_GET['a']=='add') {
+			if($_GET['a']=='signup') {
 				if(empty($_POST)) return false;
 				return $this->createNewUser();
 			}

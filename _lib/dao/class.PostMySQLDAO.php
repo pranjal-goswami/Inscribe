@@ -137,8 +137,9 @@ class PostMySQLDAO extends PDODAO {
 	public function publish(Post $post)
 	{
 		$q = "UPDATE in_posts ";
-		$q .= "SET publish_flag=1 WHERE id=:post_id";
+		$q .= "SET publish_flag=1, read_length=:read_length, publish_time=Now() WHERE id=:post_id";
 		$vars = array(
+			':read_length'=>$post->read_length,
 			':post_id'=>Utils::decryptId($post->content_id)
 		);
 		//$this->logger->logInfo($q);
