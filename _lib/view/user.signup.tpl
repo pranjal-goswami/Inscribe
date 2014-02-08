@@ -25,6 +25,7 @@
 		<img src="{$site_root_path}assets/img/logo.png" />
 	</div>
 	<hr />
+	<div id="signup_form_response"></div>
 	<form id="signup_form" class="form-horizontal" role="form">
 	   <div class="form-group">
 		<div class="col-md-12">
@@ -64,14 +65,8 @@
 
 	</form>
 </div>
-<br /><br /><br />
-<!--FOOTER-->
-<div id="footer">
-	<div class="container">
-		<p class=" col-md-12 center-block text-center pad-top10"><a href="index.html">Home</a> | <a href="gallery.html">Photo Gallery</a> | <a href="topic.html">Topics/Categories</a> | <a href="blank.html"> Sample Page</a>.</p>
-		<p class=" col-md-12 center-block text-center pad-top10">&copy; 2013-15 Inscribe.io | All Rights Reserved </p>
-	</div>
-</div>
+
+
 
 {literal}
 <script type="text/javascript">
@@ -90,13 +85,15 @@ f.submit(function(e){
 	if(validateSignUpForm(f))
 	{
 		$.ajax({
+			type:"POST",
 			url:'./?a=signup',
 			data:f.serialize(),
 			success: function(){
-				alert('success');
+				$('#signup_form').hide();
+				$('#signup_form_success').show();
 			},
 			fail: function(){
-				alert('failed');
+				
 			}
 		})
 		return false;

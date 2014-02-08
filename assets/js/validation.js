@@ -60,5 +60,5 @@ function validateEmail(e) {
 }
 
 function validatePwd(e){
-	return e.val().length<=5 ?  showFormError(e) : hideFormError(e); 	
+	return e.val().length<5 ?  showFormError(e) : hideFormError(e); 	
 }
