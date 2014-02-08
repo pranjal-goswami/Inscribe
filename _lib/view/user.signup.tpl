@@ -90,8 +90,29 @@ f.submit(function(e){
 			data:f.serialize(),
 			dataType: "json",
 			success: function(r){
-				alert(r.status);
-				alert(r.message);
+				var e = $('#signup_form_response');
+				switch(r.status){
+					case "error":
+						e.removeClass();
+						e.addClass('alert alert-danger');
+						e.html(r.message);
+						f[0].reset();
+						break;
+					case "success":
+						e.removeClass();
+						e.addClass('alert alert-success');
+						e.html(r.message);
+						f.hide();
+						break;
+					case "info":
+						e.removeClass();
+						e.addClass('alert alert-info');
+						e.html(r.message);
+						break;
+					default:
+						alert();
+						
+				}
 			},
 			fail: function(){
 				alert('failed');

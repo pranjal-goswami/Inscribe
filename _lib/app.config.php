@@ -7,6 +7,11 @@ define('S_STATUS_ACTIVE','in_active');
 define('S_ADMIN_NAME','in_admin_name');
 define('S_ADMIN_FAIL','in_admin_login_failed');
 define('S_OWNER','in_owner');
+
+define('ERROR_CODE','error');
+define('SUCCESS_CODE','success');
+define('INFO_CODE','info');
+
 /* Database Connection Credentials */
 if(SERVER=='localhost'){
 $path = dirname(__FILE__).'/';
