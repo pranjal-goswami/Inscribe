@@ -24,14 +24,16 @@ date_default_timezone_set('Asia/Calcutta');
 session_start();
  
 $local_path = str_replace('\\','/',dirname(dirname(__FILE__)));
-$needle = 'htdocs';
+echo $local_path;
 if(strpos($local_path,$needle)>=0){ 
 	define('SERVER','localhost'); 
+	$needle = 'htdocs';
 	$app_path = substr($local_path,(strpos($local_path,$needle)+strlen($needle)));
 }
 else{
 	define('SERVER','web');
-	$app_path = '';
+	$needle = 'public_html';
+	$app_path = substr($local_path,(strpos($local_path,$needle)+strlen($needle)));
 }
 define('INSCRIBE_WEBAPP_ROOT',$app_path);
 
