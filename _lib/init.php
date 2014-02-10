@@ -24,10 +24,9 @@ date_default_timezone_set('Asia/Calcutta');
 session_start();
  
 $local_path = str_replace('\\','/',dirname(dirname(__FILE__)));
-echo $local_path;
+$needle = 'htdocs';
 if(strpos($local_path,$needle)>=0){ 
 	define('SERVER','localhost'); 
-	$needle = 'htdocs';
 	$app_path = substr($local_path,(strpos($local_path,$needle)+strlen($needle)));
 }
 else{
