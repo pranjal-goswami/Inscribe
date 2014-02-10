@@ -35,6 +35,7 @@ else{
 	$app_path = substr($local_path,(strpos($local_path,$needle)+strlen($needle)));
 }
 echo $app_path;
+echo SERVER;
 define('INSCRIBE_WEBAPP_ROOT',$app_path);
 
 require_once('app.config.php');
