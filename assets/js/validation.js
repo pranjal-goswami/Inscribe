@@ -71,6 +71,5 @@ function validatePostForm(f){
 			ret = false;
 		}
 	});
-	return ret;
-	
+	return ret;	
 }
