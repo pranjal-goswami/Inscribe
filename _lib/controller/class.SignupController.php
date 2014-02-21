@@ -51,17 +51,39 @@ class SignupController extends InscribeController {
 	public function createNewUser()
 	{	
 		$user = new User($_POST);
-		$user->pwd = md5($user->pwd);
-		$user->pwd_salt = User::generatePwdSalt();
-		$UserDAO = DAOFactory::getDAO('User','User_DAO.log');
-		//$UserDAO->insert($user);
-		$this->json_data = array(
-				"status" => 100,
-				"message"=> "User was successfully created"
-			);
+		if($user->validateUser()) {
+			$UserDAO = DAOFactory::getDAO('User','User_DAO.log');
+			
+			if($UserDAO->userAlreadyExists($user)) {
+				$this->json_data = array(
+					"status" => ERROR_CODE,
+					"message"=> "The email ID <strong>".$user->email."</strong> is already registered.
+						<a href=\"#\">Trouble loggin in?</a>"
+				);
+				return $this->generateView();
+			}
+			
+			$user->pwd = md5($user->pwd);
+			$user->pwd_salt = User::generatePwdSalt();
+			$UserDAO->insert($user);
+			
+			$this->json_data = array(
+					"status" => SUCCESS_CODE,
+					"message"=> "Your account was successfully created. 
+						Please check your email and follow the instructions to activate your account
+						and <a href=\"../login/\"><strong>Log in</strong></a>"
+				);
+		}
+		else {
+			$this->json_data = array(
+					"status" => INFO_CODE,
+					"message"=> "There is some problem with our servers right now. Please try later"
+				);
+		}
 		return $this->generateView();
 		
 	}
+	
 
 
 }

@@ -276,7 +276,7 @@
             if (empty($whoami)) {
                 $whoami = 'nobody';
             }
-            return 'Permission Denied. :'.$whoami.' ret:'.$ret.'<br/><br/>';
+            return '<strong>[ERROR]</strong> Write Permission Denied for . :'.$whoami.' :: folder:'.$this->compile_dir;
         }
     }
 

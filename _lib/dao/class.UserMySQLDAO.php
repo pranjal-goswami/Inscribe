@@ -84,4 +84,13 @@ class UserMySQLDAO extends PDODAO {
 		$ps = $this->execute($q, $vars);
 		return $this->getInsertId($ps);
 	}
+	public function userAlreadyExists(User $user)
+	{
+		$q = "SELECT * FROM in_users WHERE email=:email";
+		$vars = array(
+			":email"=>$user->email
+			);
+		$ps = $this->execute($q,$vars);
+		return $this->getDataIsReturned($ps);
+	}
 }

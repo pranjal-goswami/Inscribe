@@ -25,13 +25,14 @@ session_start();
  
 $local_path = str_replace('\\','/',dirname(dirname(__FILE__)));
 $needle = 'htdocs';
-if(strpos($local_path,$needle)>=0){ 
-	define('SERVER','localhost'); 
+if(strpos($local_path,$needle) === false){ 
+	define('SERVER','web');
+	$needle = 'public_html';
 	$app_path = substr($local_path,(strpos($local_path,$needle)+strlen($needle)));
 }
 else{
-	define('SERVER','web');
-	$app_path = '';
+	define('SERVER','localhost'); 
+	$app_path = substr($local_path,(strpos($local_path,$needle)+strlen($needle)));
 }
 define('INSCRIBE_WEBAPP_ROOT',$app_path);
 

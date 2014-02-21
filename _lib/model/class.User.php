@@ -98,5 +98,12 @@ class User {
     	$salt=md5($seed.$adulterate);
     	return $salt;
     }
+	public function validateUser()
+	{
+		if(strlen($this->full_name)<=0) return false;
+		if(!Utils::validateEmail($this->email)) return false;
+		if(strlen($this->pwd)<5) return false;
+		return true;
+	}
 
 }
