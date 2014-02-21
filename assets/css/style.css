@@ -28,7 +28,7 @@
  *                      
  */ 
 body {
-	font-family: "Oxygen", Arial , sans-serif;
+	font-family: Georgia, serif;
 	padding-top:70px;
 	web-font-smoothening:antialiased;
 }
@@ -337,7 +337,8 @@ ul.thumbnails li{
 	color:#088ba9;
 }
 .card-heading-header a h1{
-	font-family:  'Glegoo',Helvetica, sans-serif;
+	//font-family:  'Glegoo',Helvetica, sans-serif;
+	font-family:Georgia, serif;
 	font-weight:normal;
 	text-shadow: rgba(0, 0, 0, .01) 0 0 1px;
 	margin-top:10px;
@@ -349,8 +350,8 @@ ul.thumbnails li{
 }
 
 .card-heading-header h3 span{
-	font-family:"Junge", Helvetica, sans-serif;
-	
+	//font-family:"Junge", Helvetica, sans-serif;
+	font-family:Helvetica, serif;
 }
 .card-heading-header span i{
 	color:#7cc9d4;
@@ -373,6 +374,7 @@ ul.thumbnails li{
 }
 .card .card-body p{
     color:#777;
+	font-size:16px;
 }
 
 .card .card-media {
@@ -391,9 +393,9 @@ ul.thumbnails li{
     margin: 20px 0 0 0
 }
 .card .card-actions a.button-upvote {
-    font-size:24px;
-	border-radius:100px;
-	font-wegiht:100;
+    font-size:12px;
+	font-family:Helvetica, sans-serif;
+	margin-top:-10px;
 }
 
 .card .card-comments {
@@ -656,9 +658,9 @@ float: left;
 	background:url('./../img/logo_back.png') no-repeat;
 }
 .navbar-brand .logo-text {
-	padding-left:80px;
+	padding-left:20px;
 	font-size:30px;
-	font-family:"Courier New", Courier, monospace;
+	font-family: Georgia, serif;
 	font-weight:600;
 }
 .navbar-login-btn{

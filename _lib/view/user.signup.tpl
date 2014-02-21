@@ -10,7 +10,6 @@
       <span class="icon-bar"></span>
     </button>
 	 <span class="navbar-brand">
-		<div class="navbar-logo"></div>
 		<span class="logo-text"></span>
 	</span>
    

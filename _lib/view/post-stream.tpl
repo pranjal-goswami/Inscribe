@@ -10,9 +10,13 @@
       <span class="icon-bar"></span>
     </button>
     <span class="navbar-brand">
-		<div class="navbar-logo"></div>
-		<span class="logo-text"></span>
+		<span class="logo-text">inscribe</span>
 	</span>
+	<form class="navbar-form navbar-left" role="search">
+	  <div class="form-group">
+		<input type="text" class="form-control" style="border-radius:100px;" placeholder="">
+	  </div>
+	</form>
   </div>
 
   <!-- Collect the nav links, forms, and other content for toggling -->
@@ -33,16 +37,7 @@
 		<!-- LEFT FIXED SIDE BAR -->
 		<div class="col-md-2">
 		   <div class="sidebar-nav-fixed affix">
-		    <br />
-		   	<img src="{$site_root_path}/assets/img/logo.png" class="logo-image" />
-			<hr />
-			<form class="form-inline" role="form">
-			  <div class="form-group col-md-12">
-				<input type="email" class="form-control" style="border-radius:100px;"	placeholder="">
-			  </div>
-			</form>
-			<br /><br />
-			<hr />
+		    
 			<ul class="sidebar-nav">
 				<li><span>Comedy</span></li>
 				<li class="separator"></li>
@@ -99,8 +94,8 @@
 							<a href="#"><i class="fa fa-twitter  muted pull-left pad-right8"></i></a>
 							<a href="#"><i class="fa fa-google-plus  muted pull-left pad-right8"></i></a>
 							
-							<a href="#" class="btn btn-primary pull-right button-upvote img-circle" title="Upvote this article">
-							<i class="fa fa-arrow-up" style=""></i> 
+							<a href="#" class="btn btn-primary pull-right button-upvote btn-sm" title="Upvote this article">
+							PROMOTE 
 							</a>
 						</div>
 
@@ -143,8 +138,8 @@
 							<a href="#"><i class="fa fa-twitter  muted pull-left pad-right8"></i></a>
 							<a href="#"><i class="fa fa-google-plus  muted pull-left pad-right8"></i></a>
 							
-							<a href="#" class="btn btn-primary pull-right button-upvote img-circle" title="Upvote this article">
-							<i class="fa fa-arrow-up" style=""></i> 
+							<a href="#" class="btn btn-primary pull-right button-upvote btn-sm" title="Upvote this article">
+							PROMOTE 
 							</a>
 						</div>
 
@@ -188,8 +183,8 @@
 							<a href="#"><i class="fa fa-twitter  muted pull-left pad-right8"></i></a>
 							<a href="#"><i class="fa fa-google-plus  muted pull-left pad-right8"></i></a>
 							
-							<a href="#" class="btn btn-primary pull-right button-upvote img-circle" title="Upvote this article">
-							<i class="fa fa-arrow-up" style=""></i> 
+							<a href="#" class="btn btn-primary pull-right button-upvote btn-sm" title="Upvote this article">
+							PROMOTE 
 							</a>
 						</div>
 
@@ -204,7 +199,6 @@
 				<ul class="nav nav-tabs" id="myTab">
 					<li ><a href="#topics">Trending Topics</a></li>
 					<li class="active"><a href="#people">Top Authors</a></li>
-					<li><a href="#media">Media Gallery</a></li>
 
 				</ul>
 
@@ -355,66 +349,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="tab-pane" id="media">
-						<h2>Highly customizable</h2>
-						<p>With a bit of extra markup, it's possible to add any kind of HTML content like headings, paragraphs, or buttons into thumbnails.</p>
-						<div class="row">
-							<ul class="thumbnails">
-								<li class="col-md-4">
-									<div class="thumbnail">
-										<img src="assets/img/5.png" alt="">
-										<div class="caption">
-											<h3>Thumbnail label</h3>
-										</div>
-									</div>
-								</li>
-								<li class="col-md-4">
-									<div class="thumbnail">
-										<img src="assets/img/4.png" alt="">
-										<div class="caption">
-											<h3>Thumbnail label</h3>
-										</div>
-									</div>
-								</li>
-								<li class="col-md-4">
-									<div class="thumbnail">
-										<img src="assets/img/3.png" alt="">
-										<div class="caption">
-											<h3>Thumbnail label</h3>
-										</div>
-									</div>
-								</li>
-							</ul>
-						</div>
-						<div class="row">
-							<ul class="thumbnails">
-								<li class="col-md-4">
-									<div class="thumbnail">
-										<img src="assets/img/5.png" alt="">
-										<div class="caption">
-											<h3>Thumbnail label</h3>
-										</div>
-									</div>
-								</li>
-								<li class="col-md-4">
-									<div class="thumbnail">
-										<img src="assets/img/4.png" alt="">
-										<div class="caption">
-											<h3>Thumbnail label</h3>
-										</div>
-									</div>
-								</li>
-								<li class="col-md-4">
-									<div class="thumbnail">
-										<img src="assets/img/3.png" alt="">
-										<div class="caption">
-											<h3>Thumbnail label</h3>
-										</div>
-									</div>
-								</li>
-							</ul>
-						</div>
-					</div>
+					
 				</div>
 			</div>
 			<!-- BOTTOM TABS ENDS-->
