@@ -23,7 +23,7 @@
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
    <ul class="navbar-right navbar-form unstyled">
       <li>
-	    <a href="./user/" class="btn btn-xs btn-info navbar-login-btn">
+	    <a href="./user/" class="btn btn-xs btn-primary navbar-login-btn">
 	  	<i class="fa fa-sign-in"></i> &nbsp; Log in
 		</a>
 	  </li>
@@ -32,7 +32,7 @@
   </div><!--/ container -->
 </nav>
 <!-- MAIN CONTAINER -->
-<div class="container" >
+<div class="container">
 	<div class="row">
 		<!-- LEFT FIXED SIDE BAR -->
 		<div class="col-md-2">
@@ -56,8 +56,9 @@
 		</div>
 		<!-- LEFT FIXED SIDE BAR ENDS -->
 		<!-- RIGHT BLOG CONTENT CONTAINER -->
-		<div class="col-md-9 col-md-offset-3">
+		<div class="col-md-9 col-md-offset-3" style="background:#f0f0f0; margin-top:-30px;">
 			<!-- BLOG POST CONTENT -->
+			<br /><br />
 			<div class="row post">
 				<div class="col-md-12"> 
 					<div class="card">
