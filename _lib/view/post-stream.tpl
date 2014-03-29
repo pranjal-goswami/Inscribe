@@ -228,7 +228,7 @@ $('.post-heading').click(function()
 {
 	var post_encrypted_id = this.id;
 	var ajax_values =  'post_encrypted_id='+post_encrypted_id;
-	ajaxLoad('./posts/?a=read', 'post-book-container', ajax_values, ''); 
+	ajaxLoad(site_root_path+'posts/?a=read', 'post-book-container', ajax_values, ''); 
 });
 
 $('.post-book').on('hide.bs.modal', function (e) {

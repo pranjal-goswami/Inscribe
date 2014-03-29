@@ -227,6 +227,23 @@ class PostMySQLDAO extends PDODAO {
 		$result = $this->getDataRowsAsArray($ps);
 		return $result;
 	}
+	/*
+	 * Get All Published Posts by User ID (All published posts by an author)
+	 */
+	public function getAllPublishedPostsByUserId($id=null)
+	{
+		if(is_null($id)){
+			$this->logger->logError('No ID provided.','Input Error');
+			return false;
+		}
+		$q = "SELECT * FROM in_posts WHERE author_id=:id AND publish_flag=1 ORDER BY publish_time DESC";
+		$vars = array(
+			":id"=>(int)$id
+		);
+		$ps = $this->execute($q,$vars);
+		$result = $this->getDataRowsAsObjects($ps,'Post');
+		return $result;
+	}
 
    
 }

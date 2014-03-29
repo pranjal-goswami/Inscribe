@@ -65,6 +65,8 @@
 				<li class="separator"></li>
 				<li><span><i class="fa fa-cog"></i> &nbsp; Settings</span></li>
 				<li class="separator"></li>
+				<li id="create-new-post"><span><i class="fa fa-cog"></i> &nbsp; Create New</span></li>
+				<li class="separator"></li>
 				
 			</ul>
 			</div>
@@ -82,19 +84,47 @@
 {literal}
 <script type="text/javascript">
 
-createNewPost();
+showPublishedStream();
 
-function createNewPost()
+function showPublishedStream()
+{
+	var ajax_values =  null;
+	ajaxLoad(site_root_path+'posts/?a=publishedstream', 'render-content-container', ajax_values, ''); 
+}
+
+$('#create-new-post').click(function()
 {
 	var ajax_values =  null;
 	ajaxLoad(site_root_path+'posts/?a=create', 'render-content-container', ajax_values, ''); 
-}
+});
 
 $('#manage-posts').click(function()
 {
 	var ajax_values =  null;
 	ajaxLoad(site_root_path+'posts/?a=manage', 'render-content-container', ajax_values, ''); 
 });
+
+
+// Arrows
+
+	$(document).keydown(function(e){
+
+		var previous = 37, next = 39;
+
+		switch (e.keyCode) {
+			case previous:
+
+				$('.sj-book').turn('previous');
+
+			break;
+			case next:
+				
+				$('.sj-book').turn('next');
+
+			break;
+		}
+
+	});
 
 </script>
 {/literal}

@@ -102,8 +102,11 @@
 				return $this->generateView();
 			}
 
-			if($_GET['a']=='streampublished') {
+			if($_GET['a']=='publishedstream') {
 				$posts = $this->streamAllPublishedPostsByUserId();
+				$this->setViewTemplate('_user.published-stream.tpl');
+				$this->addToView('posts',$posts);
+				return $this->generateView();
 			}
 			
 		}
