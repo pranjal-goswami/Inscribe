@@ -63,8 +63,8 @@ class SignupController extends InscribeController {
 				return $this->generateView();
 			}
 			
-			$user->pwd = md5($user->pwd);
 			$user->pwd_salt = User::generatePwdSalt();
+			$user->pwd = User::getHashedPwd($user->pwd,$user->pwd_salt);
 			$UserDAO->insert($user);
 			
 			$this->json_data = array(

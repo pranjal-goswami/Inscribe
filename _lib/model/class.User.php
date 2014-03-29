@@ -98,6 +98,12 @@ class User {
     	$salt=md5($seed.$adulterate);
     	return $salt;
     }
+	
+	 public static function getHashedPwd($pwd = null,$pwd_salt){
+    	if(is_null($pwd)) throw new Exception('Empty Password');
+		$pwdHash = md5($pwd.$pwd_salt);
+    	return $pwdHash;
+    }
 	public function validateUser()
 	{
 		if(strlen($this->full_name)<=0) return false;

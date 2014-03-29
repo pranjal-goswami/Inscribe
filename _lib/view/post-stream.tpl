@@ -24,8 +24,9 @@
    <ul class="navbar-right navbar-form unstyled">
       <li>
 	    <a href="./user/" class="btn btn-xs btn-primary navbar-login-btn">
-	  	<i class="fa fa-sign-in"></i> &nbsp; Log in
+	  	<i class="fa fa-sign-in"></i> {if $isLoggedIn == true}{/if}&nbsp; Log in 
 		</a>
+		
 	  </li>
     </ul>
   </div><!-- /.navbar-collapse -->
@@ -65,7 +66,7 @@
 						<div class="card-heading image">
 							<a href="profile.html" > 
 								<img class="pull-right pull-up10" src="assets/img/shaan.png" alt="author avatar"/>
-							</a>
+							</a>{$user|@var_dump}
 							<div class="card-heading-header">
 								<a href="post.html"><h1>Design to inspire</h1></a>
 								<h3>  

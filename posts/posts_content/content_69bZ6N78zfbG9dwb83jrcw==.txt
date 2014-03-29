@@ -1,7 +1,0 @@
-<<<<<<< HEAD
-=======
-My name is naman
-### heading text
-
-### My first post
->>>>>>> c527e96546fa53395b6021bb8508ec79c130827d

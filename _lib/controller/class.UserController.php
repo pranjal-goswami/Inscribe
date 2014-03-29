@@ -35,7 +35,7 @@ class UserController extends InscribeController {
 		// get DAO
 		$UserDAO = DAOFactory::getDAO('User','User_DAO.log');
 
-		$this->setViewTemplate('User.tpl');
+		$this->setViewTemplate('user.profile.tpl');
         return $this->generateView();
 
 	 }

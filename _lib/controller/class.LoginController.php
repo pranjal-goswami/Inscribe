@@ -23,10 +23,45 @@
 class LoginController extends InscribeController {
 	public function control()
 	{
-		$this->setViewTemplate('user.login.tpl');
 		$this->disableCaching();
 		$this->view_mgr->force_compile = true;
 		
+		if(isset($_GET['a']))
+		{
+			if($_GET['a']=='login')
+			{
+				return $this->loginUser();
+			}
+		}
+		$this->setViewTemplate('user.login.tpl');
+		
+		return $this->generateView();
+	}
+	protected function loginUser()
+	{
+		$UserDAO = DAOFactory::getDAO("User","User_DAO.log");
+		$user = $UserDAO->getUserByUserEmail($_POST['user_email']);
+		if(is_null($user)){
+			$this->json_data = array(
+				"status" => "error",
+				"message" => "The email ID <strong>".$_POST['user_email']."</strong> does not exist in our records."
+			);
+			return $this->generateView();	
+		}
+		
+		if($user->pwd == User::getHashedPwd($_POST['user_pwd'],$user->pwd_salt)) {
+			SessionCache::put(S_STATUS,S_STATUS_ACTIVE);
+			$_SESSION['user']=$user;
+			$this->json_data = array(
+				"status" => "success",
+				"message" => 'Logged In. Redirecting...'
+			);
+			return $this->generateView();
+			}
+		$this->json_data = array(
+			"status" => "error",
+			"message" => Utils::varDumpToString($user)
+		);
 		return $this->generateView();
 	}
 }

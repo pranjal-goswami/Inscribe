@@ -40,6 +40,23 @@ class UserMySQLDAO extends PDODAO {
  		return $result;
  	}
 	/*
+	 * Get User by Email ID
+	 */
+ 	public function getUserByUserEmail($email=null)
+ 	{
+ 		if(is_null($email)){
+ 			$this->logger->logError('No Email ID provided.','Input Error');
+ 			return false;
+ 		}
+ 		$q = "SELECT * FROM in_users WHERE email=:email";
+ 		$vars = array(
+ 			":email"=>$email
+ 			);
+ 		$ps = $this->execute($q,$vars);
+ 		$result = $this->getDataRowAsObject($ps,'User');
+ 		return $result;
+ 	}
+	/*
 	 * Get User by Post ID
 	 */
 	public function getUserByPostId($id=null)

@@ -164,4 +164,17 @@ class Utils {
         //return (preg_match($reg_exp, $email) === false)?false:true;
         return (preg_match($reg_exp, $email)>0)?true:false;
     }
+	/**
+     * Generate var dump to string.
+     * @return str
+     */
+    public static function varDumpToString($mixed = null) {
+        ob_start();
+        var_dump($mixed);
+        $content = ob_get_contents();
+        ob_end_clean();
+        return $content;
+    }
+
+
 }
