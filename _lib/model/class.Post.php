@@ -93,7 +93,14 @@ class Post {
 		$content=file_get_contents($content_path);
 		return $content;	
     }
+    /* 
+    * Get Content Text from Content ID 
+    */
+    public static function deleteContentfromContentId($content_id = null) {
 
+		$content_path='posts_content/content_'.$content_id.'.txt';
+		unlink($content_path);	
+    }
     /* 
     * Calculate Read Length Based on the number of words 
     */

@@ -22,13 +22,16 @@
 			<h5>  
 				{if $post->publish_flag == 1}
 				{assign var="j" value=$post->publish_time|@strtotime}
-				<span> Published on {"M d, Y"|@date:$j}</span>
+				<span> Published on {"M d, Y"|@date:$j} at 
+					<i class="glyphicon glyphicon-time muted"> </i>
+					{"h:i A"|@date:$j}
+				</span>
 				<span> 
 					<i class="glyphicon glyphicon-eye-open muted"> </i> {$post->read_length} min read  
 				</span>
 				<span> in  
 					<i class="fa fa-tags muted"> </i>  
-					<a href="topic.html"> &middot; {foreach from=$post->categories item=category}{$category} &middot;  {/foreach} </a>
+					<a href="topic.html"> {foreach from=$post->categories item=category}{$category} &middot;  {/foreach} </a>
 				</span> 
 				{else}
 				<span>Not Published</span>
@@ -37,11 +40,11 @@
 		</div>
 		<div class="col-md-4">
 			{if $post->publish_flag == 1}
-			<div class="btn btn-warning unpublish-post"> UnPublish </div>
+			<div class="btn btn-warning unpublish-post" id="{$post->content_id}"> UnPublish </div>
 			{else}
-			<div class="manage-btn pull-right publish-post"><i class="glyphicon glyphicon-send"></i> Publish </div>
-			<div class="manage-btn pull-right delete-post"><i class="glyphicon glyphicon-trash"></i> </div>
-			<div class="manage-btn pull-right edit-post"><i class="glyphicon glyphicon-edit"></i> </div>
+			<div class="manage-btn pull-right publish-post" id="{$post->content_id}"> <i class="glyphicon glyphicon-send"></i>Publish </div>
+			<div class="manage-btn pull-right delete-post" id="{$post->content_id}"> <i class="glyphicon glyphicon-trash muted"> </i> </div>
+			<div class="manage-btn pull-right edit-post" id="{$post->content_id}"> <i class="glyphicon glyphicon-edit muted"> </i> </div>
 			{/if}	
 		</div>
 
@@ -54,3 +57,41 @@
 	{/foreach}
 </div>
 
+{literal}
+<script type="text/javascript">
+
+$('.delete-post').click(function()
+{
+	var post_encrypted_id = this.id;
+	var ajax_values =  'post_encrypted_id='+post_encrypted_id;
+	ajaxLoad(site_root_path+'posts/?a=delete', 'render-content-container', ajax_values, null); 
+});
+
+$('.publish-post').click(function()
+{
+	var post_encrypted_id = this.id;
+	var ajax_values =  'post_encrypted_id='+post_encrypted_id;
+	ajaxLoad(site_root_path+'posts/?a=publish', 'render-content-container', ajax_values, null, 'alertIncomplete'); 
+});
+
+function alertIncomplete()
+{
+	$.growl.error({ message: "Title, Excerpt and Content cannot be left empty before publishing an article." });
+}
+
+$('.unpublish-post').click(function()
+{
+	var post_encrypted_id = this.id;
+	var ajax_values =  'post_encrypted_id='+post_encrypted_id;
+	ajaxLoad(site_root_path+'posts/?a=unpublish', 'render-content-container', ajax_values, ''); 
+});
+
+$('.edit-post').click(function()
+{
+	var post_encrypted_id = this.id;
+	var ajax_values =  'post_encrypted_id='+post_encrypted_id;
+	ajaxLoad(site_root_path+'posts/?a=edit', 'render-content-container', ajax_values, ''); 
+});
+
+</script>
+{/literal}
