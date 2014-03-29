@@ -1,3 +1,0 @@
-<p>Some Random Text here and there.</p>
-<p><strong>And this had to be bold. BOLD.</strong></p>
-<p>After that we are not going to do shit!</p>
