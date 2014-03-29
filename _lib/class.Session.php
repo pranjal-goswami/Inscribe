@@ -40,7 +40,10 @@ class Session{
 		if(!self::isLoggedIn()) {
 			Logger::getInstance()->LogError("No user logged in. Cannot return logged in User");
 		}
-		return Utils::fixObject(SessionCache::get('user'));
+		$user = Utils::fixObject(SessionCache::get(S_USER));
+		$joined = strtotime($user->joined);
+		$user->joined_f ='someything';// date('Y',$joined)	;	
+		return Utils::fixObject(SessionCache::get(S_USER));
 	}
 	
 }

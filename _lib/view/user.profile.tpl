@@ -48,16 +48,22 @@
 		   <div class="sidebar-nav-fixed affix">
 		   
 		    <img class="sidebar-user-pic" src="{$site_root_path}/data/user/avatar/{if $user->profile_pic_id == null}default_avatar.jpg{else}{$user->profile_pic_id}{/if}" /> 
-			<h2 class="siderbar-user-name">{$user->full_name}</h2>
-			<ul class="sidebar-nav">
+			<h2 class="sidebar-user-name">{$user->full_name}</h2>
+			<ul class="profile sidebar-nav">
+			<li class="separator"></li>
+				<li><span><i class="fa fa-envelope"></i></span><span style="color:#4183c4"> &nbsp; {$user->email}</span></li>
+				{assign var="j" value=$user->joined|@strtotime}
+				<li style="padding-top:0px;"><span><i class="fa fa-clock-o"></i> &nbsp; Joined on {"M d, Y"|@date:$j}</span>
+				</li>
+				<br />
 				<li class="separator"></li>
-				<li><span>Published</span></li>
+				<li><span><i class="fa fa-book"></i> &nbsp; Published</span></li>
 				<li class="separator"></li>
-				<li><span>Posts</span></li>
+				<li><span><i class="fa fa-edit"></i> &nbsp; Posts</span></li>
 				<li class="separator"></li>
-				<li><span>Stats</span></li>
+				<li><span><i class="fa fa-bar-chart-o"></i> &nbsp; Stats</span></li>
 				<li class="separator"></li>
-				<li><span>Settings</span></li>
+				<li><span><i class="fa fa-cog"></i> &nbsp; Settings</span></li>
 				<li class="separator"></li>
 				
 			</ul>
@@ -67,10 +73,7 @@
 		<!-- LEFT FIXED SIDE BAR ENDS -->
 		<!-- RIGHT BLOG CONTENT CONTAINER -->
 		<div class="col-md-9 col-md-offset-3">
-			
-		{include file="post.create.tpl"}
-
-		
+		{include file="_user.posts.tpl"}	
 		</div>
 		<!-- RIGHT BLOG CONTENT CONTAINER ENDS -->
 	</div>
