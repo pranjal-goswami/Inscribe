@@ -59,14 +59,16 @@
 
 			if($_GET['a']=='edit') {
 				if(empty($_POST)) return false;	
-
+				$post = $this->editPost();
 				$this->setViewTemplate('_post.edit.tpl');
-
+				$this->addToView('post',$post);
+				return $this->generateView();
 			}
 
 			if($_GET['a']=='publish') {
 				if(empty($_POST)) return false;
-				$this->publishPost();
+				$published = $this->publishPost();
+				if($published === false) return false;
 
 				$posts = $this->getAllPostsByUserId();
 				$this->setViewTemplate('_posts.manage.tpl');
@@ -89,6 +91,19 @@
 				$this->setViewTemplate('_posts.manage.tpl');
 				$this->addToView('posts',$posts);
 				return $this->generateView();
+			}
+
+			if($_GET['a']=='delete') {
+				$this->deletePost();
+
+				$posts = $this->getAllPostsByUserId();
+				$this->setViewTemplate('_posts.manage.tpl');
+				$this->addToView('posts',$posts);
+				return $this->generateView();
+			}
+
+			if($_GET['a']=='streampublished') {
+				$posts = $this->streamAllPublishedPostsByUserId();
 			}
 			
 		}
@@ -143,6 +158,30 @@
 		$PostDAO->unPublish($post_id);
 	}
 	/*
+	 *  Edit Post
+	 */
+	 public function editPost()
+	 {	
+	 	$post_encrypted_id = $_POST['post_encrypted_id'];
+	 	$post_id = Utils::decryptId($post_encrypted_id);
+	 	$PostDAO = DAOFactory::getDAO('Post','Post_DAO.log');
+		$post = $PostDAO->getPostByPostId($post_id);
+		$content = Post::getContentfromContentId($post->content_id);
+		$post->content = $content;
+		return $post;
+	}
+	/*
+	 *  Delete Post
+	 */
+	 public function deletePost()
+	 {	
+	 	$post_encrypted_id = $_POST['post_encrypted_id'];
+	 	Post::deleteContentfromContentId($post_encrypted_id);
+	 	$post_id = Utils::decryptId($post_encrypted_id);
+	 	$PostDAO = DAOFactory::getDAO('Post','Post_DAO.log');
+		$post = $PostDAO->delete($post_id);
+	}
+	/*
 	 *  Fetch content and put in book form
 	 */
 	public function getPostInBook()
@@ -173,6 +212,22 @@
 		$posts = $PostDAO->getPostsByAuthorId($user_id);
 		foreach ($posts as $post)
 		{
+			$post->categories = Post::getPostCategories($post->id);
+		}
+		return $posts;
+	}
+	/*
+	 *  Get all published posts by User ID
+	 */
+	 public function streamAllPublishedPostsByUserId()
+	 {
+	 	$user_id = Session::getLoggedInUser()->id;
+		$PostDAO = DAOFactory::getDAO('Post','Post_DAO.log');
+		$posts = $PostDAO->getAllPublishedPostsByUserId($user_id);
+		$UserDAO = DAOFactory::getDAO('User','User_DAO.log');
+		foreach ($posts as $post)
+		{
+			$post->published_on = Post::convertToDisplayPublishTime($post->publish_time);
 			$post->categories = Post::getPostCategories($post->id);
 		}
 		return $posts;

@@ -156,6 +156,18 @@ class PostMySQLDAO extends PDODAO {
 		$ps = $this->execute($q, $vars);
 	}
 	/*
+	 * Delete a Post 
+	 */
+	public function delete($post_id)
+	{
+		$q = "DELETE FROM in_posts WHERE id=:post_id";
+		$vars = array(
+			':post_id'=>$post_id
+		);
+		//$this->logger->logInfo($q);
+		$ps = $this->execute($q, $vars);
+	}
+	/*
 	 * Update Unique Content ID of the Post
 	 */
 	public function updateContentId($content_id, $post_id)

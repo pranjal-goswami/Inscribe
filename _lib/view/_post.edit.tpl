@@ -10,21 +10,21 @@
 	<h2>Post</h2>
 	<hr />
 	<form class="form-horizontal" id="post-form-save" role="form">
-		<input type="hidden" name="content_id" value={$content_id} />
+		<input type="hidden" name="content_id" value={$post->content_id} />
 		<div class="form-group col-md-12">
 			<div>
-				<input type="text" class="form-control" name="title" id="title" placeholder="Title" autofocus>
+				<input type="text" class="form-control" name="title" id="title" placeholder="Title" value="{$post->title}">
 			</div>
 		</div>
 		<div class="form-group col-md-8">
 			<div class=" pull-left">
-				<textarea class="form-control" name="editor" id="editor" placeholder="Content"></textarea>
+				<textarea class="form-control" name="editor" id="editor" placeholder="Content" autofocus>{$post->content}</textarea>
 			</div>
 		</div>
 		<div class="form-group col-md-4">
 			<div class="pull-left">
 				<textarea class="form-control" rows="10" name="excerpt" id="excerpt" maxlength="1200" placeholder="Excerpt (Max 200 words)" 
-				style="width:270px;"></textarea>
+				style="width:270px;">{$post->excerpt}</textarea>
 			</div>
 		</div>
 		<div class="form-group col-md-4">

@@ -58,15 +58,20 @@ $('.delete-post').click(function()
 {
 	var post_encrypted_id = this.id;
 	var ajax_values =  'post_encrypted_id='+post_encrypted_id;
-	ajaxLoad(site_root_path+'posts/?a=delete', 'render-content-container', ajax_values, ''); 
+	ajaxLoad(site_root_path+'posts/?a=delete', 'render-content-container', ajax_values, null); 
 });
 
 $('.publish-post').click(function()
 {
 	var post_encrypted_id = this.id;
 	var ajax_values =  'post_encrypted_id='+post_encrypted_id;
-	ajaxLoad(site_root_path+'posts/?a=publish', 'render-content-container', ajax_values, null); 
+	ajaxLoad(site_root_path+'posts/?a=publish', 'render-content-container', ajax_values, null, 'alertIncomplete'); 
 });
+
+function alertIncomplete()
+{
+	$.growl.error({ message: "Title, Excerpt and Content cannot be left empty before publishing an article." });
+}
 
 $('.unpublish-post').click(function()
 {
