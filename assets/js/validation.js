@@ -51,7 +51,7 @@ function validateSignUpForm(f){
 }
 
 function validateName(e){
-	return isEmpty(e) ? showFormError(e) : hideFormError(e)	
+	return isEmpty(e) ? showFormError(e) : hideFormError(e)	;
 }
 
 function validateEmail(e) {
@@ -60,5 +60,16 @@ function validateEmail(e) {
 }
 
 function validatePwd(e){
-	return e.val().length<5 ?  showFormError(e) : hideFormError(e); 	
+	return e.val().length<=5 ?  showFormError(e) : hideFormError(e); 	
+}
+
+/* Post Form Validation */ 
+function validatePostForm(f){
+	ret = true;
+	f.find('.form-control').each(function()	{
+		if(isEmpty($(this))){
+			ret = false;
+		}
+	});
+	return ret;	
 }

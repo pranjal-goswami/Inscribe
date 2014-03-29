@@ -84,6 +84,23 @@ class UserMySQLDAO extends PDODAO {
 		return md5($pwd.md5($pwd_salt));
 	}
 	/*
+	 * Get UerName by User ID
+	 */
+ 	public function getUserNameByUserId($id=null)
+ 	{
+ 		if(is_null($id)){
+ 			$this->logger->logError('No User ID provided.','Input Error');
+ 			return false;
+ 		}
+ 		$q = "SELECT full_name FROM in_users WHERE id=:id";
+ 		$vars = array(
+ 			":id"=>(int)$id
+ 			);
+ 		$ps = $this->execute($q,$vars);
+ 		$result = $this->getDataRowAsObject($ps,'User');
+ 		return $result;
+ 	}
+	/*
 	 * Insert a User
 	 */
 	public function insert(User $user)

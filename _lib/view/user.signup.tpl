@@ -66,7 +66,6 @@
 </div>
 
 
-
 {literal}
 <script type="text/javascript">
 var f = $("form#signup_form");

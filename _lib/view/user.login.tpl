@@ -46,6 +46,7 @@
 	  <p class="text-center"><small><a href=#>Forgot Password?</a> | Haven't Registered yet? <a href="../signup/">Register</a></small></p>
 	</form>
 </div>
+
 {literal}
 <script type="text/javascript">
 var f = $("form#login_form");

@@ -25,10 +25,16 @@
 	
 	<script type="text/javascript" src="{$site_root_path}assets/js/jquery-2.1.0.min.js"></script>
 	<script type="text/javascript" src="{$site_root_path}assets/js/jquery.easing.1.3.js"></script>
+	<script type="text/javascript" src="{$site_root_path}assets/js/ajaxload.js"></script>
 	<script type="text/javascript" src="{$site_root_path}plugins/bootstrap/js/bootstrap.js"></script>
 	<script type="text/javascript"> var site_root_path = "{$site_root_path}"; </script>
 	{foreach from=$header_scripts item=script}
     <script type="text/javascript" src="{$site_root_path}{$script}"></script>
     {/foreach} 	
+
+    <!-- Growl -->
+	<link type="text/css" rel="stylesheet" href="{$site_root_path}plugins/growl/css/jquery.growl.css"/> 
+	<script type="text/javascript" src="{$site_root_path}plugins/growl/js/jquery.growl.js"></script>
+	
 </head>
 <body>
