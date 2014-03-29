@@ -60,7 +60,7 @@ class LoginController extends InscribeController {
 			}
 		$this->json_data = array(
 			"status" => "error",
-			"message" => Utils::varDumpToString($user)
+			"message" => "The password entered is incorrect"
 		);
 		return $this->generateView();
 	}

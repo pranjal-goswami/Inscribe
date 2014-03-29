@@ -23,40 +23,15 @@
 	</div><!--/ container -->
 </nav>
 
-<div class="container">
-<div class="row">
-		<div class="post-writer col-md-8 col-md-offset-2">
-			<h2>Post</h2>
-			<hr />
-			<form class="form-horizontal" id="post-form-save" role="form">
-				<input type="hidden" name="content_id" value={$content_id} />
-				<div class="form-group">
-					<div class="col-md-12">
-						<input type="text" class="form-control" name="title" id="title" placeholder="Title" autofocus>
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="col-md-12">
-						<textarea class="form-control" rows="4" name="excerpt" id="excerpt" placeholder="Excerpt (Max 150 words)"></textarea>
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="col-md-12">
-						<textarea class="form-control" rows="12" name="content" id="content"></textarea>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<button type="submit" class="btn btn-success btn-block save-post-button disabled" disabled>Save</button>
-				</div>
-			</form>
-		
-			<form class="form-horizontal" id="post-form-publish" role="form">
-				<input type="hidden" name="content_id" value={$content_id} />
-				<div class="col-md-2 col-md-offset-6">
-					<button type="submit" class="btn btn-info btn-block publish-post-button disabled" disabled>Publish</button>
-				</div>
-			</form>
-			
+<div class="post-writer col-md-8 col-md-offset-2">
+	<h2>Post</h2>
+	<hr />
+	<form class="form-horizontal" id="post-form-save" role="form">
+		<input type="hidden" name="content_id" value={$content_id} />
+		<div class="form-group">
+			<div class="col-md-12">
+				<input type="text" class="form-control" name="title" id="title" placeholder="Title" autofocus>
+			</div>
 		</div>
 		<div class="form-group">
 			<div class="col-md-12">
@@ -85,6 +60,9 @@
 	</form>
 <br /><br /><br />
 </div>
+<br /><br /><br />
+<div class="clear"></div>
+
 
 {include file="_footer.tpl"}
 
