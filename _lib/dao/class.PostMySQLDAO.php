@@ -96,7 +96,7 @@ class PostMySQLDAO extends PDODAO {
 			$this->logger->logError('No ID provided.','Input Error');
 			return false;
 		}
-		$q = "SELECT * FROM in_posts WHERE author_id=:id";
+		$q = "SELECT * FROM in_posts WHERE author_id=:id AND title IS NOT NULL ORDER BY publish_time DESC, time DESC";
 		$vars = array(
 			":id"=>(int)$id
 		);

@@ -43,6 +43,12 @@ a:visited {text-decoration:none;}
 a:hover {text-decoration:none;}
 a:active {text-decoration:none;}
 
+.maroon{color:#85050b;}
+.darkblue{color:#0e6583;}
+.lightblue{color:#088ba9;}
+.skyblue{color:#45bacb;}
+.whitesmoke{color:#f9f6f2;}
+
 /* debug */
 
 /* /debug */
@@ -63,7 +69,7 @@ a:active {text-decoration:none;}
     padding:10px;
 	padding-top:70px;
 	text-align:center;
-	width:17%;
+	width:20%;
     //color: #fff;
     height: 100%;
     //background: rgb(24, 33, 61);
@@ -114,6 +120,16 @@ ul.sidebar-nav  li{
 	
 
 }
+ul.profile.sidebar-nav  li{
+	padding:8px 10px 10px 8px;
+	text-align:left;
+	color:#666;
+	font-family:"Oxygen";
+	text-transform:none;
+	cursor:pointer;
+	
+
+}
 ul.sidebar-nav  li span{
 	//border-bottom:1px dashed #ddd;
 	//padding:10px 30px 10px 0px;
@@ -132,7 +148,8 @@ ul.sidebar-nav  li.separator{
 }
 h2.sidebar-user-name
 {
-	
+	text-align:left;
+	padding-left:4px;
 }
 
 /********post***********/

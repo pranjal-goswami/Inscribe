@@ -145,6 +145,10 @@
 		$user_id = Session::getLoggedInUser()->id;
 		$PostDAO = DAOFactory::getDAO('Post','Post_DAO.log');
 		$posts = $PostDAO->getPostsByAuthorId($user_id);
+		foreach ($posts as $post)
+		{
+			$post->categories = Post::getPostCategories($post->id);
+		}
 		return $posts;
 	}
 
