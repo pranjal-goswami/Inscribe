@@ -31,6 +31,16 @@ class PostMySQLDAO extends PDODAO {
         $result = $this->getDataRowsAsObjects($ps, 'Post');
         return $result;
     }
+    /*
+	 * Get all Published Posts
+	 */
+	public function getAllPublishedPosts() 
+	{
+        $q = "SELECT * FROM in_posts WHERE publish_flag = 1 ORDER BY publish_time DESC";
+        $ps = $this->execute($q);
+        $result = $this->getDataRowsAsObjects($ps, 'Post');
+        return $result;
+    }
 	/*
 	 * Get Post by Post ID
 	 */
@@ -89,13 +99,13 @@ class PostMySQLDAO extends PDODAO {
 	 */
 	public function insert(Post $post)
 	{
-		SessionCache::put('user_id', 5);
+		SessionCache::put(S_OWNER, 5);
 		$q = "INSERT INTO in_posts ";
 		$q .= "(title, author_id, excerpt) ";
 		$q .= "VALUES (:title, :author_id, :excerpt)";
 		$vars = array(
 			':title'=>$post->title,
-			':author_id'=>SessionCache::get('user_id'),
+			':author_id'=>SessionCache::get(S_OWNER),
 			':excerpt'=>$post->excerpt
 		);
 		//$this->logger->logInfo($q);

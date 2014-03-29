@@ -29,7 +29,7 @@ class Utils {
 		$key = "stairway_to_heaven";
 		$encrypted = base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_128, md5($key), $content, MCRYPT_MODE_CBC, md5(md5($key))));
         $filename_unfriendly_chars = array("/");
-        $filename_friendly_replacement = array('%');
+        $filename_friendly_replacement = array('$');
         $encrypted = str_replace($filename_unfriendly_chars, $filename_friendly_replacement, $encrypted);
 		return $encrypted;
     }
@@ -40,7 +40,7 @@ class Utils {
     public static function decryptId($encryption=null) {
 
 		$key = "stairway_to_heaven";
-        $filename_friendly_replacement = array('%');
+        $filename_friendly_replacement = array('$');
         $filename_unfriendly_chars = array("/");
         $encryption = str_replace($filename_friendly_replacement, $filename_unfriendly_chars, $encryption);
 		$decrypted = rtrim(mcrypt_decrypt(MCRYPT_RIJNDAEL_128, md5($key), base64_decode($encryption), MCRYPT_MODE_CBC, md5(md5($key))), "\0");

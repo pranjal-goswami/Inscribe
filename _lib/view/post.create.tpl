@@ -1,7 +1,9 @@
 {include file="_header.tpl"}
 <!-- Markdown Editor js and css files -->
-<link type="text/css" rel="stylesheet" href="{$site_root_path}plugins/pagedown-bootstrap-master/css/jquery.pagedown-bootstrap.css"/> 
-<script type="text/javascript" src="{$site_root_path}plugins/pagedown-bootstrap-master/js/jquery.pagedown-bootstrap.combined.min.js"></script>
+<script type="text/javascript" src="{$site_root_path}plugins/tinymce/tinymce.min.js"></script>
+<script type="text/javascript" src="{$site_root_path}plugins/tinymce/jquery.tinymce.min.js"></script>
+
+
 <script type="text/javascript" src="{$site_root_path}assets/js/validation.js"></script>
 
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -33,12 +35,12 @@
 		</div>
 		<div class="form-group">
 			<div class="col-md-12">
-				<textarea class="form-control" rows="5" name="excerpt" id="excerpt" maxlength="200" placeholder="Excerpt (Max 200 words)"></textarea>
+				<textarea class="form-control" rows="5" name="excerpt" id="excerpt" maxlength="1200" placeholder="Excerpt (Max 200 words)"></textarea>
 			</div>
 		</div>
 		<div class="form-group">
 			<div class="col-md-12">
-				<textarea class="form-control" rows="18" name="content" id="content" placeholder="Content"></textarea>
+				<textarea class="form-control" name="content" id="content" placeholder="Content" style="width:260px;height:540px;padding:30px;"></textarea>
 			</div>
 		</div>
 		<div class="col-md-4">
@@ -67,11 +69,35 @@
 
 <script type="text/javascript">
 
-(function () {
-	$("textarea#content").pagedownBootstrap();
-})();
-$('div.wmd-preview').hide();
-$('div#wmd-button-row-0').append('<div class="btn btn-info pull-right preview-post-button"><span id="preview-post-button-text"><i class="fa fa-search-plus"></i></span> Preview</div>');
+tinymce.init({
+    selector: "textarea#content",
+    theme: "modern",
+    width: 460,
+    height: 520,
+    setup: function(editor) {
+        editor.on('change', function(e) {
+            handleButtons();
+        });
+    },
+    plugins: [
+         "advlist autolink link image lists charmap hr pagebreak",
+         "searchreplace wordcount visualblocks code visualchars fullscreen insertdatetime media nonbreaking",
+         "contextmenu directionality template paste textcolor"
+   ],
+   content_css: "{/literal}{$site_root_path}plugins/tinymce/style.css{literal}",
+   toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | l      ink image | print preview media fullpage | forecolor backcolor emoticons", 
+   style_formats: [
+        {title: 'Bold text', inline: 'b'},
+        {title: 'Red text', inline: 'span', styles: {color: '#ff0000'}},
+        {title: 'Red header', block: 'h1', styles: {color: '#ff0000'}},
+        {title: 'Example 1', inline: 'span', classes: 'example1'},
+        {title: 'Example 2', inline: 'span', classes: 'example2'},
+        {title: 'Table styles'},
+        {title: 'Table row 1', selector: 'tr', classes: 'tablerow1'}
+    ]
+ }); 
+
+
 $.growl.warning({ message: "The article can be published only after it is saved." });
 $('#excerpt').hide();
 </script>
@@ -82,13 +108,14 @@ var f1 = $("form#post-form-save");
 var f2 = $("form#post-form-publish");
 var save_button = $(".save-post-button");
 var publish_button = $(".publish-post-button");
-var preview_post_button = $(".preview-post-button");
 var form_inputs = $('#post-form-save .form-control');
 var toggle_excerpt_button = $('.toggle-excerpt-button');
 
 f1.submit(function(e)
 {
 	e.preventDefault();
+	var post_content = $('#tinymce').html();
+	$('#content').html(post_content);
 	var values = f1.serialize(); 
 	$.ajax({
 		type : 'POST',
@@ -121,6 +148,8 @@ f2.submit(function(e)
 
 	if(validatePostForm(f1))
 	{
+	var post_content = $('#tinymce').html();
+	$('#content').html(post_content);
 	var values = f1.serialize(); 
 	$.ajax({
 		type : 'POST',
@@ -144,28 +173,19 @@ f2.submit(function(e)
 
 form_inputs.keyup(function()
 {
+	handleButtons();
+	
+});
+
+
+function handleButtons()
+{
 	publish_button.attr('disabled');
 	publish_button.addClass('disabled');
 	save_button.removeClass('disabled');
 	save_button.removeAttr('disabled');
-	
-});
+}
 
-preview_post_button.click(function()
-{
-	if($('div.wmd-preview').is(":visible"))
-	{
-		$('div.wmd-preview').hide("slow");
-		$('textarea.wmd-input').slideDown("slow");
-		$('#preview-post-button-text').html('<i class="fa fa-search-plus"></i>');
-	}
-	else
-	{	
-		$('textarea.wmd-input').slideUp("slow");
-		$('div.wmd-preview').show("slow");
-		$('#preview-post-button-text').html('<i class="fa fa-search-minus"></i>');
-	}
-});
 
 toggle_excerpt_button.click(function()
 {

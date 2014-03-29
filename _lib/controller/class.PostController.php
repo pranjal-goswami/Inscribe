@@ -35,15 +35,10 @@
 		// Options that do not require Loggin in
 		if(isset($_GET['a'])) {
 				if($_GET['a']=='read') {
-						if(isset($_GET['p'])){
+							$post = $this->getPostInBook();
 							$this->setViewTemplate('_post.read.tpl');
-							$content_id = $_GET['p'];
-							$post_id = Utils::decryptId($content_id);
-							$post = $PostDAO->getPostByPostId($post_id);
-							$post->content = Post::getContentfromContentId($content_id);
 							$this->addToView('post',$post);
 							return $this->generateView();
-						}
 					}
 				}
 
@@ -112,6 +107,27 @@
 		$post->read_length = $post->calculateReadLength($post->content_id);
 		$PostDAO = DAOFactory::getDAO('Post','Post_DAO.log');
 		$PostDAO->publish($post);
+	}
+	/*
+	 *  Fetch content and put in book form
+	 */
+	public function getPostInBook()
+	{
+		$content_id = $_POST['post_encrypted_id'];
+		$post_id = Utils::decryptId($content_id);
+		$PostDAO = DAOFactory::getDAO('Post','Post_DAO.log');
+		$post = $PostDAO->getPostByPostId($post_id);
+		$UserDAO = DAOFactory::getDAO('User','User_DAO.log');
+		$user = $UserDAO->getUserNameByUserId($post->author_id);
+		$post->author_name = $user->full_name;
+		$content = Post::getContentfromContentId($content_id);
+		$pages = explode('<!-- pagebreak -->', $content);
+		$page_count = sizeof($pages);
+		if($page_count%2==0) $post->page_count = 0;
+		else $post->page_count = 1;
+		$post->pages = $pages;
+		return $post;
+
 	}
 
 	 
