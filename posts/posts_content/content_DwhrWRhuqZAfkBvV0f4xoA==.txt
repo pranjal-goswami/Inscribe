@@ -1,6 +1,0 @@
-<p style="text-align: center;"><strong>This is a new era</strong></p>
-<p><!-- pagebreak --></p>
-<p><img style="display: block; margin-left: auto; margin-right: auto;" src="http://www.clipartpal.com/_thumbs/pd/weather/sun_kicking_blue.png" alt="" width="303" height="303" /></p>
-<p style="text-align: center;">The sun has risen</p>
-<p style="text-align: center;"><!-- pagebreak --></p>
-<p style="text-align: center;"><em>This is the new era</em></p>

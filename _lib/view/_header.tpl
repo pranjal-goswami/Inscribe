@@ -27,6 +27,7 @@
 	<script type="text/javascript" src="{$site_root_path}assets/js/jquery.easing.1.3.js"></script>
 	<script type="text/javascript" src="{$site_root_path}assets/js/ajaxload.js"></script>
 	<script type="text/javascript" src="{$site_root_path}plugins/bootstrap/js/bootstrap.js"></script>
+	<script type="text/javascript"> var site_root_path = "{$site_root_path}"; </script>
 	{foreach from=$header_scripts item=script}
     <script type="text/javascript" src="{$site_root_path}{$script}"></script>
     {/foreach} 	

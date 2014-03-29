@@ -128,13 +128,12 @@ class PostMySQLDAO extends PDODAO {
 	 */
 	public function insert(Post $post)
 	{
-		SessionCache::put(S_OWNER, 5);
 		$q = "INSERT INTO in_posts ";
 		$q .= "(title, author_id, excerpt) ";
 		$q .= "VALUES (:title, :author_id, :excerpt)";
 		$vars = array(
 			':title'=>$post->title,
-			':author_id'=>SessionCache::get(S_OWNER),
+			':author_id'=>Session::getLoggedInUser()->id,
 			':excerpt'=>$post->excerpt
 		);
 		//$this->logger->logInfo($q);

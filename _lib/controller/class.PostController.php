@@ -45,18 +45,18 @@
 		// Options that require Logging in		
 		if(isset($_GET['a'])) {
 
-			//if(!$this->isLoggedIn()) return $this->redirect('../');
-
 			if($_GET['a']=='save') {
 				if(empty($_POST)) return false;	
 				return $this->updatePost();
 			}
+
 			if($_GET['a']=='create') {
 					$this->setViewTemplate('post.create.tpl');
 					$content_id = $this->createNewPost();
 					$this->addToView('content_id',$content_id);
 					return $this->generateView();
 			}
+
 			if($_GET['a']=='edit') {
 				if(isset($_GET['p'])){
 					$this->setViewTemplate('_post.edit.tpl');
@@ -65,9 +65,17 @@
 					return $this->generateView();
 				}
 			}
+
 			if($_GET['a']=='publish') {
 				if(empty($_POST)) return false;
 				return $this->publishPost();
+			}
+
+			if($_GET['a']=='manage') {
+				$posts = $this->getAllPostsByUserId();
+				$this->setViewTemplate('_posts.manage.tpl');
+				$this->addToView('posts',$posts);
+				return $this->generateView();
 			}
 			
 		}
@@ -128,6 +136,16 @@
 		$post->pages = $pages;
 		return $post;
 
+	}
+	/*
+	 *  Get All Posts specific to the user
+	 */
+	public function getAllPostsByUserId()
+	{
+		$user_id = Session::getLoggedInUser()->id;
+		$PostDAO = DAOFactory::getDAO('Post','Post_DAO.log');
+		$posts = $PostDAO->getPostsByAuthorId($user_id);
+		return $posts;
 	}
 
 	 

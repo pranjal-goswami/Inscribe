@@ -28,6 +28,11 @@ class PostStreamController extends InscribeController{
 		$this->disableCaching();
 		$this->view_mgr->force_compile = true;
 
+		if($this->isLoggedIn()){
+			$this->addToView('isLoggedIn',true);
+			$this->addToView('user',Session::getLoggedInUser());
+			}
+
 		// Options that do not require Loggin in
 		if(isset($_GET['a'])) {
 				if($_GET['a']=='catposts') {
@@ -44,7 +49,6 @@ class PostStreamController extends InscribeController{
 							return $this->generateView();
 					}
 				}
-
 		$category_list = $this->getCategoryList();
 		$this->setViewTemplate('index.tpl');
 		$this->addToView('category_list',$category_list);

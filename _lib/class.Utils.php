@@ -28,8 +28,8 @@ class Utils {
 
 		$key = "stairway_to_heaven";
 		$encrypted = base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_128, md5($key), $content, MCRYPT_MODE_CBC, md5(md5($key))));
-        $filename_unfriendly_chars = array("/");
-        $filename_friendly_replacement = array('$');
+        $filename_unfriendly_chars = array("/", "+");
+        $filename_friendly_replacement = array('$', '-');
         $encrypted = str_replace($filename_unfriendly_chars, $filename_friendly_replacement, $encrypted);
 		return $encrypted;
     }
@@ -40,8 +40,8 @@ class Utils {
     public static function decryptId($encryption=null) {
 
 		$key = "stairway_to_heaven";
-        $filename_friendly_replacement = array('$');
-        $filename_unfriendly_chars = array("/");
+        $filename_friendly_replacement = array('$', '-');
+        $filename_unfriendly_chars = array("/", '+');
         $encryption = str_replace($filename_friendly_replacement, $filename_unfriendly_chars, $encryption);
 		$decrypted = rtrim(mcrypt_decrypt(MCRYPT_RIJNDAEL_128, md5($key), base64_decode($encryption), MCRYPT_MODE_CBC, md5(md5($key))), "\0");
 		return $decrypted;
@@ -164,4 +164,27 @@ class Utils {
         //return (preg_match($reg_exp, $email) === false)?false:true;
         return (preg_match($reg_exp, $email)>0)?true:false;
     }
+	/**
+     * Generate var dump to string.
+     * @return str
+     */
+    public static function varDumpToString($mixed = null) {
+        ob_start();
+        var_dump($mixed);
+        $content = ob_get_contents();
+        ob_end_clean();
+        return $content;
+    }
+	/**
+     * Fix __PHP_Incomplete_Class Error.
+     * @return str
+     */
+    public static function fixObject ($object)
+	{
+	  if (!is_object ($object) && gettype ($object) == 'object')
+		return ($object = unserialize (serialize ($object)));
+	  return $object;
+	}
+
+
 }

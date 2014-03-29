@@ -16,7 +16,7 @@
 									</span>
 									<span>  By <a href="#">{$post->author_name}</a>  in  
 										<i class="fa fa-tags muted"> </i>  
-										<a href="topic.html"> {foreach from=$post->categories item=category}{$category} {/foreach} </a>
+										<a href="topic.html"> &middot; {foreach from=$post->categories item=category}{$category} &middot;  {/foreach} </a>
 									</span> 
 								</h3>
 							</div>

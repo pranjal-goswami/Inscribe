@@ -6,7 +6,7 @@ define('S_STATUS','in_session_status');
 define('S_STATUS_ACTIVE','in_active');
 define('S_ADMIN_NAME','in_admin_name');
 define('S_ADMIN_FAIL','in_admin_login_failed');
-define('S_OWNER','in_owner');
+define('S_USER','in_user');
 
 define('ERROR_CODE','error');
 define('SUCCESS_CODE','success');

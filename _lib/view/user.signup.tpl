@@ -71,53 +71,53 @@
 var f = $("form#signup_form");
 
 $("form#signup_form").find('input').focusout(function(){
-	if(!$(this).hasClass('pass')){
-		var v = $(this).attr('data-validate');
-		window[v]($(this));
-		}
+if(!$(this).hasClass('pass')){
+	var v = $(this).attr('data-validate');
+	window[v]($(this));
+	}
 });
 
 f.submit(function(e){
-	e.preventDefault();
-	console.log(validateSignUpForm(f));
-	if(validateSignUpForm(f))
-	{
-		$.ajax({
-			type:"POST",
-			url:'./?a=signup',
-			data:f.serialize(),
-			dataType: "json",
-			success: function(r){
-				var e = $('#signup_form_response');
-				switch(r.status){
-					case "error":
-						e.removeClass();
-						e.addClass('alert alert-danger');
-						e.html(r.message);
-						f[0].reset();
-						break;
-					case "success":
-						e.removeClass();
-						e.addClass('alert alert-success');
-						e.html(r.message);
-						f.hide();
-						break;
-					case "info":
-						e.removeClass();
-						e.addClass('alert alert-info');
-						e.html(r.message);
-						break;
-					default:
-						alert();
-						
-				}
-			},
-			fail: function(){
-				alert('failed');
+e.preventDefault();
+console.log(validateSignUpForm(f));
+if(validateSignUpForm(f))
+{
+	$.ajax({
+		type:"POST",
+		url:'./?a=signup',
+		data:f.serialize(),
+		dataType: "json",
+		success: function(r){
+			var e = $('#signup_form_response');
+			switch(r.status){
+				case "error":
+					e.removeClass();
+					e.addClass('alert alert-danger');
+					e.html(r.message);
+					f[0].reset();
+					break;
+				case "success":
+					e.removeClass();
+					e.addClass('alert alert-success');
+					e.html(r.message);
+					f.hide();
+					break;
+				case "info":
+					e.removeClass();
+					e.addClass('alert alert-info');
+					e.html(r.message);
+					break;
+				default:
+					alert();
+					
 			}
-		})
-		return false;
-	}
+		},
+		fail: function(){
+			alert('failed');
+		}
+	})
+	return false;
+}
 });
 </script>
 {/literal}
