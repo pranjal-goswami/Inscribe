@@ -28,13 +28,32 @@ class PostStreamController extends InscribeController{
 		$this->disableCaching();
 		$this->view_mgr->force_compile = true;
 
-		$posts = $this->streamAllPublishedPosts();
-		$this->setViewTemplate('post-stream.tpl');
-		$this->addToView('posts',$posts);
+		// Options that do not require Loggin in
+		if(isset($_GET['a'])) {
+				if($_GET['a']=='catposts') {
+							if($_POST['category_id'] == 0)
+							{
+								$posts = $this->streamAllPublishedPosts();
+							}
+							else
+							{
+								$posts = $this->streamAllPublishedPostsByCategory();
+							}
+							$this->setViewTemplate('post-stream.tpl');
+							$this->addToView('posts',$posts);
+							return $this->generateView();
+					}
+				}
+
+		$category_list = $this->getCategoryList();
+		$this->setViewTemplate('index.tpl');
+		$this->addToView('category_list',$category_list);
 		return $this->generateView();
+
+
 	}
 	/*
-	 *  Add a new post
+	 *  Get all published posts
 	 */
 	 public function streamAllPublishedPosts()
 	 {
@@ -46,6 +65,25 @@ class PostStreamController extends InscribeController{
 			$user = $UserDAO->getUserNameByUserId($post->author_id);
 			$post->author_name = $user->full_name;
 			$post->published_on = $this->convertToDisplayPublishTime($post->publish_time);
+			$post->categories = $this->getPostCategories($post->id);
+		}
+		return $posts;
+	}
+	/*
+	 *  Get all published posts under a category
+	 */
+	 public function streamAllPublishedPostsByCategory()
+	 {
+	 	$category_id = $_POST['category_id'];
+		$PostDAO = DAOFactory::getDAO('Post','Post_DAO.log');
+		$posts = $PostDAO->getAllPublishedPostsByCategory($category_id);
+		$UserDAO = DAOFactory::getDAO('User','User_DAO.log');
+		foreach ($posts as $post)
+		{
+			$user = $UserDAO->getUserNameByUserId($post->author_id);
+			$post->author_name = $user->full_name;
+			$post->published_on = $this->convertToDisplayPublishTime($post->publish_time);
+			$post->categories = $this->getPostCategories($post->id);
 		}
 		return $posts;
 	}
@@ -159,6 +197,25 @@ class PostStreamController extends InscribeController{
 
 		return $published_on;
 	 }
+	 /*
+	 *  Get post categories (as array) by Post ID
+	 */
+	 public function getPostCategories($post_id)
+	 {
+	 	$PostDAO = DAOFactory::getDAO('Post','Post_DAO.log');
+	 	$categories = $PostDAO->getPostCategories($post_id);
+	 	return $categories;
+	 }
+	 /*
+	 *  Get Category List
+	 */
+	 public function getCategoryList()
+	 {
+	 	$PostDAO = DAOFactory::getDAO('Post','Post_DAO.log');
+	 	$category_list = $PostDAO->getCategoryList();
+	 	return $category_list;
+	 }
+
 
 }
 ?>

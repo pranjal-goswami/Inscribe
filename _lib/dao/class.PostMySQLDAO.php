@@ -32,6 +32,16 @@ class PostMySQLDAO extends PDODAO {
         return $result;
     }
     /*
+	 * Get all Categories
+	 */
+	public function getCategoryList() 
+	{
+        $q = "SELECT * FROM in_categories ORDER BY category_name";
+        $ps = $this->execute($q);
+        $result = $this->getDataRowsAsObjects($ps, 'Category');
+        return $result;
+    }
+    /*
 	 * Get all Published Posts
 	 */
 	public function getAllPublishedPosts() 
@@ -41,6 +51,25 @@ class PostMySQLDAO extends PDODAO {
         $result = $this->getDataRowsAsObjects($ps, 'Post');
         return $result;
     }
+    /*
+	 * Get All published Posts By Category 
+	 */
+	public function getAllPublishedPostsByCategory($category_id=null)
+	{
+		if(is_null($category_id)){
+			$this->logger->logError('No Category ID provided.','Input Error');
+			return false;
+		}
+		$q = "SELECT in_posts.* FROM in_posts INNER JOIN in_posts_categories ";
+		$q.= "ON in_posts.id=in_posts_categories.post_id "; 
+		$q.="WHERE (in_posts_categories.category_id=:category_id AND in_posts.publish_flag=1)";
+		$vars = array(
+			":category_id"=>(int)$category_id
+		);
+		$ps = $this->execute($q,$vars);
+		$result = $this->getDataRowsAsObjects($ps,'Post');
+		return $result;
+	}
 	/*
 	 * Get Post by Post ID
 	 */
@@ -154,6 +183,25 @@ class PostMySQLDAO extends PDODAO {
 		);
 		//$this->logger->logInfo($q);
 		$ps = $this->execute($q, $vars);
+	}
+	/*
+	 * Get Categories of a post by Post ID 
+	 */
+	public function getPostCategories($post_id=null)
+	{
+		if(is_null($post_id)){
+			$this->logger->logError('No Post ID provided.','Input Error');
+			return false;
+		}
+		$q = "SELECT in_categories.category_name FROM in_categories INNER JOIN in_posts_categories ";
+		$q.= "ON in_categories.id=in_posts_categories.category_id "; 
+		$q.="WHERE in_posts_categories.post_id=:post_id";
+		$vars = array(
+			":post_id"=>$post_id
+		);
+		$ps = $this->execute($q,$vars);
+		$result = $this->getDataRowsAsArray($ps);
+		return $result;
 	}
 
    

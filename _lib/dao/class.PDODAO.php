@@ -203,6 +203,17 @@ abstract class PDODAO {
         return $data;
     }
 
+     /**
+     * Gets the returned column values as array
+     * @param PDOStatement $ps
+     * @return array named keys
+     */
+    protected final function getDataRowsAsArray($ps){
+        $ps->setFetchMode(PDO::FETCH_COLUMN, 0);
+        $data = $this->fetchAllAndClose($ps);
+        return $data;
+    }
+
     /**
      * Gets the rows returned by a statement as array with arrays
      * @param PDOStatement $ps
