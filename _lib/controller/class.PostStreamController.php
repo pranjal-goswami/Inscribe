@@ -46,7 +46,6 @@ class PostStreamController extends InscribeController{
 			$user = $UserDAO->getUserNameByUserId($post->author_id);
 			$post->author_name = $user->full_name;
 			$post->published_on = $this->convertToDisplayPublishTime($post->publish_time);
-			$post->category = $this->getPostCategory($post->id);
 		}
 		return $posts;
 	}
