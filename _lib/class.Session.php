@@ -34,11 +34,13 @@ class Session{
 		if(isset($_SESSION[S_ADMIN])) return true;
 		else return false;
 	}
-	
+		
 	public static function getLoggedInUser()
 	{
-		if(!self::isLoggedIn()) return null;
-		return SessionCache::get(S_OWNER);
+		if(!self::isLoggedIn()) {
+			Logger::getInstance()->LogError("No user logged in. Cannot return logged in User");
+		}
+		return Utils::fixObject(SessionCache::get('user'));
 	}
 	
 }

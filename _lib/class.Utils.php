@@ -175,6 +175,16 @@ class Utils {
         ob_end_clean();
         return $content;
     }
+	/**
+     * Fix __PHP_Incomplete_Class Error.
+     * @return str
+     */
+    public static function fixObject ($object)
+	{
+	  if (!is_object ($object) && gettype ($object) == 'object')
+		return ($object = unserialize (serialize ($object)));
+	  return $object;
+	}
 
 
 }

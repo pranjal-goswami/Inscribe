@@ -31,7 +31,7 @@ class PostStreamController extends InscribeController{
 		
 		if($this->isLoggedIn()){
 			$this->addToView('isLoggedIn',true);
-			$this->addToView('user',SessionCache::get('user'));
+			$this->addToView('user',Session::getLoggedInUser());
 			}
 		$posts = $this->streamAllPublishedPosts();
 		$this->setViewTemplate('post-stream.tpl');

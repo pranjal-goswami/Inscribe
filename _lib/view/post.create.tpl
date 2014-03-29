@@ -1,4 +1,3 @@
-{include file="_header.tpl"}
 <!-- Markdown Editor js and css files -->
 <script type="text/javascript" src="{$site_root_path}plugins/tinymce/tinymce.min.js"></script>
 <script type="text/javascript" src="{$site_root_path}plugins/tinymce/jquery.tinymce.min.js"></script>
@@ -6,24 +5,8 @@
 
 <script type="text/javascript" src="{$site_root_path}assets/js/validation.js"></script>
 
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-	<div class="container">
-		<!-- Brand and toggle get grouped for better mobile display -->
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
 
-		</div>
-
-
-	</div><!--/ container -->
-</nav>
-
-<div class="post-writer col-md-8 col-md-offset-2">
+<div class="post-writer col-md-12 ">
 	<h2>Post</h2>
 	<hr />
 	<form class="form-horizontal" id="post-form-save" role="form">
@@ -40,7 +23,7 @@
 		</div>
 		<div class="form-group">
 			<div class="col-md-12">
-				<textarea class="form-control" name="content" id="content" placeholder="Content" style="width:260px;height:540px;padding:30px;"></textarea>
+				<textarea class="form-control" name="content" id="content" placeholder="Content"></textarea>
 			</div>
 		</div>
 		<div class="col-md-4">
@@ -63,8 +46,6 @@
 <br /><br /><br />
 <div class="clear"></div>
 
-
-{include file="_footer.tpl"}
 
 {literal}
 

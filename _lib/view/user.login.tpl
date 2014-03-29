@@ -75,7 +75,7 @@ f.submit(function(e){
 					e.addClass('alert alert-success');
 					e.html(r.message);
 					f.hide();
-					window.location = '../../';
+					window.location = site_root_path;
 					break;
 				case "info":
 					e.removeClass();

@@ -23,10 +23,17 @@
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
    <ul class="navbar-right navbar-form unstyled">
       <li>
-
-	    <a href="./user/" class="btn btn-xs btn-primary navbar-login-btn">
-	  	<i class="fa fa-sign-in"></i> {if $isLoggedIn == true}{/if}&nbsp; Log in 
-		</a>
+		{if $isLoggedIn == true}
+		<a class="btn btn-default" href="./user/"><img class="user_pic" 
+			src="{$site_root_path}/data/user/avatar/{if $user->profile_pic_id == null}default_avatar.jpg{else}{$user->profile_pic_id}{/if}" />
+			<span style="margin-top:2px;">
+			{$user->full_name}</span></a>
+		{else}
+			<a href="./user/" class="btn btn-xs btn-primary navbar-login-btn">
+			<i class="fa fa-sign-in"></i> &nbsp; Log in 
+			</a>
+		{/if}
+		
 		
 	  </li>
     </ul>
@@ -67,7 +74,7 @@
 						<div class="card-heading image">
 							<a href="profile.html" > 
 								<img class="pull-right pull-up10" src="assets/img/shaan.png" alt="author avatar"/>
-							</a>{$user|@var_dump}
+							</a>
 							<div class="card-heading-header">
 								<a href="#"><h1 data-toggle="modal" data-target=".post-book" class="post-heading" id="{$post->content_id}">{$post->title}</h1></a>
 								<h3>  

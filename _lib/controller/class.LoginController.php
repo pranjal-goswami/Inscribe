@@ -51,7 +51,7 @@ class LoginController extends InscribeController {
 		
 		if($user->pwd == User::getHashedPwd($_POST['user_pwd'],$user->pwd_salt)) {
 			SessionCache::put(S_STATUS,S_STATUS_ACTIVE);
-			$_SESSION['user']=$user;
+			SessionCache::put('user',$user);
 			$this->json_data = array(
 				"status" => "success",
 				"message" => 'Logged In. Redirecting...'
