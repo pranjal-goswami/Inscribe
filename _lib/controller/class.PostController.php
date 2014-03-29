@@ -58,17 +58,30 @@
 			}
 
 			if($_GET['a']=='edit') {
-				if(isset($_GET['p'])){
-					$this->setViewTemplate('_post.edit.tpl');
-					$post = $PostDAO->getPostByPostId(intval($_GET['p']));
-					$this->addToView('post',$post);
-					return $this->generateView();
-				}
+				if(empty($_POST)) return false;	
+
+				$this->setViewTemplate('_post.edit.tpl');
+
 			}
 
 			if($_GET['a']=='publish') {
 				if(empty($_POST)) return false;
-				return $this->publishPost();
+				$this->publishPost();
+
+				$posts = $this->getAllPostsByUserId();
+				$this->setViewTemplate('_posts.manage.tpl');
+				$this->addToView('posts',$posts);
+				return $this->generateView();
+			}
+
+			if($_GET['a']=='unpublish') {
+				if(empty($_POST)) return false;
+				$this->unPublishPost();
+
+				$posts = $this->getAllPostsByUserId();
+				$this->setViewTemplate('_posts.manage.tpl');
+				$this->addToView('posts',$posts);
+				return $this->generateView();
 			}
 
 			if($_GET['a']=='manage') {
@@ -111,10 +124,23 @@
 	 */
 	 public function publishPost()
 	 {	
-		$post = new Post($_POST);
+	 	$post_encrypted_id = $_POST['post_encrypted_id'];
+	 	$post_id = Utils::decryptId($post_encrypted_id);
+	 	$PostDAO = DAOFactory::getDAO('Post','Post_DAO.log');
+		$post = $PostDAO->getPostByPostId($post_id);
+		if($post->title == '' || $post->excerpt == '') return false;
 		$post->read_length = $post->calculateReadLength($post->content_id);
-		$PostDAO = DAOFactory::getDAO('Post','Post_DAO.log');
 		$PostDAO->publish($post);
+	}
+	/*
+	 *  UnPublish a post
+	 */
+	 public function unPublishPost()
+	 {	
+	 	$post_encrypted_id = $_POST['post_encrypted_id'];
+	 	$post_id = Utils::decryptId($post_encrypted_id);
+	 	$PostDAO = DAOFactory::getDAO('Post','Post_DAO.log');
+		$PostDAO->unPublish($post_id);
 	}
 	/*
 	 *  Fetch content and put in book form

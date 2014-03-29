@@ -81,14 +81,20 @@ function ajaxLoad(content_location,target,ajax_values,success_function)
 			console.log(content_location+' loaded to '+target);
 			//$('#loading_gif').hide(800);
 			//if(e) postLoad(e);
-			//window[success_function]();
+			if(success_function != null && success_function != '')
+			{
+				window[success_function]();
+			}
 			
 		},
 		statusCode:{
 			404 : function(){
 					console.log('Could not load file. File does not exist.');
-					$('#'+target).html('<div class="container-fluid"><div class="row-fluid"> \
-					        <h4> &nbsp; Requested page could not be loaded</h4></div></div>');
+					if(target != null && target != '')
+					{
+						$('#'+target).html('<div class="container-fluid"><div class="row-fluid"> \
+					        	<h4> &nbsp; Requested page could not be loaded</h4></div></div>');
+					}
 					//$('#loading_gif').hide(800);
 					//$('#load_error').show(800);
 				}

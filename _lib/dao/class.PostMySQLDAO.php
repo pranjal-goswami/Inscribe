@@ -184,6 +184,19 @@ class PostMySQLDAO extends PDODAO {
 		$ps = $this->execute($q, $vars);
 	}
 	/*
+	 * UnPublish a Post 
+	 */
+	public function unPublish($post_id)
+	{
+		$q = "UPDATE in_posts ";
+		$q .= "SET publish_flag=0 WHERE id=:post_id";
+		$vars = array(
+			':post_id'=>$post_id
+		);
+		//$this->logger->logInfo($q);
+		$ps = $this->execute($q, $vars);
+	}
+	/*
 	 * Get Categories of a post by Post ID 
 	 */
 	public function getPostCategories($post_id=null)
