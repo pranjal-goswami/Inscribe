@@ -759,3 +759,23 @@ ul.unstyled li{
 .btn{
 	font-family: Helvetica, Arial;
 }
+
+.manage-btn{
+	padding:10px;
+	margin-top:8px;
+	height:100%;
+	font-size:16px;
+	font-family:Helvetica,Arial,  sans-serif;
+}
+.manage-btn:hover{
+	color:#45bacb;
+	cursor:pointer;
+}
+.manage-btn.delete-post
+{
+	color:#cc181e;
+}
+.manage-btn.publish-post
+{
+	
+}

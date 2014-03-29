@@ -3,9 +3,13 @@
 <hr />
 {foreach from=$posts item=post}
 <div class="user-post col-md-12">
-	<div class="card-heading image col-md-12">	
-		<div class="card-heading-header col-md-12">
-			<div class="col-md-8">
+	<div class="card-heading-header">
+		<div class="row">
+		<div class="col-md-1" style="width:6%;margin-top:10px;">
+		<i class="fa fa-{if $post->publish_flag == 1}check-{/if}square-o" style="color:#777; font-size:30px;"></i>
+		</div>
+		<div class="col-md-7">
+			
 			<a href="#"><h4 data-toggle="modal" data-target=".post-book" 
 				class="post-heading" id="{$post->content_id}"
 				style="margin-top:5px;">
@@ -35,16 +39,18 @@
 			{if $post->publish_flag == 1}
 			<div class="btn btn-warning unpublish-post"> UnPublish </div>
 			{else}
-			<div class="btn btn-success publish-post"> Publish </div>
-			<div class="btn btn-info edit-post"> <i class="glyphicon glyphicon-edit muted"> </i> </div>
-			<div class="btn btn-danger delete-post"> <i class="glyphicon glyphicon-trash muted"> </i> </div>
+			<div class="manage-btn pull-right publish-post"><i class="glyphicon glyphicon-send"></i> Publish </div>
+			<div class="manage-btn pull-right delete-post"><i class="glyphicon glyphicon-trash"></i> </div>
+			<div class="manage-btn pull-right edit-post"><i class="glyphicon glyphicon-edit"></i> </div>
 			{/if}	
 		</div>
 
-
-		</div>
+		
 	</div>
-	<hr><hr><hr></div>
+	</div>
+	<hr style="margin-top:5px; margin-bottom:5px;" />
+</div>
+		
 	{/foreach}
 </div>
 
