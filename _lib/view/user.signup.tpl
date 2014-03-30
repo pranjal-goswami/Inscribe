@@ -21,7 +21,10 @@
 
 <div class="form-signin">
 	<div class="form-signin-heading">
-		<img src="{$site_root_path}assets/img/logo.png" />
+		<div class="navbar-brand text-center" style="width:100%; padding:10px 0px;">
+			<a href="./"><span class="logo-text" style="font-size:40px;">inscribe</span></a>
+			</div>
+		<div class="clearfix"></div>
 	</div>
 	<hr />
 	<div id="signup_form_response"></div>
@@ -41,15 +44,17 @@
 	  <div class="form-group">
 		<div class="col-md-12">
 		  <input type="password" class="form-control" id="pwd" name="pwd" placeholder="Password" data-validate="validatePwd">
-		  <div class="form-error">* Password should be atleast <strong>5</strong> characters long</div>
+		  <div class="form-error">* Password should be atleast <strong>6</strong> characters long</div>
 		</div>
 	  </div>
 	  <div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
 		  <div class="checkbox">
 			<label>
-			  <input type="checkbox" class="pass"> I accept the <a href="#">Terms & conditions.</a>
+			  <input type="checkbox" class="" data-validate="validateTnC"> I accept the <a href="#">Terms & conditions.</a>
+			  <div class="form-error" style="text-align:left; margin-left:10px;">* Required</div>
 			</label>
+			
 		  </div>
 		</div>
 	  </div>
