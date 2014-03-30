@@ -7,76 +7,67 @@
  * This file is part of Inscribe (http://inscribe.io).
  *
  * The contents of this file cannot be copied, distributed or modified without prior
- * consent of the author. 
+ * consent from the author. 
  *
  * Project : Inscribe
- * File : _lib/controller/class.PostStreamController.php
- * Description : Controller For Post stream
+ * File : class.SearchController.php
+ * Description : Controller for Search
  *
- * @author Pranjal Goswami <pranjal[at]weblength[dot]co[dot]in>
  * @author Naman Agrawal <naman[at]weblength[dot]co[dot]in> 
+ * @author Pranjal Goswami <pranjal[at]weblength[dot]co[dot]in> 
  * 
  * BADesigns | GreekTurtle | Weblength Infonet Pvt. Ltd. 
  *
- * Created : Tue Jan 28 2014 22:09:06 GMT+0530 (India Standard Time)
+ * Created : Sun Feb 02 2014 17:45:35 GMT+0530 (IST)
  */
-
-class PostStreamController extends InscribeController{
-	
-	public function control()
-	{
+ class SearchController extends InscribeController{
+ 	/**
+ 	* Main Control of the class
+ 	*/
+ 	public function control()
+	 {
 		$this->disableCaching();
 		$this->view_mgr->force_compile = true;
-
-		if($this->isLoggedIn()){
-			$this->addToView('isLoggedIn',true);
-			$this->addToView('user',Session::getLoggedInUser());
-			}
+		
+		// get DAO
+		$SearchDAO = DAOFactory::getDAO('Search','Post_DAO.log');
 
 		// Options that do not require Loggin in
 		if(isset($_GET['a'])) {
-
-				if($_GET['a']=='catposts') {
-							if($_POST['category_id'] == 0)
-							{
-								$posts = $this->streamAllPublishedPosts();
-							}
-							else
-							{
-								$posts = $this->streamAllPublishedPostsByCategory();
-							} 
-							
-							$this->setViewTemplate('post-stream.tpl');
-							$this->addToView('posts',$posts);
-							if($this->isLoggedIn()) $this->addToView('isLoggedIn',true);
-							return $this->generateView();
+				if($_GET['a']=='search') {
+						$query = $_POST['query'];
+						$posts = $this->searchPostsByQuery($query);
+						$this->setViewTemplate('post-stream.tpl');
+						$this->addToView('posts',$posts);
+						if($this->isLoggedIn()) $this->addToView('isLoggedIn',true);
+						return $this->generateView();
 					}
-
-					if($_GET['a']=='userposts') {
-							$posts = $this->streamAllPublishedPostsByUserId();
-							$this->setViewTemplate('_user.published-stream.tpl');
-							$this->addToView('posts',$posts);
-							if($this->isLoggedIn()) $this->addToView('isLoggedIn',true);
-							return $this->generateView();
-					}
-
-					if($_GET['a']=='ownposts') {
-							$posts = $this->streamAllPublishedPostsByUserId();
-							$this->setViewTemplate('_user.published-stream.tpl');
-							$this->addToView('posts',$posts);
-							if($this->isLoggedIn()) $this->addToView('isLoggedIn',true);
-							return $this->generateView();
-					}
-
+				if($_GET['a']=='typeahead') {
+					
 				}
 
+			}
 
-		$category_list = $this->getCategoryList();
-		$this->setViewTemplate('index.tpl');
-		$this->addToView('category_list',$category_list);
-		return $this->generateView();
-
-
+		return false;
+		
+	 }
+	 /*
+	 *  Search posts by query
+	 */
+	 public function searchPostsByQuery($query)
+	 {
+		$SearchDAO = DAOFactory::getDAO('Search','Post_DAO.log');
+		$posts = $SearchDAO->getPostsByTitle($query);
+		$UserDAO = DAOFactory::getDAO('User','User_DAO.log');
+		foreach ($posts as $post)
+		{
+			$user = $UserDAO->getUserNameByUserId($post->author_id);
+			$post->author_name = $user->full_name;
+			$post->published_on = Post::convertToDisplayPublishTime($post->publish_time);
+			if($this->isLoggedIn()) $post->user_upvote = Post::checkIfUpvotedByUserId($post->id);
+			$post->categories = Post::getPostCategories($post->id);
+		}
+		return $posts;
 	}
 	/*
 	 *  Get all published posts
@@ -136,16 +127,29 @@ class PostStreamController extends InscribeController{
 		}
 		return $posts;
 	}
-	 /*
-	 *  Get Category List
+	/*
+	 *  Get All Posts specific to the user
 	 */
-	 public function getCategoryList()
+	public function getAllPostsByUserId()
+	{
+		$user_id = Session::getLoggedInUser()->id;
+		$PostDAO = DAOFactory::getDAO('Post','Post_DAO.log');
+		$posts = $PostDAO->getPostsByAuthorId($user_id);
+		foreach ($posts as $post)
+		{
+			$post->categories = Post::getPostCategories($post->id);
+		}
+		return $posts;
+	}
+	/*
+	 *  Get Categories (list) and that of the post
+	 */
+	 public function getPostCategories()
 	 {
-	 	$PostDAO = DAOFactory::getDAO('Post','Post_DAO.log');
-	 	$category_list = $PostDAO->getCategoryList();
-	 	return $category_list;
-	 }
+	 	$post_id = Utils::decryptId($_POST['post_encrypted_id']);
+		$PostDAO = DAOFactory::getDAO('Post','Post_DAO.log');
+		$post_categories = $PostDAO->getPostCategories($post_id);
+		return $post_categories;
+	}
 
-
-}
-?>
+ }

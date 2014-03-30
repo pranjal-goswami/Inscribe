@@ -49,8 +49,8 @@
 					<div class="manage-btn pull-right unpublish-post" id="{$post->content_id}"> <i class="glyphicon glyphicon-cloud-download"></i>  UnPublish </div>
 					{else}
 					<div data-toggle="modal" data-target="#assign-categories-container" class="manage-btn pull-right assign-categories" id="{$post->content_id}"> <i class="glyphicon glyphicon-cloud-upload"></i> Publish </div>
-					<div class="manage-btn pull-right delete-post" id="{$post->content_id}"> <i class="glyphicon glyphicon-trash muted"> </i> </div>
 					<div class="manage-btn pull-right edit-post" id="{$post->content_id}"> <i class="glyphicon glyphicon-edit muted"> </i> </div>
+					<div class="manage-btn pull-right delete-post" id="{$post->content_id}"> <i class="glyphicon glyphicon-trash muted"> </i> </div>
 					{/if}	
 				</div>
 

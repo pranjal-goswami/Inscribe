@@ -3,7 +3,7 @@
  <div class="container">
  <!-- Brand and toggle get grouped for better mobile display -->
   <div class="navbar-header">
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
       <span class="sr-only">Toggle navigation</span>
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
@@ -12,15 +12,15 @@
     <span class="navbar-brand">
 		<a href="{$site_root_path}"><span class="logo-text">inscribe</span></a>
 	</span>
-	<form class="navbar-form navbar-left" role="search">
+	<form class="navbar-form navbar-left post-search-form" role="search">
 	  <div class="form-group">
-		<input type="text" class="form-control" style="border-radius:100px;" placeholder="Search for posts">
+		<input type="text" class="form-control post-search-bar" style="border-radius:100px;" placeholder="Search for posts">
 	  </div>
 	</form>
   </div>
 
   <!-- Collect the nav links, forms, and other content for toggling -->
-  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+  <div class="collapse navbar-collapse" id="navbar-collapse">
    <ul class="navbar-right navbar-form unstyled">
       <li>
 	    {if $isLoggedIn == true}
@@ -40,10 +40,16 @@
 </nav>
 <!-- MAIN CONTAINER -->
 <div class="container" >
+
+
+
+
 	<div class="row">
 		<!-- LEFT FIXED SIDE BAR -->
+		
 		<div class="col-md-2">
-		   <div class="sidebar-nav-fixed affix">
+		
+		   <div class="sidebar-nav-fixed">
 			<ul class="sidebar-nav">
 				<li class="separator"></li>
 				{foreach from=$category_list item=category}
@@ -55,6 +61,7 @@
 		   
 		</div>
 		<!-- LEFT FIXED SIDE BAR ENDS -->
+		
 		<!-- RIGHT BLOG CONTENT CONTAINER -->
 		<div class="col-md-9 col-md-offset-3" id="post-stream-container">
 			<!-- BLOG POST CONTENT -->
@@ -62,15 +69,21 @@
 		<!-- RIGHT BLOG CONTENT CONTAINER ENDS -->
 
 	</div>
+	
+	
 </div>
-
 {include file="_footer.tpl"}
+<!-- <script type="text/javascript" src="{$site_root_path}plugins/typeahead/typeahead.js"></script> -->
 <script type="text/javascript" src="{$site_root_path}plugins/turnjs4/modernizr.2.5.3.min.js"></script>
 <script type="text/javascript" src="{$site_root_path}plugins/turnjs4/hash.js"></script>
 {literal}
 <script type="text/javascript">
 
-streamAllPosts();
+$(document).ready(function(){
+	streamAllPosts();
+	if($('.sidebar-nav').height() > 550) $('.sidebar-nav').css('overflow-y','scroll');
+	});
+
 
 function streamAllPosts()
 {
@@ -89,24 +102,53 @@ $('.category_name').click(function()
 
 // Arrows
 
-	$(document).keydown(function(e){
+$(document).keydown(function(e){
 
-		var previous = 37, next = 39;
+	var previous = 37, next = 39;
 
-		switch (e.keyCode) {
-			case previous:
+	switch (e.keyCode) {
+		case previous:
 
-				$('.sj-book').turn('previous');
+			$('.sj-book').turn('previous');
 
-			break;
-			case next:
-				
-				$('.sj-book').turn('next');
+		break;
+		case next:
+			
+			$('.sj-book').turn('next');
 
-			break;
+		break;
+	}
+
+});
+
+// var results = new Bloodhound({
+//   datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+//   queryTokenizer: Bloodhound.tokenizers.whitespace,
+//   remote: site_root_path+'search/?a=typeahead&q=%QUERY'
+// });
+ 
+// bestPictures.initialize();
+ 
+// $('.typeahead').typeahead(null, {
+//   name: 'results',
+//   displayKey: 'value',
+//   source: bestPictures.ttAdapter()
+// });
+
+
+$('.post-search-form').submit(function(e){
+		e.preventDefault();
+var query = $('.post-search-bar').val(); 
+var ajax_values = 'query='+query;
+	$.ajax({
+		type : 'POST',
+		url : site_root_path+'search/?a=search',
+		data : ajax_values,
+		success: function(result){
+			$('#post-stream-container').html(result);
 		}
-
 	});
+});
 	
 </script>
 {/literal}

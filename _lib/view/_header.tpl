@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>{if $controller_title}{$controller_title} | {/if}{$app_title}</title>
 	
 	<!-- le bootstrap -->
@@ -17,7 +18,8 @@
 	<link href='http://fonts.googleapis.com/css?family=Glegoo|Fauna+One|Bitter|Junge' rel='stylesheet' type='text/css'>
 	
 	<!-- le theme stylesheets -->
-	<link type="text/css" rel="stylesheet" href="{$site_root_path}assets/css/style.css" /> 
+	<link type="text/css" rel="stylesheet" href="{$site_root_path}assets/css/style.css?v=102" />
+	<link type="text/css" rel="stylesheet" href="{$site_root_path}assets/css/style-responsive.css?v=102" /> 
 	
 	{foreach from=$header_css item=css}
 	<link type="text/css" rel="stylesheet" href="{$site_root_path}{$css}" />

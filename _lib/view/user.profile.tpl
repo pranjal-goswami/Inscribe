@@ -12,7 +12,7 @@
     <span class="navbar-brand">
 		<a href="{$site_root_path}"><span class="logo-text">inscribe</span></a>
 	</span>
-	<form class="navbar-form navbar-left" role="search">
+	<form class="navbar-form navbar-left sr-only" role="search">
 	  <div class="form-group">
 		<input type="text" class="form-control" style="border-radius:100px;" placeholder="">
 	  </div>
@@ -45,7 +45,7 @@
 	<div class="row">
 		<!-- LEFT FIXED SIDE BAR -->
 		<div class="col-md-2">
-		   <div class="sidebar-nav-fixed affix">
+		   <div class="sidebar-nav-fixed">
 		   
 		    <img class="sidebar-user-pic" src="{$site_root_path}/data/user/avatar/{if $user->profile_pic_id == null}default_avatar.jpg{else}{$user->profile_pic_id}{/if}" /> 
 			<h2 class="sidebar-user-name">{$user->full_name}</h2>
@@ -65,7 +65,7 @@
 				<li class="separator"></li>
 				<li><span><i class="fa fa-cog"></i> &nbsp; Settings</span></li>
 				<li class="separator"></li>
-				<li id="create-new-post"><span><i class="fa fa-cog"></i> &nbsp; Create New</span></li>
+				<li id="create-new-post"><span><i class="fa fa-plus"></i> &nbsp; Create New</span></li>
 				<li class="separator"></li>
 				
 			</ul>
