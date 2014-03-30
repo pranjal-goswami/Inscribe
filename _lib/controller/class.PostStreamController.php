@@ -46,6 +46,7 @@ class PostStreamController extends InscribeController{
 							}
 							$this->setViewTemplate('post-stream.tpl');
 							$this->addToView('posts',$posts);
+							if($this->isLoggedIn()) $this->addToView('isLoggedIn',true);
 							return $this->generateView();
 					}
 				}
@@ -69,6 +70,7 @@ class PostStreamController extends InscribeController{
 			$user = $UserDAO->getUserNameByUserId($post->author_id);
 			$post->author_name = $user->full_name;
 			$post->published_on = Post::convertToDisplayPublishTime($post->publish_time);
+			if($this->isLoggedIn()) $post->user_upvote = Post::checkIfUpvotedByUserId($post->id);
 			$post->categories = Post::getPostCategories($post->id);
 		}
 		return $posts;
@@ -87,6 +89,7 @@ class PostStreamController extends InscribeController{
 			$user = $UserDAO->getUserNameByUserId($post->author_id);
 			$post->author_name = $user->full_name;
 			$post->published_on = Post::convertToDisplayPublishTime($post->publish_time);
+			if($this->isLoggedIn()) $post->user_upvote = Post::checkIfUpvotedByUserId($post->id); 
 			$post->categories = Post::getPostCategories($post->id);
 		}
 		return $posts;

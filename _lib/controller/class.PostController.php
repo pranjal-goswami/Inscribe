@@ -121,6 +121,17 @@
 				$this->addToView('post_encrypted_id',$_POST['post_encrypted_id']);
 				return $this->generateView();
 			}
+
+			if($_GET['a']=='upvote') {
+				// if(!$this->isLoggedIn()) return 0;
+				// $post_id = Utils::decryptId($_POST['post_encrypted_id']);
+				// $user_upvote = Post::checkIfUpvotedByPostId($post_id);
+				// if($user_upvote != 0) return 1; 
+				// $this->upvote();
+				$post_id = Utils::decryptId($_POST['post_encrypted_id']);
+				$user_upvote = Post::checkIfUpvotedByPostId($post_id);
+				return $user_upvote;
+			}
 			
 		}
 
@@ -277,6 +288,16 @@
 	 	$post_categories = $_POST['post_categories'];
 		$PostDAO = DAOFactory::getDAO('Post','Post_DAO.log');
 		$PostDAO->insertPostCategories($post_id, $post_categories);
+	}
+	/*
+	 *  Upvote a Post
+	 */
+	 public function upvote()
+	 {
+	 	$post_id = Utils::decryptId($_POST['post_encrypted_id']);
+		$PostDAO = DAOFactory::getDAO('Post','Post_DAO.log');
+		$post = $PostDAO->getPostByPostId($post_id);
+		$PostDAO->upvote($post);
 	}
 	 
 
