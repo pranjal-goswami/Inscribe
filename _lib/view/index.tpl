@@ -3,7 +3,7 @@
  <div class="container">
  <!-- Brand and toggle get grouped for better mobile display -->
   <div class="navbar-header">
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
       <span class="sr-only">Toggle navigation</span>
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
@@ -12,7 +12,7 @@
     <span class="navbar-brand">
 		<a href="{$site_root_path}"><span class="logo-text">inscribe</span></a>
 	</span>
-	<form class="navbar-form navbar-left" role="search">
+	<form class="navbar-form navbar-left sr-only" role="search">
 	  <div class="form-group">
 		<input type="text" class="form-control" style="border-radius:100px;" placeholder="">
 	  </div>
@@ -20,7 +20,7 @@
   </div>
 
   <!-- Collect the nav links, forms, and other content for toggling -->
-  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+  <div class="collapse navbar-collapse" id="navbar-collapse">
    <ul class="navbar-right navbar-form unstyled">
       <li>
 	    {if $isLoggedIn == true}
@@ -40,10 +40,16 @@
 </nav>
 <!-- MAIN CONTAINER -->
 <div class="container" >
+
+
+
+
 	<div class="row">
 		<!-- LEFT FIXED SIDE BAR -->
+		
 		<div class="col-md-2">
-		   <div class="sidebar-nav-fixed affix">
+		
+		   <div class="sidebar-nav-fixed">
 			<ul class="sidebar-nav">
 				<li class="separator"></li>
 				{foreach from=$category_list item=category}
@@ -55,6 +61,7 @@
 		   
 		</div>
 		<!-- LEFT FIXED SIDE BAR ENDS -->
+		
 		<!-- RIGHT BLOG CONTENT CONTAINER -->
 		<div class="col-md-9 col-md-offset-3" id="post-stream-container">
 			<!-- BLOG POST CONTENT -->
@@ -62,8 +69,9 @@
 		<!-- RIGHT BLOG CONTENT CONTAINER ENDS -->
 
 	</div>
+	
+	
 </div>
-
 {include file="_footer.tpl"}
 <script type="text/javascript" src="{$site_root_path}plugins/turnjs4/modernizr.2.5.3.min.js"></script>
 <script type="text/javascript" src="{$site_root_path}plugins/turnjs4/hash.js"></script>

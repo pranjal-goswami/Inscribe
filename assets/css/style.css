@@ -321,20 +321,7 @@ ul.thumbnails li{
 /* Responsive
 -------------------------------------------------- */
 
-/* Desktop large
-------------------------- */
-@media (min-width: 1200px) {
-    /* Adjust sidenav width */
-    .sidebar-nav-fixed {
-        //width:25%;
-    }
-    .sidebar-nav-fixed.affix {
-        top: 0;
-    }
-      .cbp_tmtimeline > li .cbp_tmicon{
-        margin: 0 0 -67px -64px;
-    }
-}
+
 
 
 /*--------------------CARDS----------------------*/
@@ -619,89 +606,6 @@ ul.thumbnails li{
 }
 
 
-/* Desktop
-------------------------- */
-@media (max-width: 980px) {
-  /* Unfloat brand */
-
-
-  /* When affixed, space properly */
-  /* Adjust sidenav width */
-    .sidebar-nav-fixed {
-        //width:25%;
-    }
-    .sidebar-nav-fixed.affix {
-        top: 0;
-    }
-     .cbp_tmtimeline > li .cbp_tmicon{
-        margin: 0 0 -67px -64px;
-    }
-}
-/* Tablet to desktop
-------------------------- */
-@media (min-width: 768px) and (max-width: 979px) {
-    /* Remove any padding from the body */
-    body {
-        padding-top: 0;
-    }
-    /* Adjust sidenav width */
-    .sidebar-nav-fixed {
-        width:100%;
-		height:auto;
-		position:relative;
-    }
-    .sidebar-nav-fixed.affix {
-        top: 0;
-    }
-     .cbp_tmtimeline > li .cbp_tmicon{
-        margin: 0 0 -67px -64px;
-    }
-}
-
-/* Tablet
-------------------------- */
-@media (max-width: 767px) {
-    /* Remove any padding from the body */
-    body {
-        padding-top: 0;
-    }
-
-    /* Sidenav */
-    .sidebar-nav-fixed {
-         //width:20%;
-         margin-left:0px;
-		 padding:10px;
-    }
-    .sidebar-nav-fixed.affix {
-        position: static;
-        width: auto;
-        top: 0;
-    }
-    .cbp_tmtimeline > li .cbp_tmicon{
-      margin: -95px 0px 0px 10px;
-float: left;
-    }
-    .cbp_tmtimeline > li .cbp_tmtime{
-        padding: 4px 3px 24px 100px;
-    }
-}
-
-/* Landscape phones
-------------------------- */
-@media (max-width: 480px) {
-    /* Remove padding above jumbotron */
-    body {
-        padding-top: 0;
-    }
- .sidebar-nav-fixed {
-         margin-left:0px;
-    }
-    /* Tighten up footer */
-    .footer {
-        padding-top: 20px;
-        padding-bottom: 20px;
-    }
-}
 
 .navbar-brand .navbar-logo{
 	position:absolute;
@@ -778,4 +682,26 @@ ul.unstyled li{
 .manage-btn.publish-post
 {
 	
+}
+
+@media only screen and (min-device-width: 800px) and (orientation: portrait) {
+  #device:after {
+    content: "Nexus 7 - portrait - firefox";
+  }
+}
+@media screen and (min-device-width : 602px) and (orientation: portrait) {
+  #device:after {
+    content: "Nexus 7 - portrait - chrome";
+  }
+}
+@media only screen and (min-device-width : 1280px) and (orientation: landscape) {
+  #device:after {
+    content: "Nexus 7 - landscape - firefox";
+  }
+}
+@media only screen and (min-device-width : 966px) and (orientation: landscape) {
+  
+  #device:after {
+    content: "Nexus 7 - landscape - chrome";
+  }
 }

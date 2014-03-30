@@ -40,9 +40,13 @@
 		</div>
 		<div class="col-md-4">
 			{if $post->publish_flag == 1}
-			<div class="btn btn-warning unpublish-post" id="{$post->content_id}"> UnPublish </div>
+			<div class="manage-btn pull-right unpublish-post" id="{$post->content_id}"> 
+				<i class="glyphicon glyphicon-cloud-download"></i> UnPublish 
+			</div>
 			{else}
-			<div class="manage-btn pull-right publish-post" id="{$post->content_id}"> <i class="glyphicon glyphicon-send"></i>Publish </div>
+			<div class="manage-btn pull-right publish-post" id="{$post->content_id}"> 
+				<i class="glyphicon glyphicon-cloud-upload"></i> Publish 
+			</div>
 			<div class="manage-btn pull-right delete-post" id="{$post->content_id}"> <i class="glyphicon glyphicon-trash muted"> </i> </div>
 			<div class="manage-btn pull-right edit-post" id="{$post->content_id}"> <i class="glyphicon glyphicon-edit muted"> </i> </div>
 			{/if}	
