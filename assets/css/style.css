@@ -37,7 +37,6 @@ body {
 	height:200px;
 }
 
-a {color:inherit;}
 a:link {text-decoration:none;}
 a:visited {text-decoration:none;}
 a:hover {text-decoration:none;}
@@ -443,7 +442,7 @@ ul.thumbnails li{
 	padding:5px 10px;
 	border:1px solid #aaa;
 	border-radius:100px;
-	width:30px;
+	/* width:30px; */
 	height:30px;
 	font-family:Arial, Helvetica, sans-serif;
 }
@@ -631,11 +630,12 @@ ul.thumbnails li{
 	margin-top:-35px;
 	background:url('./../img/logo_back.png') no-repeat;
 }
-.navbar-brand .logo-text {
+.navbar-brand a .logo-text {
 	padding-left:20px;
 	font-size:30px;
 	font-family: Georgia, serif;
 	font-weight:600;
+	color:#777777;
 }
 .navbar-login-btn{
 	padding:5px !important;

@@ -10,7 +10,6 @@
       <span class="icon-bar"></span>
     </button>
 	 <span class="navbar-brand">
-		<span class="logo-text">inscribe</span>
 	</span>
    
   </div>
@@ -21,7 +20,10 @@
 
 <div class="form-signin">
 	<div class="form-signin-heading">
-		<img src="{$site_root_path}assets/img/logo.png" />
+		<div class="navbar-brand text-center" style="width:100%; padding:10px 0px;">
+			<a href="./"><span class="logo-text" style="font-size:40px;">inscribe</span></a>
+			</div>
+		<div class="clearfix"></div>
 	</div>
 	<hr />
 	<div id="login_form_response"></div>

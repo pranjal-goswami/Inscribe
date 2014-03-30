@@ -62,7 +62,9 @@ function validateEmail(e) {
 function validatePwd(e){
 	return e.val().length<=5 ?  showFormError(e) : hideFormError(e); 	
 }
-
+function validateTnC(e){
+	return !e.is(":checked") ? showFormError(e) : hideFormError(e);
+}
 /* Post Form Validation */ 
 function validatePostForm(f){
 	ret = true;
