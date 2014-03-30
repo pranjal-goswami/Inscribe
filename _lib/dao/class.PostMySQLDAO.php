@@ -96,7 +96,7 @@ class PostMySQLDAO extends PDODAO {
 			$this->logger->logError('No ID provided.','Input Error');
 			return false;
 		}
-		$q = "SELECT * FROM in_posts WHERE author_id=:id AND title IS NOT NULL ORDER BY publish_time DESC, time DESC";
+		$q = "SELECT * FROM in_posts WHERE author_id=:id AND title IS NOT NULL ORDER BY created_time DESC";
 		$vars = array(
 			":id"=>(int)$id
 		);
@@ -129,8 +129,8 @@ class PostMySQLDAO extends PDODAO {
 	public function insert(Post $post)
 	{
 		$q = "INSERT INTO in_posts ";
-		$q .= "(title, author_id, excerpt) ";
-		$q .= "VALUES (:title, :author_id, :excerpt)";
+		$q .= "(title, author_id, excerpt, created_time) ";
+		$q .= "VALUES (:title, :author_id, :excerpt, Now())";
 		$vars = array(
 			':title'=>$post->title,
 			':author_id'=>Session::getLoggedInUser()->id,
