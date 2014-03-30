@@ -1,4 +1,22 @@
 			<!-- BLOG POST CONTENT -->
+			{if empty($posts)}
+				<div class="row post">
+				<div class="col-md-12"> 
+					<div class="card">
+					
+						<div class="card-body text-center">
+							<h3><p style="font-size:20px;"><i class="fa fa-exclamation-triangle"></i>  No posts found</p></h3>
+							<br /><Br />
+						</div>
+						
+
+						
+
+					</div>
+				</div>
+			</div>
+			
+			{/if}
 			{foreach from=$posts item=post}
 			<div class="row post">
 				<div class="col-md-12"> 
@@ -27,6 +45,7 @@
 								{$post->excerpt}
 							</p>
 						</div>
+						
 
 						<div class="card-actions card-comments">
 							<a href="#"><i class="fa fa-facebook  muted pull-left pad-right8"></i></a>
@@ -35,11 +54,11 @@
 							{if $isLoggedIn == true}
 							{if $post->user_upvote == 0}
 							<a class="btn btn-primary pull-right button-upvote btn-sm" id="{$post->content_id}" title="Upvote this article">
-							PROMOTE 
+							<i class="fa fa-thumbs-o-up"></i> &nbsp; PROMOTE 
 							</a>
 							{else}
-							<a class="btn btn-primary pull-right button-upvote btn-sm disabled" id="{$post->content_id}" title="Upvote this article">
-							PROMOTE 
+							<a class="btn btn-primary pull-right button-upvote btn-sm" id="{$post->content_id}" title="Upvote this article">
+							<i class="fa fa-thumbs-up"></i>  &nbsp; PROMOTE 
 							</a>
 							{/if}
 							{else}
@@ -50,7 +69,7 @@
 							{if $post->upvote_count == 0}
 							No upvotes
 							{else}
-							<div id="upvote_count">{$post->upvote_count}</div>
+							<a class="pull-right upvote-count" id="upvote_count">{$post->upvote_count}</a>
 							{/if}
 						</div>
 
@@ -269,11 +288,15 @@ $('.button-upvote').click(function()
 			else if(result == 1)
 			{
 				$.growl.warning({ message: "You have already promoted this post." });
-				upvote_button.addClass('disabled');
+				i = upvote_button.find('i');
+				i.removeClass('fa-thumbs-o-up');
+				i.addClass('fa-thumbs-up');
 			}
 			else
 			{
-				upvote_button.addClass('disabled');
+				i = upvote_button.find('i');
+				i.removeClass('fa-thumbs-o-up');
+				i.addClass('fa-thumbs-up');
 				var count = parseInt(upvote_count_div.html());
 				upvote_count_div.html((count+1)); 
 			}

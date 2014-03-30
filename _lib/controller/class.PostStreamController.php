@@ -43,7 +43,8 @@ class PostStreamController extends InscribeController{
 							else
 							{
 								$posts = $this->streamAllPublishedPostsByCategory();
-							}
+							} 
+							
 							$this->setViewTemplate('post-stream.tpl');
 							$this->addToView('posts',$posts);
 							if($this->isLoggedIn()) $this->addToView('isLoggedIn',true);
