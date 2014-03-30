@@ -123,14 +123,12 @@
 			}
 
 			if($_GET['a']=='upvote') {
-				// if(!$this->isLoggedIn()) return 0;
-				// $post_id = Utils::decryptId($_POST['post_encrypted_id']);
-				// $user_upvote = Post::checkIfUpvotedByPostId($post_id);
-				// if($user_upvote != 0) return 1; 
-				// $this->upvote();
+				if(!$this->isLoggedIn()) return 0;
 				$post_id = Utils::decryptId($_POST['post_encrypted_id']);
-				$user_upvote = Post::checkIfUpvotedByPostId($post_id);
-				return $user_upvote;
+				$user_upvote = Post::checkIfUpvotedByUserId($post_id);
+				if($user_upvote != 0) return 1; 
+				$this->upvote();
+				return 2;
 			}
 			
 		}
