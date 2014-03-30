@@ -65,14 +65,14 @@ a:active {text-decoration:none;}
 
 /****************siderbar****************/
 .sidebar-nav-fixed {
-    top: 0px;
-    padding:10px;
-	padding-top:70px;
+    top: 82px;
+    padding:0px 10px;
 	text-align:center;
 	width:20%;
     //color: #fff;
     height: 100%;
     //background: rgb(24, 33, 61);
+	max-height:600px;
 
 }
 .sidebar-nav-fixed .card{

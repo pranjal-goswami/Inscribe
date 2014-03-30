@@ -78,7 +78,11 @@
 {literal}
 <script type="text/javascript">
 
-streamAllPosts();
+$(document).ready(function(){
+	streamAllPosts();
+	if($('.sidebar-nav').height() > 550) $('.sidebar-nav').css('overflow-y','scroll');
+	});
+
 
 function streamAllPosts()
 {
