@@ -94,6 +94,25 @@ class PostStreamController extends InscribeController{
 		}
 		return $posts;
 	}
+	/*
+	 *  Get all published posts under a category
+	 */
+	 public function streamAllPublishedPostsByUserId()
+	 {
+	 	$user_id = $_POST['user_id'];
+		$PostDAO = DAOFactory::getDAO('Post','Post_DAO.log');
+		$posts = $PostDAO->getAllPublishedPostsByUserId($user_id);
+		$UserDAO = DAOFactory::getDAO('User','User_DAO.log');
+		foreach ($posts as $post)
+		{
+			$user = $UserDAO->getUserNameByUserId($post->author_id);
+			$post->author_name = $user->full_name;
+			$post->published_on = Post::convertToDisplayPublishTime($post->publish_time);
+			if($this->isLoggedIn()) $post->user_upvote = Post::checkIfUpvotedByUserId($post->id); 
+			$post->categories = Post::getPostCategories($post->id);
+		}
+		return $posts;
+	}
 	 /*
 	 *  Get Category List
 	 */

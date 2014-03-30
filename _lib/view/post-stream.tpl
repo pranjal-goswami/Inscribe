@@ -262,7 +262,6 @@ $('.button-upvote').click(function()
 		url : site_root_path+'posts/?a=upvote',
 		data : ajax_values,
 		success: function(result){
-			alert(result);
 			if(result == 0)
 			{
 				$.growl.warning({ message: "Please login to promote posts." });
