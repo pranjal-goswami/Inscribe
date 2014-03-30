@@ -35,6 +35,7 @@ class PostStreamController extends InscribeController{
 
 		// Options that do not require Loggin in
 		if(isset($_GET['a'])) {
+
 				if($_GET['a']=='catposts') {
 							if($_POST['category_id'] == 0)
 							{
@@ -49,7 +50,26 @@ class PostStreamController extends InscribeController{
 							if($this->isLoggedIn()) $this->addToView('isLoggedIn',true);
 							return $this->generateView();
 					}
+
+					if($_GET['a']=='userposts') {
+							$posts = $this->streamAllPublishedPostsByUserId();
+							$this->setViewTemplate('_user.published-stream.tpl');
+							$this->addToView('posts',$posts);
+							if($this->isLoggedIn()) $this->addToView('isLoggedIn',true);
+							return $this->generateView();
+					}
+
+					if($_GET['a']=='ownposts') {
+							$posts = $this->streamAllPublishedPostsByUserId();
+							$this->setViewTemplate('_user.published-stream.tpl');
+							$this->addToView('posts',$posts);
+							if($this->isLoggedIn()) $this->addToView('isLoggedIn',true);
+							return $this->generateView();
+					}
+
 				}
+
+
 		$category_list = $this->getCategoryList();
 		$this->setViewTemplate('index.tpl');
 		$this->addToView('category_list',$category_list);
@@ -99,7 +119,9 @@ class PostStreamController extends InscribeController{
 	 */
 	 public function streamAllPublishedPostsByUserId()
 	 {
-	 	$user_id = $_POST['user_id'];
+	 	if(isset($_POST['user_id'])) $user_id = $_POST['user_id'];
+	 	else $user_id = Session::getLoggedInUser()->id;
+	 	
 		$PostDAO = DAOFactory::getDAO('Post','Post_DAO.log');
 		$posts = $PostDAO->getAllPublishedPostsByUserId($user_id);
 		$UserDAO = DAOFactory::getDAO('User','User_DAO.log');

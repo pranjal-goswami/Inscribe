@@ -318,6 +318,36 @@ class PostMySQLDAO extends PDODAO {
 		$result = $this->getDataRowAsObject($ps,'Upvote');
 		return $result;
 	}
+	/*
+	 * Undo Upvote a Post and Decrease upvote count in user table (author)
+	 */
+	public function undoUpvote(Post $post)
+	{
+		$q = "UPDATE in_posts ";
+		$q .= "SET upvote_count = upvote_count - 1 WHERE id=:post_id";
+		$vars = array(
+			':post_id'=>$post->id
+		);
+		//$this->logger->logInfo($q);
+		$ps = $this->execute($q, $vars);
+
+		$q = "UPDATE in_users ";
+		$q .= "SET total_upvotes_count = total_upvotes_count - 1 WHERE id=:user_id";
+		$vars = array(
+			':user_id'=>$post->author_id
+		);
+		//$this->logger->logInfo($q);
+		$ps = $this->execute($q, $vars);
+
+		$q = "DELETE FROM in_upvotes ";
+		$q .= "WHERE user_id=:user_id AND post_id=:post_id";
+		$vars = array(
+			':user_id'=>$post->author_id,
+			':post_id'=>$post->id
+		);
+		//$this->logger->logInfo($q);
+		$ps = $this->execute($q, $vars);
+	}
 
    
 }

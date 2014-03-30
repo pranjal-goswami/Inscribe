@@ -102,13 +102,6 @@
 				return $this->generateView();
 			}
 
-			if($_GET['a']=='publishedstream') {
-				$posts = $this->streamAllPublishedPostsByUserId();
-				$this->setViewTemplate('_user.published-stream.tpl');
-				$this->addToView('posts',$posts);
-				return $this->generateView();
-			}
-
 			if($_GET['a']=='assign_categories') {
 				$PostDAO = DAOFactory::getDAO('Post','Post_DAO.log');
 				$post_complete_flag = $this->checkPostComplete();
@@ -128,6 +121,15 @@
 				$user_upvote = Post::checkIfUpvotedByUserId($post_id);
 				if($user_upvote != 0) return 1; 
 				$this->upvote();
+				return 2;
+			}
+
+			if($_GET['a']=='undo_upvote') {
+				if(!$this->isLoggedIn()) return 0;
+				$post_id = Utils::decryptId($_POST['post_encrypted_id']);
+				$user_upvote = Post::checkIfUpvotedByUserId($post_id);
+				if($user_upvote == 0) return 1;  
+				$this->undoUpvote();
 				return 2;
 			}
 			
@@ -241,22 +243,6 @@
 		return $posts;
 	}
 	/*
-	 *  Get all published posts by User ID
-	 */
-	 public function streamAllPublishedPostsByUserId()
-	 {
-	 	$user_id = Session::getLoggedInUser()->id;
-		$PostDAO = DAOFactory::getDAO('Post','Post_DAO.log');
-		$posts = $PostDAO->getAllPublishedPostsByUserId($user_id);
-		$UserDAO = DAOFactory::getDAO('User','User_DAO.log');
-		foreach ($posts as $post)
-		{
-			$post->published_on = Post::convertToDisplayPublishTime($post->publish_time);
-			$post->categories = Post::getPostCategories($post->id);
-		}
-		return $posts;
-	}
-	/*
 	 *  Get Categories (list) and that of the post
 	 */
 	 public function getPostCategories()
@@ -296,6 +282,16 @@
 		$PostDAO = DAOFactory::getDAO('Post','Post_DAO.log');
 		$post = $PostDAO->getPostByPostId($post_id);
 		$PostDAO->upvote($post);
+	}
+	/*
+	 *  Undo Upvote a Post
+	 */
+	 public function undoUpvote()
+	 {
+	 	$post_id = Utils::decryptId($_POST['post_encrypted_id']);
+		$PostDAO = DAOFactory::getDAO('Post','Post_DAO.log');
+		$post = $PostDAO->getPostByPostId($post_id);
+		$PostDAO->undoUpvote($post);
 	}
 	 
 

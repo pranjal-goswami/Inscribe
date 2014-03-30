@@ -14,7 +14,7 @@
 	</span>
 	<form class="navbar-form navbar-left" role="search">
 	  <div class="form-group">
-		<input type="text" class="form-control" style="border-radius:100px;" placeholder="">
+		<input type="text" class="form-control" style="border-radius:100px;" placeholder="Search for posts">
 	  </div>
 	</form>
   </div>

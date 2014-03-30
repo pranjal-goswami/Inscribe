@@ -450,6 +450,21 @@ ul.thumbnails li{
 	margin-top:-10px;
 }
 
+.card .card-actions a.button-undo-upvote {
+    font-size:12px;
+    font-family:Helvetica, sans-serif;
+    margin-top:-10px;
+}
+
+.card .card-actions .upvote-count-container {
+    font-size:12px;
+    font-family:Helvetica, sans-serif;
+    margin-top:-10px;
+    margin-left:5px;
+    margin-right:5px;
+}
+
+
 .card .card-comments {
     padding: 20px;
     margin: 0;

@@ -38,8 +38,8 @@
 							PROMOTE 
 							</a>
 							{else}
-							<a class="btn btn-primary pull-right button-upvote btn-sm disabled" id="{$post->content_id}" title="Upvote this article">
-							PROMOTE 
+							<a class="btn btn-primary pull-right button-undo-upvote btn-sm" id="{$post->content_id}" title="Upvote this article">
+							DEMOTE 
 							</a>
 							{/if}
 							{else}
@@ -50,7 +50,7 @@
 							{if $post->upvote_count == 0}
 							No upvotes
 							{else}
-							<div id="upvote_count">{$post->upvote_count}</div>
+							<div id="upvote_count" class="btn btn-default pull-right upvote-count-container">{$post->upvote_count}</div>
 							{/if}
 						</div>
 
@@ -249,13 +249,25 @@ $('.post-heading').click(function()
 
 $('.post-book').on('hide.bs.modal', function (e) {
   $("#post-book-container").html('');
-})
+});
 
 $('.button-upvote').click(function()
 {
-	var post_encrypted_id = this.id;
-	var upvote_button = $(this);
-	var upvote_count_div = $(this).parent().find('#upvote_count');
+	upvotePost(this);
+});
+
+
+
+$('.button-undo-upvote').click(function()
+{
+	undoUpvotePost(this);
+});
+
+function upvotePost(e)
+{
+	var post_encrypted_id = e.id;
+	var upvote_button = $(e);
+	var upvote_count_div = $(e).parent().find('#upvote_count');
 	var ajax_values =  'post_encrypted_id='+post_encrypted_id; 
 	$.ajax({
 		type : 'POST',
@@ -269,17 +281,71 @@ $('.button-upvote').click(function()
 			else if(result == 1)
 			{
 				$.growl.warning({ message: "You have already promoted this post." });
-				upvote_button.addClass('disabled');
+				upvote_button.html('DEMOTE');
+				upvote_button.removeClass('button-upvote');
+				upvote_button.addClass('button-undo-upvote');
+				upvote_button.off("click");
+				upvote_button.on( "click", function() {
+				  undoUpvotePost(this);
+				});
 			}
 			else
 			{
-				upvote_button.addClass('disabled');
+				upvote_button.html('DEMOTE');
+				upvote_button.removeClass('button-upvote');
+				upvote_button.addClass('button-undo-upvote');
+				upvote_button.off("click");
+				upvote_button.on( "click", function() {
+				  undoUpvotePost(this);
+				});
 				var count = parseInt(upvote_count_div.html());
 				upvote_count_div.html((count+1)); 
 			}
 		}
 	});
-});
+}
+
+function undoUpvotePost(e)
+{
+	var post_encrypted_id = e.id;
+	var upvote_button = $(e);
+	var upvote_count_div = $(e).parent().find('#upvote_count');
+	var ajax_values =  'post_encrypted_id='+post_encrypted_id; 
+	$.ajax({
+		type : 'POST',
+		url : site_root_path+'posts/?a=undo_upvote',
+		data : ajax_values,
+		success: function(result){
+			if(result == 0)
+			{
+				$.growl.warning({ message: "Please login to promote posts." });
+			}
+			else if(result == 1)
+			{
+				$.growl.warning({ message: "You have not promoted this post." });
+				upvote_button.html('PROMOTE');
+				upvote_button.removeClass('button-undo-upvote');
+				upvote_button.addClass('button-upvote');
+				upvote_button.off("click");
+				upvote_button.on( "click", function() {
+				  upvotePost(this);
+				});
+			}
+			else
+			{
+				upvote_button.html('PROMOTE');
+				upvote_button.removeClass('button-undo-upvote');
+				upvote_button.addClass('button-upvote');
+				upvote_button.off("click");
+				upvote_button.on( "click", function() {
+				  upvotePost(this);
+				});
+				var count = parseInt(upvote_count_div.html());
+				upvote_count_div.html((count-1)); 
+			}
+		}
+	});
+}
 
 
 // Load turn.js

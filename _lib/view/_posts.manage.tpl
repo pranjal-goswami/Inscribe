@@ -10,15 +10,21 @@
 				</div>
 				<div class="col-md-7">
 
-					<a href="#"><h4 data-toggle="modal" data-target=".post-book" 
+					<a href="#">
+						{if $post->title != ''}
+						<h4 data-toggle="modal" data-target=".post-book" 
 						class="post-heading" id="{$post->content_id}"
 						style="margin-top:5px;">
-						{if $post->title != ''}
 						{$post->title}
+						</h4>
 						{else}
+						<h4 data-toggle="modal" data-target=".post-book" 
+						class="post-heading" id="{$post->content_id}"
+						style="margin-top:5px;">
 						<span class="maroon">Untitled</span>
+						</h4>
 						{/if}
-					</h4></a>
+					</a>
 					<h5>  
 						{if $post->publish_flag == 1}
 						{assign var="j" value=$post->publish_time|@strtotime}
@@ -57,11 +63,26 @@
 	{/foreach}
 </div>
 
+<!-- MODAL FOR FLIPBOOK -->
+<div class="modal fade post-book" id="post-book-container" tabindex="-1" role="dialog" aria-hidden="true">
+				<div id="canvas">
+					<div class="sj-book">
+						<div></div>
+						<div></div>
+						<div></div>
+						<div></div>
+					</div>
+				</div>
+			</div>
+
 <!-- MODAL FOR CHOOSING CATEGORIES -->
 <div class="modal fade" id="assign-categories-container" tabindex="-1" role="dialog" aria-hidden="true">
   
 </div>
 <!-- MODAL ENDS -->
+
+<script type="text/javascript" src="{$site_root_path}plugins/turnjs4/modernizr.2.5.3.min.js"></script>
+<script type="text/javascript" src="{$site_root_path}plugins/turnjs4/hash.js"></script>
 
 {literal}
 <script type="text/javascript">
@@ -101,6 +122,126 @@ $('.edit-post').click(function()
 	var ajax_values =  'post_encrypted_id='+post_encrypted_id;
 	ajaxLoad(site_root_path+'posts/?a=edit', 'render-content-container', ajax_values, ''); 
 });
+
+
+$('.post-heading').click(function()
+{
+	var post_encrypted_id = this.id;
+	var ajax_values =  'post_encrypted_id='+post_encrypted_id;
+	ajaxLoad(site_root_path+'posts/?a=read', 'post-book-container', ajax_values, null); 
+});
+
+$('.post-book').on('hide.bs.modal', function (e) {
+  $("#post-book-container").html('');
+})
+
+// Load turn.js
+
+yepnope({
+	{/literal}
+	test : Modernizr.csstransforms,
+	yep: ['{$site_root_path}plugins/turnjs4/turn.min.js'],
+	nope: ['{$site_root_path}plugins/turnjs4/turn.html4.min.js', '{$site_root_path}plugins/turnjs4/css/jquery.ui.html4.css', '{$site_root_path}plugins/turnjs4/css/steve-jobs-html4.css'],
+	both: ['{$site_root_path}plugins/turnjs4/js/steve-jobs.js', '{$site_root_path}plugins/turnjs4/css/steve-jobs.css', '{$site_root_path}plugins/turnjs4/css/jquery.ui.css']
+	{literal}
+});
+
+function loadApp() {
+	
+	var flipbook = $('.sj-book');
+
+	// Check if the CSS was already loaded
+	
+	if (flipbook.width()==0 || flipbook.height()==0) {
+		setTimeout(loadApp, 10);
+		return;
+	}
+
+	// Flipbook
+
+	flipbook.turn({
+		elevation: 50,
+		acceleration: !isChrome(),
+		autoCenter: true,
+		gradients: true,
+		duration: 1000,
+		page: 2,
+		when: {
+			turning: function(e, page, view) {
+				
+				var book = $(this),
+					currentPage = book.turn('page'),
+					pages = book.turn('pages');
+
+				if (currentPage>3 && currentPage<pages-3) {
+				
+					if (page==1) {
+						book.turn('page', 2).turn('stop').turn('page', page);
+						e.preventDefault();
+						return;
+					} else if (page==pages) {
+						book.turn('page', pages-1).turn('stop').turn('page', page);
+						e.preventDefault();
+						return;
+					}
+				} else if (page>3 && page<pages-3) {
+					if (currentPage==1) {
+						book.turn('page', 2).turn('stop').turn('page', page);
+						e.preventDefault();
+						return;
+					} else if (currentPage==pages) {
+						book.turn('page', pages-1).turn('stop').turn('page', page);
+						e.preventDefault();
+						return;
+					}
+				}
+
+				updateDepth(book, page);
+				
+				if (page>=2)
+					$('.sj-book .p2').addClass('fixed');
+				else
+					$('.sj-book .p2').removeClass('fixed');
+
+				if (page<book.turn('pages'))
+					$('.sj-book .hard-last-page').addClass('fixed');
+				else
+					$('.sj-book .hard-last-page').removeClass('fixed');
+
+				Hash.go('page/'+page).update();
+					
+			},
+
+			turned: function(e, page, view) {
+
+				var book = $(this);
+
+				if (page==2 || page==3) {
+					book.turn('peel', 'br');
+				}
+
+				updateDepth(book);
+				
+
+				book.turn('center');
+
+			}
+		}
+	});
+
+
+
+	flipbook.addClass('animated');
+
+	// Show canvas
+
+	$('#canvas').css({visibility: ''});
+}
+
+// Hide canvas
+
+$('#canvas').css({visibility: 'hidden'});
+
 
 </script>
 {/literal}

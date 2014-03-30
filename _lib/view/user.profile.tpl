@@ -92,7 +92,7 @@ $(document).ready()
 function showPublishedStream()
 {
 	var ajax_values =  null;
-	ajaxLoad(site_root_path+'posts/?a=publishedstream', 'render-content-container', ajax_values, ''); 
+	ajaxLoad(site_root_path+'?a=ownposts', 'render-content-container', ajax_values, ''); 
 }
 
 
