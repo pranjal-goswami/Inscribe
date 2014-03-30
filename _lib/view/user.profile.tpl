@@ -10,9 +10,9 @@
       <span class="icon-bar"></span>
     </button>
     <span class="navbar-brand">
-		<span class="logo-text">inscribe</span>
+		<a href="{$site_root_path}"><span class="logo-text">inscribe</span></a>
 	</span>
-	<form class="navbar-form navbar-left" role="search">
+	<form class="navbar-form navbar-left sr-only" role="search">
 	  <div class="form-group">
 		<input type="text" class="form-control" style="border-radius:100px;" placeholder="">
 	  </div>
@@ -57,13 +57,15 @@
 				</li>
 				<br />
 				<li class="separator"></li>
-				<li><span><i class="fa fa-book"></i> &nbsp; Published</span></li>
+				<li id="show-published-stream"><span><i class="fa fa-book"></i> &nbsp; Published</span></li>
 				<li class="separator"></li>
 				<li id="manage-posts"><span><i class="fa fa-edit"></i> &nbsp; Posts</span></li>
 				<li class="separator"></li>
 				<li><span><i class="fa fa-bar-chart-o"></i> &nbsp; Stats</span></li>
 				<li class="separator"></li>
 				<li><span><i class="fa fa-cog"></i> &nbsp; Settings</span></li>
+				<li class="separator"></li>
+				<li id="create-new-post"><span><i class="fa fa-cog"></i> &nbsp; Create New</span></li>
 				<li class="separator"></li>
 				
 			</ul>
@@ -84,15 +86,55 @@
 
 $(document).ready()
 {
-	var ajax_values =  null;
-	ajaxLoad(site_root_path+'posts/?a=manage', 'render-content-container', ajax_values, ''); 
+	showPublishedStream();
 }
+
+function showPublishedStream()
+{
+	var ajax_values =  null;
+	ajaxLoad(site_root_path+'posts/?a=publishedstream', 'render-content-container', ajax_values, ''); 
+}
+
+
+$('#show-published-stream').click(function()
+{
+	showPublishedStream();
+});
+
+
+$('#create-new-post').click(function()
+{
+	var ajax_values =  null;
+	ajaxLoad(site_root_path+'posts/?a=create', 'render-content-container', ajax_values, ''); 
+});
 
 $('#manage-posts').click(function()
 {
 	var ajax_values =  null;
 	ajaxLoad(site_root_path+'posts/?a=manage', 'render-content-container', ajax_values, ''); 
 });
+
+
+// Arrows
+
+	$(document).keydown(function(e){
+
+		var previous = 37, next = 39;
+
+		switch (e.keyCode) {
+			case previous:
+
+				$('.sj-book').turn('previous');
+
+			break;
+			case next:
+				
+				$('.sj-book').turn('next');
+
+			break;
+		}
+
+	});
 
 </script>
 {/literal}

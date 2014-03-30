@@ -96,7 +96,7 @@ class PostMySQLDAO extends PDODAO {
 			$this->logger->logError('No ID provided.','Input Error');
 			return false;
 		}
-		$q = "SELECT * FROM in_posts WHERE author_id=:id AND title IS NOT NULL ORDER BY publish_time DESC, time DESC";
+		$q = "SELECT * FROM in_posts WHERE author_id=:id AND title IS NOT NULL ORDER BY created_time DESC";
 		$vars = array(
 			":id"=>(int)$id
 		);
@@ -129,8 +129,8 @@ class PostMySQLDAO extends PDODAO {
 	public function insert(Post $post)
 	{
 		$q = "INSERT INTO in_posts ";
-		$q .= "(title, author_id, excerpt) ";
-		$q .= "VALUES (:title, :author_id, :excerpt)";
+		$q .= "(title, author_id, excerpt, created_time) ";
+		$q .= "VALUES (:title, :author_id, :excerpt, Now())";
 		$vars = array(
 			':title'=>$post->title,
 			':author_id'=>Session::getLoggedInUser()->id,
@@ -190,7 +190,7 @@ class PostMySQLDAO extends PDODAO {
 		$q .= "SET publish_flag=1, read_length=:read_length, publish_time=Now() WHERE id=:post_id";
 		$vars = array(
 			':read_length'=>$post->read_length,
-			':post_id'=>Utils::decryptId($post->content_id)
+			':post_id'=>$post->id
 		);
 		//$this->logger->logInfo($q);
 		$ps = $this->execute($q, $vars);
@@ -226,6 +226,47 @@ class PostMySQLDAO extends PDODAO {
 		$ps = $this->execute($q,$vars);
 		$result = $this->getDataRowsAsArray($ps);
 		return $result;
+	}
+	/*
+	 * Get All Published Posts by User ID (All published posts by an author)
+	 */
+	public function getAllPublishedPostsByUserId($id=null)
+	{
+		if(is_null($id)){
+			$this->logger->logError('No ID provided.','Input Error');
+			return false;
+		}
+		$q = "SELECT * FROM in_posts WHERE author_id=:id AND publish_flag=1 ORDER BY publish_time DESC";
+		$vars = array(
+			":id"=>(int)$id
+		);
+		$ps = $this->execute($q,$vars);
+		$result = $this->getDataRowsAsObjects($ps,'Post');
+		return $result;
+	}
+	/*
+	 * Insert Post Categories 
+	 */
+	public function insertPostCategories($post_id, $categories)
+	{
+		$q = "DELETE FROM in_posts_categories WHERE post_id=:post_id";
+		$vars = array(
+			':post_id'=>$post_id
+		);
+		//$this->logger->logInfo($q);
+		$ps = $this->execute($q, $vars);
+
+		foreach ($categories as $category_id) {
+			$q = "INSERT INTO in_posts_categories ";
+			$q .= "(category_id, post_id) ";
+			$q .= "VALUES (:category_id, :post_id)";
+			$vars = array(
+				':category_id'=>$category_id,
+				':post_id'=>$post_id
+			);
+			//$this->logger->logInfo($q);
+			$ps = $this->execute($q, $vars);
+		}
 	}
 
    

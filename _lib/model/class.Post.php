@@ -66,6 +66,10 @@ class Post {
 	 * @var timestamp   Time of this row entry 
 	 */
 	var $time;
+	/**
+	 * @var timestamp   Time of creation if this post
+	 */
+	var $created_time;
 
 	/* Class Constructor */
     public function __construct($row = false) {

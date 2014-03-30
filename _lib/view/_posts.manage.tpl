@@ -1,4 +1,5 @@
 <div class="col-md-12">
+
 <h2>Manage Posts</h2>
 <hr />
 {foreach from=$posts item=post}
@@ -52,30 +53,38 @@
 			{/if}	
 		</div>
 
-		
+			</div>
+		</div>
+		<hr style="margin-top:5px; margin-bottom:5px;" />
 	</div>
-	</div>
-	<hr style="margin-top:5px; margin-bottom:5px;" />
-</div>
-		
+
 	{/foreach}
 </div>
+
+<!-- MODAL FOR CHOOSING CATEGORIES -->
+<div class="modal fade" id="assign-categories-container" tabindex="-1" role="dialog" aria-hidden="true">
+  
+</div>
+<!-- MODAL ENDS -->
 
 {literal}
 <script type="text/javascript">
 
 $('.delete-post').click(function()
 {
+	var r = confirm("Are you sure you want to delete this post?");
+  	if(r==true){
 	var post_encrypted_id = this.id;
 	var ajax_values =  'post_encrypted_id='+post_encrypted_id;
 	ajaxLoad(site_root_path+'posts/?a=delete', 'render-content-container', ajax_values, null); 
+	}
 });
 
-$('.publish-post').click(function()
+$('.assign-categories').click(function()
 {
 	var post_encrypted_id = this.id;
 	var ajax_values =  'post_encrypted_id='+post_encrypted_id;
-	ajaxLoad(site_root_path+'posts/?a=publish', 'render-content-container', ajax_values, null, 'alertIncomplete'); 
+	ajaxLoad(site_root_path+'posts/?a=assign_categories', 'assign-categories-container', ajax_values, null, 'alertIncomplete'); 
 });
 
 function alertIncomplete()
