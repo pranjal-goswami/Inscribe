@@ -10,7 +10,7 @@
       <span class="icon-bar"></span>
     </button>
     <span class="navbar-brand">
-		<span class="logo-text">inscribe</span>
+		<a href="{$site_root_path}"><span class="logo-text">inscribe</span></a>
 	</span>
 	<form class="navbar-form navbar-left" role="search">
 	  <div class="form-group">
@@ -57,7 +57,7 @@
 				</li>
 				<br />
 				<li class="separator"></li>
-				<li><span><i class="fa fa-book"></i> &nbsp; Published</span></li>
+				<li id="show-published-stream"><span><i class="fa fa-book"></i> &nbsp; Published</span></li>
 				<li class="separator"></li>
 				<li id="manage-posts"><span><i class="fa fa-edit"></i> &nbsp; Posts</span></li>
 				<li class="separator"></li>
@@ -84,13 +84,23 @@
 {literal}
 <script type="text/javascript">
 
-showPublishedStream();
+$(document).ready()
+{
+	showPublishedStream();
+}
 
 function showPublishedStream()
 {
 	var ajax_values =  null;
 	ajaxLoad(site_root_path+'posts/?a=publishedstream', 'render-content-container', ajax_values, ''); 
 }
+
+
+$('#show-published-stream').click(function()
+{
+	showPublishedStream();
+});
+
 
 $('#create-new-post').click(function()
 {

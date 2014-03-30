@@ -190,7 +190,7 @@ class PostMySQLDAO extends PDODAO {
 		$q .= "SET publish_flag=1, read_length=:read_length, publish_time=Now() WHERE id=:post_id";
 		$vars = array(
 			':read_length'=>$post->read_length,
-			':post_id'=>Utils::decryptId($post->content_id)
+			':post_id'=>$post->id
 		);
 		//$this->logger->logInfo($q);
 		$ps = $this->execute($q, $vars);
@@ -243,6 +243,30 @@ class PostMySQLDAO extends PDODAO {
 		$ps = $this->execute($q,$vars);
 		$result = $this->getDataRowsAsObjects($ps,'Post');
 		return $result;
+	}
+	/*
+	 * Insert Post Categories 
+	 */
+	public function insertPostCategories($post_id, $categories)
+	{
+		$q = "DELETE FROM in_posts_categories WHERE post_id=:post_id";
+		$vars = array(
+			':post_id'=>$post_id
+		);
+		//$this->logger->logInfo($q);
+		$ps = $this->execute($q, $vars);
+
+		foreach ($categories as $category_id) {
+			$q = "INSERT INTO in_posts_categories ";
+			$q .= "(category_id, post_id) ";
+			$q .= "VALUES (:category_id, :post_id)";
+			$vars = array(
+				':category_id'=>$category_id,
+				':post_id'=>$post_id
+			);
+			//$this->logger->logInfo($q);
+			$ps = $this->execute($q, $vars);
+		}
 	}
 
    

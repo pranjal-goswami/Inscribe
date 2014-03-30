@@ -67,8 +67,8 @@
 
 			if($_GET['a']=='publish') {
 				if(empty($_POST)) return false;
-				$published = $this->publishPost();
-				if($published === false) return false;
+				$this->publishPost();
+				$this->assignPostCategories();
 
 				$posts = $this->getAllPostsByUserId();
 				$this->setViewTemplate('_posts.manage.tpl');
@@ -106,6 +106,19 @@
 				$posts = $this->streamAllPublishedPostsByUserId();
 				$this->setViewTemplate('_user.published-stream.tpl');
 				$this->addToView('posts',$posts);
+				return $this->generateView();
+			}
+
+			if($_GET['a']=='assign_categories') {
+				$PostDAO = DAOFactory::getDAO('Post','Post_DAO.log');
+				$post_complete_flag = $this->checkPostComplete();
+				if($post_complete_flag === false) return false;
+				$categories = $PostDAO->getCategoryList();
+				$post_categories = $this->getPostCategories();
+				$this->setViewTemplate('_user.assign-categories.tpl');
+				$this->addToView('categories',$categories);
+				$this->addToView('post_categories',$post_categories);
+				$this->addToView('post_encrypted_id',$_POST['post_encrypted_id']);
 				return $this->generateView();
 			}
 			
@@ -146,7 +159,6 @@
 	 	$post_id = Utils::decryptId($post_encrypted_id);
 	 	$PostDAO = DAOFactory::getDAO('Post','Post_DAO.log');
 		$post = $PostDAO->getPostByPostId($post_id);
-		if($post->title == '' || $post->excerpt == '') return false;
 		$post->read_length = $post->calculateReadLength($post->content_id);
 		$PostDAO->publish($post);
 	}
@@ -235,7 +247,37 @@
 		}
 		return $posts;
 	}
-
+	/*
+	 *  Get Categories (list) and that of the post
+	 */
+	 public function getPostCategories()
+	 {
+	 	$post_id = Utils::decryptId($_POST['post_encrypted_id']);
+		$PostDAO = DAOFactory::getDAO('Post','Post_DAO.log');
+		$post_categories = $PostDAO->getPostCategories($post_id);
+		return $post_categories;
+	}
+	/*
+	 *  Check if Post is complete
+	 */
+	 public function checkPostComplete()
+	 {
+	 	$post_id = Utils::decryptId($_POST['post_encrypted_id']);
+		$PostDAO = DAOFactory::getDAO('Post','Post_DAO.log');
+		$post = $PostDAO->getPostByPostId($post_id);
+		if($post->title == '' || $post->excerpt == '') return false;
+		else return true;
+	}
+	/*
+	 *  Assign Post Categories
+	 */
+	 public function assignPostCategories()
+	 {
+	 	$post_id = Utils::decryptId($_POST['post_encrypted_id']);
+	 	$post_categories = $_POST['post_categories'];
+		$PostDAO = DAOFactory::getDAO('Post','Post_DAO.log');
+		$PostDAO->insertPostCategories($post_id, $post_categories);
+	}
 	 
 
  }
