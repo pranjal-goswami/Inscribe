@@ -41,8 +41,11 @@ function ajaxLoad(content_location,target,ajax_values,success_function,false_fun
 				window[false_function]();
 			}
 			else{
-			$('#'+target).html(result);
-			console.log(content_location+' loaded to '+target);
+				if(target != null)
+				{
+					$('#'+target).html(result);
+					console.log(content_location+' loaded to '+target);
+				}
 			//$('#loading_gif').hide(800);
 			//if(e) postLoad(e);
 			if(success_function != null && success_function != '')

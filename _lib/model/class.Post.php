@@ -254,6 +254,16 @@ class Post {
 	 	$categories = $PostDAO->getPostCategories($post_id);
 	 	return $categories;
 	 }
+	 /*
+	 *  Check if upvoted by Post Id
+	 */
+	 public static function checkIfUpvotedByUserId($post_id)
+	 {
+	 	$PostDAO = DAOFactory::getDAO('Post','Post_DAO.log');
+	 	$user_upvote = $PostDAO->checkIfUpvotedByUserId($post_id);
+	 	if(empty($user_upvote)) return 0;
+	 	else return $user_upvote;
+	 }
 
 }
 

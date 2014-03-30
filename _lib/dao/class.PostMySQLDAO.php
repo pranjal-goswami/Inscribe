@@ -268,6 +268,56 @@ class PostMySQLDAO extends PDODAO {
 			$ps = $this->execute($q, $vars);
 		}
 	}
+	/*
+	 * Upvote a Post and Increase upvote count in user table (author)
+	 */
+	public function upvote(Post $post)
+	{
+		$q = "UPDATE in_posts ";
+		$q .= "SET upvote_count = upvote_count + 1 WHERE id=:post_id";
+		$vars = array(
+			':post_id'=>$post->id
+		);
+		//$this->logger->logInfo($q);
+		$ps = $this->execute($q, $vars);
+
+		$q = "UPDATE in_users ";
+		$q .= "SET total_upvotes_count = total_upvotes_count + 1 WHERE id=:user_id";
+		$vars = array(
+			':user_id'=>$post->author_id
+		);
+		//$this->logger->logInfo($q);
+		$ps = $this->execute($q, $vars);
+
+		$q = "INSERT INTO in_upvotes ";
+			$q .= "(user_id, post_id, vote) ";
+			$q .= "VALUES (:user_id, :post_id, :vote)";
+			$vars = array(
+				':user_id'=>$post->author_id,
+				':post_id'=>$post->id,
+				':vote'=>1
+			);
+			//$this->logger->logInfo($q);
+			$ps = $this->execute($q, $vars);
+	}
+	/*
+	 * Check if Upvoted by User Id
+	 */
+	public function checkIfUpvotedByUserId($post_id=null)
+	{
+		if(is_null($post_id)){
+			$this->logger->logError('No User ID provided.','Input Error');
+			return false;
+		}
+		$q = "SELECT * FROM in_upvotes WHERE user_id=:user_id AND post_id=:post_id";
+		$vars = array(
+			":user_id"=>Session::getLoggedInUser()->id,
+			':post_id'=>$post_id
+		);
+		$ps = $this->execute($q,$vars);
+		$result = $this->getDataRowAsObject($ps,'Upvote');
+		return $result;
+	}
 
    
 }

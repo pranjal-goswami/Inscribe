@@ -32,10 +32,26 @@
 							<a href="#"><i class="fa fa-facebook  muted pull-left pad-right8"></i></a>
 							<a href="#"><i class="fa fa-twitter  muted pull-left pad-right8"></i></a>
 							<a href="#"><i class="fa fa-google-plus  muted pull-left pad-right8"></i></a>
-							
-							<a href="#" class="btn btn-primary pull-right button-upvote btn-sm" title="Upvote this article">
+							{if $isLoggedIn == true}
+							{if $post->user_upvote == 0}
+							<a class="btn btn-primary pull-right button-upvote btn-sm" id="{$post->content_id}" title="Upvote this article">
 							PROMOTE 
 							</a>
+							{else}
+							<a class="btn btn-primary pull-right button-upvote btn-sm disabled" id="{$post->content_id}" title="Upvote this article">
+							PROMOTE 
+							</a>
+							{/if}
+							{else}
+							<a class="btn btn-primary pull-right button-upvote btn-sm" id="{$post->content_id}" title="Upvote this article">
+							PROMOTE 
+							</a>
+							{/if}
+							{if $post->upvote_count == 0}
+							No upvotes
+							{else}
+							<div id="upvote_count">{$post->upvote_count}</div>
+							{/if}
 						</div>
 
 					</div>
@@ -228,12 +244,44 @@ $('.post-heading').click(function()
 {
 	var post_encrypted_id = this.id;
 	var ajax_values =  'post_encrypted_id='+post_encrypted_id;
-	ajaxLoad(site_root_path+'posts/?a=read', 'post-book-container', ajax_values, ''); 
+	ajaxLoad(site_root_path+'posts/?a=read', 'post-book-container', ajax_values, null); 
 });
 
 $('.post-book').on('hide.bs.modal', function (e) {
   $("#post-book-container").html('');
 })
+
+$('.button-upvote').click(function()
+{
+	var post_encrypted_id = this.id;
+	var upvote_button = $(this);
+	var upvote_count_div = $(this).parent().find('#upvote_count');
+	var ajax_values =  'post_encrypted_id='+post_encrypted_id; 
+	$.ajax({
+		type : 'POST',
+		url : site_root_path+'posts/?a=upvote',
+		data : ajax_values,
+		success: function(result){
+			alert(result);
+			if(result == 0)
+			{
+				$.growl.warning({ message: "Please login to promote posts." });
+			}
+			else if(result == 1)
+			{
+				$.growl.warning({ message: "You have already promoted this post." });
+				upvote_button.addClass('disabled');
+			}
+			else
+			{
+				upvote_button.addClass('disabled');
+				var count = parseInt(upvote_count_div.html());
+				upvote_count_div.html((count+1)); 
+			}
+		}
+	});
+});
+
 
 // Load turn.js
 
