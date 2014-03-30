@@ -26,7 +26,6 @@
 							<i class="glyphicon glyphicon-time muted"> </i>
 							{"h:i A"|@date:$j}
 						</span>
-						<br />
 						<span> 
 							<i class="glyphicon glyphicon-eye-open muted"> </i> {$post->read_length} min read  
 						</span>

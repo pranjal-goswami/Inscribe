@@ -11,7 +11,11 @@
 		<div class="row">
 		{foreach from=$categories item=category}
 			<div class="col-md-4">
+				{if in_array($category->category_name, $post_categories)}
+				<input type="checkbox" class="category" name="post_categories[]" value="{$category->id}" checked="checked">
+				{else}
 				<input type="checkbox" class="category" name="post_categories[]" value="{$category->id}">
+				{/if}
 				{$category->category_name}
 				<br /><br />
 			</div>
