@@ -68,9 +68,12 @@
 
 $('.delete-post').click(function()
 {
+	var r = confirm("Are you sure you want to delete this post?");
+  	if(r==true){
 	var post_encrypted_id = this.id;
 	var ajax_values =  'post_encrypted_id='+post_encrypted_id;
 	ajaxLoad(site_root_path+'posts/?a=delete', 'render-content-container', ajax_values, null); 
+	}
 });
 
 $('.assign-categories').click(function()
