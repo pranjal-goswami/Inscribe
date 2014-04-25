@@ -108,9 +108,13 @@
 				if($post_complete_flag === false) return false;
 				$categories = $PostDAO->getCategoryList();
 				$post_categories = $this->getPostCategories();
+				$post_categories_array = array();
+				foreach ($post_categories as $post_category) {
+					array_push($post_categories_array, $post_category->category_name);
+				}
 				$this->setViewTemplate('_user.assign-categories.tpl');
 				$this->addToView('categories',$categories);
-				$this->addToView('post_categories',$post_categories);
+				$this->addToView('post_categories',$post_categories_array);
 				$this->addToView('post_encrypted_id',$_POST['post_encrypted_id']);
 				return $this->generateView();
 			}
@@ -172,6 +176,8 @@
 		$post = $PostDAO->getPostByPostId($post_id);
 		$post->read_length = $post->calculateReadLength($post->content_id);
 		$PostDAO->publish($post);
+		$UserDAO = DAOFactory::getDAO('User','User_DAO.log');
+		$UserDAO->upUserPostCount();
 	}
 	/*
 	 *  UnPublish a post
@@ -182,6 +188,8 @@
 	 	$post_id = Utils::decryptId($post_encrypted_id);
 	 	$PostDAO = DAOFactory::getDAO('Post','Post_DAO.log');
 		$PostDAO->unPublish($post_id);
+		$UserDAO = DAOFactory::getDAO('User','User_DAO.log');
+		$UserDAO->downUserPostCount();
 	}
 	/*
 	 *  Edit Post

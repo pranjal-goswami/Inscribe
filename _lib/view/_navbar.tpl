@@ -13,7 +13,7 @@
 	</span>
 	<form class="navbar-form navbar-left" role="search">
 	  <div class="form-group">
-		<input type="text" class="form-control" style="border-radius:100px;" placeholder="">
+		<input type="text" class="form-control search-bar" placeholder="Search for posts, authors" onclick="this.select()">
 	  </div>
 	</form>
   </div>
@@ -22,8 +22,8 @@
   <div class="collapse navbar-collapse" id="navbar-collapse">
    <ul class="nav navbar-nav navbar-right navbar-form">
  	  <li>
-	  	<a href="#" class="btn btn-xs btn-default navbar-login-btn"
-			style=" font-size:16px; margin-right:7px;">
+	  	<a href="{$site_root_path}user/?a=create" class="btn btn-xs btn-default navbar-login-btn"
+			style=" font-size:17px; margin-right:7px;">
 			<i class="fa fa-pencil" style="padding:4px 0px 4px 0px; color:#777;"></i> 
 			</a>
 	  </li>
@@ -35,7 +35,7 @@
 			<span style="margin-top:2px; color:#777; font-size:14px;">
 			{$user->full_name}  &nbsp;<b class="caret"></b></span></a>
 		{else}
-			<a href="{$site_root_path}user/" class="btn btn-xs btn-primary navbar-login-btn">
+			<a href="{$site_root_path}user/" class="btn btn-xs btn-primary navbar-login-btn" id="login-button">
 			<i class="fa fa-sign-in"></i> &nbsp; Log in 
 			</a>
 		{/if}

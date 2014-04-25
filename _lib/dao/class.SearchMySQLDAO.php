@@ -42,6 +42,16 @@ class SearchMySQLDAO extends PDODAO {
         return $result;
     }
     /*
+	 * Get Author Names
+	 */
+	public function getAuthorNames($query) 
+	{
+        $q = "SELECT * FROM in_users WHERE full_name LIKE '%".$query."%'";
+        $ps = $this->execute($q);
+        $result = $this->getDataRowsAsObjects($ps, 'User');
+        return $result;
+    }
+    /*
 	 * Get all Published Posts
 	 */
 	public function getAllPublishedPosts() 

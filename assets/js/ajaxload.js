@@ -30,6 +30,11 @@ function ajaxLoad(content_location,target,ajax_values,success_function,false_fun
 	
 	//$('#load_error').hide(800);
 	//$('#loading_gif').show(1000);
+
+	if(target != null)
+	{
+		$('#'+target).html('<center><img src="'+site_root_path+'assets/img/ajax-loader.gif" style="margin-top:200px;" /><center>');
+	}
     
 	$.ajax({
 		type : 'POST',

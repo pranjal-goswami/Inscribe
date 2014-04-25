@@ -43,7 +43,7 @@ class PostStreamController extends InscribeController{
 							}
 							else
 							{
-								$posts = $this->streamAllPublishedPostsByCategory();
+								$posts = $this->streamAllPublishedPostsByCategory($_POST['category_id']);
 							} 
 							
 							$this->setViewTemplate('post-stream.tpl');
@@ -67,13 +67,41 @@ class PostStreamController extends InscribeController{
 							if($this->isLoggedIn()) $this->addToView('isLoggedIn',true);
 							return $this->generateView();
 					}
+					if($_GET['a']=='sp') {
+							$category_list = $this->getCategoryList();
+							$posts = $this->streamAllPublishedPostsByPostTitle();
+							$this->setViewTemplate('index.tpl');
+							$this->addToView('category_list',$category_list);
+							$this->addToView('posts',$posts);
+							if($this->isLoggedIn()) $this->addToView('isLoggedIn',true);
+							return $this->generateView();
+					}
+					if($_GET['a']=='scatposts') {
+							if($_GET['cat'] == 0)
+							{
+								$posts = $this->streamAllPublishedPosts();
+							}
+							else
+							{
+								$posts = $this->streamAllPublishedPostsByCategory($_GET['cat']);
+							} 
+							$category_list = $this->getCategoryList();
+							$this->setViewTemplate('index.tpl');
+							$this->addToView('category_list',$category_list);
+							$this->addToView('posts',$posts);
+							if($this->isLoggedIn()) $this->addToView('isLoggedIn',true);
+							return $this->generateView();
+					}
 
 				}
 
 
 		$category_list = $this->getCategoryList();
+		$posts = $this->streamAllPublishedPosts();
 		$this->setViewTemplate('index.tpl');
 		$this->addToView('category_list',$category_list);
+		$this->addToView('posts',$posts);
+		if($this->isLoggedIn()) $this->addToView('isLoggedIn',true);
 		return $this->generateView();
 
 
@@ -88,8 +116,10 @@ class PostStreamController extends InscribeController{
 		$UserDAO = DAOFactory::getDAO('User','User_DAO.log');
 		foreach ($posts as $post)
 		{
-			$user = $UserDAO->getUserNameByUserId($post->author_id);
+			$user = $UserDAO->getUserByUserId($post->author_id);
 			$post->author_name = $user->full_name;
+			$post->author_profile_pic_id = $user->profile_pic_id;
+			$post->author_encrypted_id = Utils::encryptId($user->id);
 			$post->published_on = Post::convertToDisplayPublishTime($post->publish_time);
 			if($this->isLoggedIn()) $post->user_upvote = Post::checkIfUpvotedByUserId($post->id);
 			$post->categories = Post::getPostCategories($post->id);
@@ -99,16 +129,17 @@ class PostStreamController extends InscribeController{
 	/*
 	 *  Get all published posts under a category
 	 */
-	 public function streamAllPublishedPostsByCategory()
+	 public function streamAllPublishedPostsByCategory($category_id)
 	 {
-	 	$category_id = $_POST['category_id'];
 		$PostDAO = DAOFactory::getDAO('Post','Post_DAO.log');
 		$posts = $PostDAO->getAllPublishedPostsByCategory($category_id);
 		$UserDAO = DAOFactory::getDAO('User','User_DAO.log');
 		foreach ($posts as $post)
 		{
-			$user = $UserDAO->getUserNameByUserId($post->author_id);
+			$user = $UserDAO->getUserByUserId($post->author_id);
 			$post->author_name = $user->full_name;
+			$post->author_profile_pic_id = $user->profile_pic_id;
+			$post->author_encrypted_id = Utils::encryptId($user->id);
 			$post->published_on = Post::convertToDisplayPublishTime($post->publish_time);
 			if($this->isLoggedIn()) $post->user_upvote = Post::checkIfUpvotedByUserId($post->id); 
 			$post->categories = Post::getPostCategories($post->id);
@@ -116,20 +147,46 @@ class PostStreamController extends InscribeController{
 		return $posts;
 	}
 	/*
-	 *  Get all published posts under a category
+	 *  Get all published posts of a user
 	 */
-	 public function streamAllPublishedPostsByUserId()
+	 public function streamAllPublishedPostsByUserId($user_id=null)
 	 {
-	 	if(isset($_POST['user_id'])) $user_id = $_POST['user_id'];
-	 	else $user_id = Session::getLoggedInUser()->id;
-	 	
+	 	if(is_null($user_id))
+	 	{
+			if(isset($_POST['user_id'])) $user_id = $_POST['user_id'];
+	 		else $user_id = Session::getLoggedInUser()->id;
+		}
+		
 		$PostDAO = DAOFactory::getDAO('Post','Post_DAO.log');
 		$posts = $PostDAO->getAllPublishedPostsByUserId($user_id);
 		$UserDAO = DAOFactory::getDAO('User','User_DAO.log');
 		foreach ($posts as $post)
 		{
-			$user = $UserDAO->getUserNameByUserId($post->author_id);
+			$user = $UserDAO->getUserByUserId($post->author_id);
 			$post->author_name = $user->full_name;
+			$post->author_profile_pic_id = $user->profile_pic_id;
+			$post->author_encrypted_id = Utils::encryptId($user->id);
+			$post->published_on = Post::convertToDisplayPublishTime($post->publish_time);
+			if($this->isLoggedIn()) $post->user_upvote = Post::checkIfUpvotedByUserId($post->id); 
+			$post->categories = Post::getPostCategories($post->id);
+		}
+		return $posts;
+	}
+	/*
+	 *  Get (search) all published posts by Post Title
+	 */
+	 public function streamAllPublishedPostsByPostTitle()
+	 {
+	 	$title = $_GET['ptitle'];
+		$SearchDAO = DAOFactory::getDAO('Search','Search_DAO.log');
+		$posts = $SearchDAO->getPostsByTitle($title);
+		$UserDAO = DAOFactory::getDAO('User','User_DAO.log');
+		foreach ($posts as $post)
+		{
+			$user = $UserDAO->getUserByUserId($post->author_id);
+			$post->author_name = $user->full_name;
+			$post->author_profile_pic_id = $user->profile_pic_id;
+			$post->author_encrypted_id = Utils::encryptId($user->id);
 			$post->published_on = Post::convertToDisplayPublishTime($post->publish_time);
 			if($this->isLoggedIn()) $post->user_upvote = Post::checkIfUpvotedByUserId($post->id); 
 			$post->categories = Post::getPostCategories($post->id);

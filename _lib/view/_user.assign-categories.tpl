@@ -40,6 +40,7 @@ $('.publish-post').click(function()
 {
 	var no_of_categories=$('#assign-categories-publish-form').find('input[name="post_categories[]"]:checked').length;
 	if(no_of_categories > 3) alert('One post cannot be assigned more than 3 categories.');
+	else if(no_of_categories < 1) alert('Please assign at least one category to your post.');
 	else{
 	var ajax_values = $('#assign-categories-publish-form').serialize();
 	ajaxLoad(site_root_path+'posts/?a=publish', 'render-content-container', ajax_values, 'publishSuccess');

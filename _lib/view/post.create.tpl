@@ -7,7 +7,7 @@
 
 
 <div class="post-writer col-md-12">
-	<h2>Post</h2>
+	<h3>Post</h3>
 	<hr />
 	<form class="form-horizontal" id="post-form-save" role="form">
 		<input type="hidden" name="content_id" value={$content_id} />
@@ -18,7 +18,7 @@
 		</div>
 		<div class="form-group col-md-8">
 			<div class=" pull-left">
-				<textarea class="form-control" name="editor" id="editor" placeholder="Content"></textarea>
+				<textarea class="form-control" name="editor" id="editor" placeholder="Content" style="display:none;"></textarea>
 			</div>
 		</div>
 		<div class="form-group col-md-4">
@@ -32,12 +32,35 @@
 			<button type="submit" style="width:270px;" class="btn btn-success btn-block save-post-button disabled" disabled>Save</button>
 		</div>
 		</div>
+		<div class="form-group col-md-4">
+		<div class="pull-left">
+			<div style="width:270px;" data-toggle="modal" data-target=".post-book" class="btn btn-warning btn-block preview-post-button post-heading" id="{$content_id}">Preview</div>
+		</div>
+		</div>
 	</form>
 
 <br /><br /><br />
 </div>
 <br /><br /><br />
 <div class="clear"></div>
+
+<!-- POST CONTENT BOOK - MODAL -->
+
+<div class="modal fade post-book" id="post-book-container" tabindex="-1" role="dialog" aria-hidden="true">
+	<div id="canvas">
+		<div class="sj-book">
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
+	</div>
+</div>
+<!-- POST CONTENT BOOK - MODAL ENDS-->
+
+<script type="text/javascript" src="{$site_root_path}plugins/turnjs4/modernizr.2.5.3.min.js"></script>
+<script type="text/javascript" src="{$site_root_path}plugins/turnjs4/hash.js"></script>
+<script type="text/javascript" src="{$site_root_path}assets/js/load.flipbook.js"></script>
 
 
 {literal}
@@ -71,6 +94,9 @@ tinymce.init({
         {title: 'Table row 1', selector: 'tr', classes: 'tablerow1'}
     ]
  }); 
+
+$('#editor').show();
+
 
 </script>
 
@@ -110,7 +136,6 @@ function handleButtons()
 	save_button.removeClass('disabled');
 	save_button.removeAttr('disabled');
 }
-
 
 </script>
 

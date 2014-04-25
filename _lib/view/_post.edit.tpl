@@ -32,12 +32,36 @@
 			<button type="submit" style="width:270px;" class="btn btn-success btn-block save-post-button disabled" disabled>Save</button>
 		</div>
 		</div>
+		<div class="form-group col-md-4">
+		<div class="pull-left">
+			<div style="width:270px;" data-toggle="modal" data-target=".post-book" class="btn btn-warning btn-block preview-post-button post-heading" id="{$post->content_id}">Preview</div>
+		</div>
+		</div>
 	</form>
 
 <br /><br /><br />
 </div>
 <br /><br /><br />
+
 <div class="clear"></div>
+
+<!-- POST CONTENT BOOK - MODAL -->
+
+<div class="modal fade post-book" id="post-book-container" tabindex="-1" role="dialog" aria-hidden="true">
+	<div id="canvas">
+		<div class="sj-book">
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
+	</div>
+</div>
+<!-- POST CONTENT BOOK - MODAL ENDS-->
+
+<script type="text/javascript" src="{$site_root_path}plugins/turnjs4/modernizr.2.5.3.min.js"></script>
+<script type="text/javascript" src="{$site_root_path}plugins/turnjs4/hash.js"></script>
+<script type="text/javascript" src="{$site_root_path}assets/js/load.flipbook.js"></script>
 
 
 {literal}

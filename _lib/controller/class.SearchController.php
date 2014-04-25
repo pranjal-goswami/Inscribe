@@ -35,15 +35,25 @@
 		// Options that do not require Loggin in
 		if(isset($_GET['a'])) {
 				if($_GET['a']=='search') {
-						$query = $_POST['query'];
-						$posts = $this->searchPostsByQuery($query);
+						$query = $_POST['term'];
+						$posts = $this->searchPostsByTitle($query);
 						$this->setViewTemplate('post-stream.tpl');
 						$this->addToView('posts',$posts);
 						if($this->isLoggedIn()) $this->addToView('isLoggedIn',true);
 						return $this->generateView();
 					}
 				if($_GET['a']=='typeahead') {
-					
+					$query = $_GET['term'];
+					$posts = (array)$this->searchPostsByTitle($query);
+					$authors = (array)$this->searchAuthorNames($query);
+					$search_results = array_merge($posts, $authors);
+					if(empty($search_results))
+					{
+						$result = (object) array("label"=>"No results found", "sublabel"=>"Try another keyword", "type_gl_icon"=>"exclamation-sign");
+						$search_results = array($result);
+					}  
+					return json_encode($search_results);
+
 				}
 
 			}
@@ -52,104 +62,48 @@
 		
 	 }
 	 /*
-	 *  Search posts by query
+	 *  Search posts by title
 	 */
-	 public function searchPostsByQuery($query)
+	 public function searchPostsByTitle($query)
 	 {
 		$SearchDAO = DAOFactory::getDAO('Search','Post_DAO.log');
 		$posts = $SearchDAO->getPostsByTitle($query);
 		$UserDAO = DAOFactory::getDAO('User','User_DAO.log');
 		foreach ($posts as $post)
 		{
-			$user = $UserDAO->getUserNameByUserId($post->author_id);
+			$post->label = $post->title;
+			$user = $UserDAO->getUserByUserId($post->author_id);
+			$post->type_gl_icon = "book";
+			$post->type = "post";
 			$post->author_name = $user->full_name;
+			$post->author_profile_pic_id = $user->profile_pic_id;
 			$post->published_on = Post::convertToDisplayPublishTime($post->publish_time);
+			$post->sublabel = "By ".$user->full_name.", published ".$post->published_on;
 			if($this->isLoggedIn()) $post->user_upvote = Post::checkIfUpvotedByUserId($post->id);
 			$post->categories = Post::getPostCategories($post->id);
 		}
 		return $posts;
 	}
 	/*
-	 *  Get all published posts
+	 *  Search author names
 	 */
-	 public function streamAllPublishedPosts()
+	 public function searchAuthorNames($query)
 	 {
-		$PostDAO = DAOFactory::getDAO('Post','Post_DAO.log');
-		$posts = $PostDAO->getAllPublishedPosts();
-		$UserDAO = DAOFactory::getDAO('User','User_DAO.log');
-		foreach ($posts as $post)
+		$SearchDAO = DAOFactory::getDAO('Search','Post_DAO.log');
+		$authors = $SearchDAO->getAuthorNames($query);
+		foreach ($authors as $author)
 		{
-			$user = $UserDAO->getUserNameByUserId($post->author_id);
-			$post->author_name = $user->full_name;
-			$post->published_on = Post::convertToDisplayPublishTime($post->publish_time);
-			if($this->isLoggedIn()) $post->user_upvote = Post::checkIfUpvotedByUserId($post->id);
-			$post->categories = Post::getPostCategories($post->id);
+			$author->label = $author->full_name;
+			$author->sublabel = $author->posts_count." posts published";
+			$author->type_gl_icon = "user";
+			$author->type = "user";
+			$author->encrypted_id = Utils::encryptId($author->id); 
+			// $post->published_on = Post::convertToDisplayPublishTime($post->publish_time);
+			// if($this->isLoggedIn()) $post->user_upvote = Post::checkIfUpvotedByUserId($post->id);
+			// $post->categories = Post::getPostCategories($post->id);
 		}
-		return $posts;
+		return $authors;
 	}
-	/*
-	 *  Get all published posts under a category
-	 */
-	 public function streamAllPublishedPostsByCategory()
-	 {
-	 	$category_id = $_POST['category_id'];
-		$PostDAO = DAOFactory::getDAO('Post','Post_DAO.log');
-		$posts = $PostDAO->getAllPublishedPostsByCategory($category_id);
-		$UserDAO = DAOFactory::getDAO('User','User_DAO.log');
-		foreach ($posts as $post)
-		{
-			$user = $UserDAO->getUserNameByUserId($post->author_id);
-			$post->author_name = $user->full_name;
-			$post->published_on = Post::convertToDisplayPublishTime($post->publish_time);
-			if($this->isLoggedIn()) $post->user_upvote = Post::checkIfUpvotedByUserId($post->id); 
-			$post->categories = Post::getPostCategories($post->id);
-		}
-		return $posts;
-	}
-	/*
-	 *  Get all published posts under a category
-	 */
-	 public function streamAllPublishedPostsByUserId()
-	 {
-	 	if(isset($_POST['user_id'])) $user_id = $_POST['user_id'];
-	 	else $user_id = Session::getLoggedInUser()->id;
-	 	
-		$PostDAO = DAOFactory::getDAO('Post','Post_DAO.log');
-		$posts = $PostDAO->getAllPublishedPostsByUserId($user_id);
-		$UserDAO = DAOFactory::getDAO('User','User_DAO.log');
-		foreach ($posts as $post)
-		{
-			$user = $UserDAO->getUserNameByUserId($post->author_id);
-			$post->author_name = $user->full_name;
-			$post->published_on = Post::convertToDisplayPublishTime($post->publish_time);
-			if($this->isLoggedIn()) $post->user_upvote = Post::checkIfUpvotedByUserId($post->id); 
-			$post->categories = Post::getPostCategories($post->id);
-		}
-		return $posts;
-	}
-	/*
-	 *  Get All Posts specific to the user
-	 */
-	public function getAllPostsByUserId()
-	{
-		$user_id = Session::getLoggedInUser()->id;
-		$PostDAO = DAOFactory::getDAO('Post','Post_DAO.log');
-		$posts = $PostDAO->getPostsByAuthorId($user_id);
-		foreach ($posts as $post)
-		{
-			$post->categories = Post::getPostCategories($post->id);
-		}
-		return $posts;
-	}
-	/*
-	 *  Get Categories (list) and that of the post
-	 */
-	 public function getPostCategories()
-	 {
-	 	$post_id = Utils::decryptId($_POST['post_encrypted_id']);
-		$PostDAO = DAOFactory::getDAO('Post','Post_DAO.log');
-		$post_categories = $PostDAO->getPostCategories($post_id);
-		return $post_categories;
-	}
+	
 
  }
