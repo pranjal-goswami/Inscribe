@@ -33,8 +33,15 @@ $path = dirname(__FILE__).'/';
 	{ 	//default values
 		define('DB_SERVER','localhost');
 		define('DB_USER','root');
-		define('DB_PWD','');
-		define('DB_NAME','inscribe');
-	}}
-
+		define('DB_PWD','ali~cia33');
+		define('DB_NAME','greektur_inscribe');
+	}
+}
+else if(SERVER=="web")
+{
+		define('DB_SERVER','localhost');
+		define('DB_USER','greektur_root');
+		define('DB_PWD','ali~cia33');
+		define('DB_NAME','greektur_inscribe');
+}
 ?>

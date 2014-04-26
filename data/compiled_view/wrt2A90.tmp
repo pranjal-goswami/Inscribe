@@ -1,0 +1,13 @@
+<?php /* Smarty version 2.6.26, created on 2014-04-26 09:10:53
+         compiled from _footer.tpl */ ?>
+<footer>
+	<ul>
+		<li>About</li>
+		<li>Privacy</li>
+		<li>Terms</li>
+		<li>FAQ</li>
+		<li>Give Feedback</li>
+	</ul>
+</footer>
+</body>
+</html>
