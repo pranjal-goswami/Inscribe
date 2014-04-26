@@ -22,7 +22,7 @@
 <div class="form-signin">
 	<div class="form-signin-heading">
 		<div class="navbar-brand text-center" style="width:100%; padding:10px 0px;">
-			<a href="./"><span class="logo-text" style="font-size:40px;">inscribe</span></a>
+			<a href="{$site_root_path}"><span class="logo-text" style="font-size:40px;">inscribe</span></a>
 			</div>
 		<div class="clearfix"></div>
 	</div>

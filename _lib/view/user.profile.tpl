@@ -26,7 +26,7 @@
 				<li class="separator"></li>
 				<li><span><i class="fa fa-cog"></i> &nbsp; Settings</span></li>
 				<li class="separator"></li>
-				<li id="create-new-post"><span><i class="fa fa-cog"></i> &nbsp; Create New</span></li>
+				<li id="create-new-post"><span><i class="fa fa-plus"></i> &nbsp; Create New</span></li>
 				<li class="separator"></li>
 				
 			</ul>
@@ -36,24 +36,26 @@
 		<!-- LEFT FIXED SIDE BAR ENDS -->
 		<!-- RIGHT BLOG CONTENT CONTAINER -->
 		<div class="col-md-9 col-md-offset-3" id="render-content-container">
+			{include file=$tpl}
 		</div>
 		<!-- RIGHT BLOG CONTENT CONTAINER ENDS -->
 	</div>
 </div>
 
 
+<!-- Search scripts -->
+<script type="text/javascript" src="http://code.jquery.com/ui/1.10.1/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/themes/base/minified/jquery-ui.min.css" type="text/css" /> 
+<script type="text/javascript" src="{$site_root_path}plugins/typeahead/typeahead.jquery.js"></script>
+<script type="text/javascript" src="{$site_root_path}assets/js/search.js"></script>
+
 {literal}
 <script type="text/javascript">
-
-$(document).ready()
-{
-	showPublishedStream();
-}
 
 function showPublishedStream()
 {
 	var ajax_values =  null;
-	ajaxLoad(site_root_path+'posts/?a=publishedstream', 'render-content-container', ajax_values, ''); 
+	ajaxLoad(site_root_path+'?a=ownposts', 'render-content-container', ajax_values, ''); 
 }
 
 
@@ -96,6 +98,16 @@ $('#manage-posts').click(function()
 		}
 
 	});
+
+
+$('input.search-bar').keypress(function(e) {
+     var code = (e.keyCode ? e.keyCode : e.which);
+     if (code == 13) {
+		e.preventDefault();
+	var query = $('input.search-bar').val(); 
+	window.location = site_root_path+"?a=sp&ptitle="+query;
+	}
+});
 
 </script>
 {/literal}

@@ -1,9 +1,19 @@
 <div id="canvas">
 		<div class="sj-book">
-			<div depth="5" class="hard" style="text-align:center;font-weight:900;font-size:20px;"> <div class="side"></div> 
-			<br /><br /><br />{$post->title}
-			<br />
-			By {$post->author_name}
+			<div depth="5" class="hard"> <div class="side"></div> 
+			<div style="font-size:20px;font-style:Palatino;margin-top:100px;margin-left:140px;">
+				{if $post->title != null}
+				{$post->title}
+				{else}
+				Untitled
+				{/if}
+				<br />
+				<span style="font-size:14px;">
+					{$post->author_name}
+				</span>
+			</div>
+			
+			
 		</div>
 			<div depth="5" class="hard front-side"> <div class="depth"></div> </div>
 			<div class="own-size"></div>

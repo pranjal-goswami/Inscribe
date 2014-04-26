@@ -1,0 +1,5 @@
+<ul style="list-style-type: square;">
+<li>Content of a new <span style="color: #ff9900;">post.</span></li>
+</ul>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="http://www.statesymbolsusa.org/IMAGES/New_York/crispin.jpg" alt="Apple" width="321" height="299" /></p>
+<p>

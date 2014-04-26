@@ -127,4 +127,26 @@ class UserMySQLDAO extends PDODAO {
 		$ps = $this->execute($q,$vars);
 		return $this->getDataIsReturned($ps);
 	}
+	/*
+	 * Increase User Published Post Count
+	 */
+ 	public function upUserPostCount()
+ 	{
+ 		$q = "UPDATE in_users SET posts_count = posts_count + 1 WHERE id=:user_id";
+ 		$vars = array(
+ 			":user_id"=>Session::getLoggedInUser()->id
+ 			);
+ 		$ps = $this->execute($q,$vars);
+ 	}
+ 	/*
+	 * Increase User Published Post Count
+	 */
+ 	public function downUserPostCount()
+ 	{
+ 		$q = "UPDATE in_users SET posts_count = posts_count - 1 WHERE id=:user_id";
+ 		$vars = array(
+ 			":user_id"=>Session::getLoggedInUser()->id
+ 			);
+ 		$ps = $this->execute($q,$vars);
+ 	}
 }

@@ -32,7 +32,7 @@
 	<script type="text/javascript"> var site_root_path = "{$site_root_path}"; </script>
 	{foreach from=$header_scripts item=script}
     <script type="text/javascript" src="{$site_root_path}{$script}"></script>
-    {/foreach} 	
+    {/foreach}
 
     <!-- Growl -->
 	<link type="text/css" rel="stylesheet" href="{$site_root_path}plugins/growl/css/jquery.growl.css"/> 
