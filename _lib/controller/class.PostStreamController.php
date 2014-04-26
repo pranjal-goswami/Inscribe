@@ -29,7 +29,6 @@ class PostStreamController extends InscribeController{
 		$this->view_mgr->force_compile = true;
 
 		if($this->isLoggedIn()){
-			var_dump(Session::getLoggedInUser());
 			$this->addToView('isLoggedIn',true);
 			$this->addToView('user',Session::getLoggedInUser());
 			}
@@ -199,7 +198,6 @@ class PostStreamController extends InscribeController{
 	 */
 	 public function getCategoryList()
 	 {
-		 var_dump(DB_USER);
 	 	$PostDAO = DAOFactory::getDAO('Post','Post_DAO.log');
 	 	$category_list = $PostDAO->getCategoryList();
 	 	return $category_list;

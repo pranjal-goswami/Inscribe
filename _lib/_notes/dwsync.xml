@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="app.config.php" server="D:/Web/xampp/htdocs/inscribe/" local="130406770461839892" remote="130406770460000000" />
+<file name="app.config.php" server="D:/Web/xampp/htdocs/inscribe/" local="130408430364622033" remote="130408430360000000" />
 <file name="class.Loader.php" server="D:/Web/xampp/htdocs/inscribe/" local="130354024457019738" remote="130354024450000000" />
 <file name="init.php" server="D:/Web/xampp/htdocs/inscribe/" local="130364990958603889" remote="130364990950000000" />
 <file name="class.ViewManager.php" server="D:/Web/xampp/htdocs/inscribe/" local="130364913377674445" remote="130364913370000000" />
 <file name="class.Utils.php" server="D:/Web/xampp/htdocs/inscribe/" local="130405903961919290" remote="130405903960000000" />
 <file name="class.Session.php" server="D:/Web/xampp/htdocs/inscribe/" local="130405750680693090" remote="130405750680000000" />
 <file name="class.Logger.php" server="D:/Web/xampp/htdocs/inscribe/" local="130354000850969549" remote="130354000850000000" />
+<file name="class.SessionCache.php" server="D:/Web/xampp/htdocs/inscribe/" local="130354002837403167" remote="130354002830000000" />
 </dwsync>
